@@ -1,0 +1,25 @@
+/**
+	단일 if 사용 : 조건에 맞을 경우에만 코드를 실행해야 할때
+	if(조건식){
+		조건에 맞을때 수행할 문장들... ;
+	}//end if
+*/
+
+class TestIF{
+	public static void main(String[] args) {
+		//이름을 입력받아 "지승민" 이라면 "반장"을 붙여 이름을 출력하고
+		// 지승민이 아니라면 이름만 출력
+		if(args[0].equals("지승민")){
+			System.out.print("반장 ");
+		}//end if
+		System.out.println(args[0] + "님 안녕하세요?");
+
+		//두번째 인자를 받아서 절대값으로 만들어 출려
+		int num=Integer.parseInt(args[1]);
+		System.out.println("입력값: " +num);
+		if(num<0){
+			num= -num;
+		}
+		System.out.println("절대값 : "+num);
+	}// main
+}// class

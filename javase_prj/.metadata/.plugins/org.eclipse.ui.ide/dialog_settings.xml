@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<list key="org.eclipse.ui.internal.wizards.datatransfer.SmartImportRootWizardPage.knownSources">
+		<item value="C:\dev\workspace"/>
+		<item value="C:\dev\workspace\javase_prj\src"/>
+		<item value="C:\dev\workspace\javase_prj\src\day0403"/>
+		<item value="C:\dev\workspace\javase_prj"/>
+	</list>
+</section>

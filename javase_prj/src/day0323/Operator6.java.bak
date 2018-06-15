@@ -1,0 +1,25 @@
+/**
+	삼항(조건)연산자
+	?:
+*/
+
+class  Operator6{
+	public static void main(String[] args){
+		int i = -23;
+		System.out.println(i+"은(는) "+(i>=0?"양수입니다":"음수입니다"));
+
+		//성년,미성년 판정
+
+		int age=20;
+		System.out.println("나이 "+age+"세는 "+(age>=20?"성년입니다.":"미성년입니다"));
+
+		int temp=0;
+		//삼항연산자는 반환하는 항의 데이터형이 달라도 된다.
+		System.out.println(i+"은(는) "+(i>=0?"양수입니다":temp));
+
+		//
+		int absolute=30;
+		//위의 변수의 절대값을 구해서 반환하는 삼항연산자를 작성
+		System.out.println(absolute+"의 절대값은 "+(absolute>=0?absolute:-absolute)+"입니다");
+	}//main
+}//class
