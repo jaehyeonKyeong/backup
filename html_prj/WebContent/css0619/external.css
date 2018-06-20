@@ -1,0 +1,8 @@
+@charset "UTF-8";
+/* HTML과 CSS가 동일한 Charset을 가지도록 설정한다. */
+div {
+	font-family: 궁서;
+	font-size: 25px;
+	font-weight: bold;
+	color: #0f2870
+}

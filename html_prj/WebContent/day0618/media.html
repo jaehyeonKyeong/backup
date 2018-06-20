@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>음악과 곤지암</title>
+</head>
+<body>
+	<!-- <embed src="audio.mp3" width="600px" height="400px" controller="true" autoplay="false"/> -->
+	<audio src="audio.mp3" controls="true">
+		<strong> 당신의 브라우저는 이 파일을 재생할 수 없습니다.</strong>
+	</audio>
+	<video src="video.mp4" controls="true">
+		<!-- source는 접속자의 브라우저가 mp4를 실행하지 못한다면 mkv나 avi를 가지고 실행할 수 있도록 여러 파일을 준비하여 서비스 한다. -->
+		<source src="video.mkv">
+		<source src="video.avi">
+		<source src="video.wma">
+	</video>
+</body>
+</html>

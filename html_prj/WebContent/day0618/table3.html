@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<meta charset="UTF-8">
+		<title>복잡한 모양의 테이블</title>
+	</head>
+	<body>
+		<table border="1" width="200px" height="200px">
+			<tr>
+				<td colspan="2">1</td><!-- <td>2</td> --><td>3</td>
+			</tr>
+			<tr>
+				<td>4</td><td colspan="2">5</td><!-- <td>6</td> -->
+			</tr>
+			<tr>
+				<td>7</td><td>8</td><td>9</td>
+			</tr>
+		</table>
+		<br>
+		<table border="1" width="200px" height="200px">
+			<tr>
+				<td rowspan="2">1</td><td>2</td><td>3</td>
+			</tr>
+			<tr>
+				<!-- <td>4</td> --><td>5</td><td rowspan="2">6</td>
+			</tr>
+			<tr>
+				<td>7</td><td>8</td><!-- <td>9</td> -->
+			</tr>
+		</table>
+		<hr>
+		<strong>테이블 안에 테이블 정의</strong><br>
+		<table cellspacing="0">
+			<tr>
+				<td>
+					<table border="1" width="300px">
+						<tr align="center">
+							<td>1</td>
+							<td>2</td>
+							<td>3</td>
+							<td>4</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<table border="1" width="300px">
+						<tr align="center">
+							<td>5</td>
+							<td>6</td>
+							<td>7</td>
+							<td>8</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+		<hr/>
+		<table border="1" width="200px" height="200px">
+			<tr>
+				<td colspan="2" bgcolor="#ffeeee">1</td><!--  <td>2</td>--><td rowspan="2" bgcolor="#efefef">3</td>
+			</tr>
+			<tr>
+				<td rowspan="2" bgcolor="#eeffee">4</td><td bgcolor="eccece">5</td> <!-- <td>6</td>  -->
+			</tr>
+			<tr>
+				<!-- <td>7</td> --><td colspan="2" bgcolor="#eeeeff">8</td><!-- <td>9</td> -->
+			</tr>
+		</table>
+	</body>
+</html>
