@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+body, div, ul, ol, h1, h2, h3, form, fieldset, legend, textarea, p, th,
+	td, input, select {
+	margin: 0;
+	padding: 0
+}
+
+ul, ol {
+	list-style: none
+}
+
+fieldset, img {
+	border: 0px none
+}
+
+body, th, td, input, select, textarea {
+	font-size: 13px;
+	line-height: 1.5;
+	font-family: dotum, 돋움, sans-serif;
+	color: #333;
+}
+
+.inputbox {
+	border: 1px solid #ededed;
+	background-color: #ffffff;
+}
+
+.btn {
+	border: 1px solid #ededed;
+	background-color: #ffffff;
+}
+
+.red {
+	color: red;
+}
+</style>
+</head>
+<body>
+	<strong>회원가입</strong>
+
+	<table>
+		<tr>
+			<td><label><span><span class="red">*</span></span> 아이디</label></td>
+			<td><input type="text" class="inputbox" name="id" maxlength="10"
+				style="width: 150px" /> <input type="button" class="btn"
+				value="중복확인" style="width: 80px" /><br /></td>
+		</tr>
+		<tr>
+			<td><label><span class="red">*</span> 비밀번호</label></td>
+			<td><input type="password" class="inputbox" name="pass"
+				style="width: 150px" maxlength="15"></td>
+		</tr>
+		<tr>
+			<td><label><span class="red">*</span> 비밀번호 확인</label></td>
+			<td><input type="password" class="inputbox" name="pass1"
+				style="width: 150px" maxlength="15"></td>
+		</tr>
+		<tr>
+			<td><label><span class="red">*</span> 이름</label></td>
+			<td><input type="text" class="inputbox" name="name"
+				style="width: 120px"></td>
+		</tr>
+		<tr>
+			<td><label> 전화번호</label></td>
+			<td><select name="phone1">
+					<option value="010">010</option>
+					<option value="011">011</option>
+					<option value="016">016</option>
+					<option value="018">018</option>
+					<option value="019">019</option>
+			</select> <label>-</label> <input type="text" style="width: 40px"
+				class="inputbox" name="phone2" maxlength="4" /> <label>-</label> <input
+				type="text" style="width: 40px" class="inputbox" name="phone3"
+				maxlength="4" /></td>
+		</tr>
+		<tr>
+			<td><label><span class="red">*</span> 우편번호</label></td>
+			<td><input type="text" class="inputbox" name="zipcode1"
+				style="width: 30px" readonly="readonly" /> <label>-</label> <input
+				type="text" class="inputbox" name="zipcode2" style="width: 30px"
+				readonly="readonly" /> <input type="button" class="btn" value="우편번호검색"
+				style="width: 100px" /><br />
+			<td>
+		</tr>
+		<tr>
+			<td><label><span class="red">*</span> 주소</label></td>
+			<td><input type="text" class="inputbox" name="addr"
+				style="width: 300px" readonly></td>
+		</tr>
+		<tr>
+			<td><label> 상세주소</label></td>
+			<td><input type="text" class="inputbox" name="addr_detail"
+				style="width: 300px"></td>
+		</tr>
+		<tr>
+			<td><label><span class="red">*</span> 주민번호</label></td>
+			<td><input type="text" class="inputbox" name="ssn1"
+				style="width: 60px" /> <label>-</label> <input type="text"
+				class="inputbox" name="ssn2" style="width: 70px" />
+			<td>
+		</tr>
+		<tr>
+			<td><label><span class="red">*</span> 성별</label></td>
+			<td><input type="radio" name="gender" value="남자" />남 <input
+				type="radio" name="gender" value="여자" />여<br /></td>
+		</tr>
+		<tr>
+			<td><label> 취미</label></td>
+			<td><input type="checkbox" name="hobby" value="등산" />등산 <input
+				type="checkbox" name="hobby" value="띵작감상" />띵작감상 <input
+				type="checkbox" name="hobby" value="음악감상" />음악감상<br /> <input
+				type="checkbox" name="hobby" value="낚시" />낚시 <input type="checkbox"
+				name="hobby" value="코딩" />코딩 <input type="checkbox" name="hobby"
+				value="독서" />코딩<br /></td>
+		</tr>
+		<tr>
+			<td><label><span class="red">*</span> 생년월일</label></td>
+			<td><input type="text" class="inputbox" name="birthyear"
+				style="width: 40px" /> <label>년</label> <input type="text"
+				class="inputbox" name="birthmonth" style="width: 20px" /> <label>월</label>
+				<input type="text" class="inputbox" name="birthday"
+				style="width: 20px" /> <label>일</label>
+			<td>
+		</tr>
+		<tr>
+			<td><label>결혼여부</label></td>
+			<td><input type="radio" name="marriage" value="미혼"
+				checked="checked" />미혼 <input type="radio" name="marriage"
+				value="기혼" />기혼<br />
+		</tr>
+		<tr>
+			<td><label> 결혼기념일</label></td>
+			<td><input type="text" class="inputbox" name="m_year"
+				style="width: 40px" /> <label>년</label> <input type="text"
+				class="inputbox" name="m_month" style="width: 20px" /> <label>월</label>
+				<input type="text" class="inputbox" name="m_day" style="width: 20px" />
+				<label>일</label>
+			<td>
+		</tr>
+		<tr>
+			<td><label> 가입인사</label></td>
+			<td><textarea name="hello" rows="20" cols="20"
+					style="width: 300px; height: 90px"></textarea> <br /></td>
+		</tr>
+		<tr>
+			<td colspan="2" style="text-align: center"><input type="button" class="btn" value="가입" /> <input
+				type="button" class="btn" value="취소" /><br /></td>
+		</tr>
+		<tr>
+			<td colspan="2" style="text-align:center"><label><span class="red">*은 필수입력</span></label></td>
+		</tr>
+	</table>
+
+
+
+
+</body>
+</html>

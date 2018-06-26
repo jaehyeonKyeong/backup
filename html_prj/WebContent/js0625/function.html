@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>함수</title>
+<link rel="stylesheet" type="text/css"
+	href="http://localhost:8080/html_prj/common/css/main.css" />
+<script type="text/javascript">
+	//매개변수 없는 함수
+	function test() {
+		alert("호출");
+	} //test
+	//매개변수 없는 함수 호출
+	test();
+
+	//매개변수 있는 함수(매개변수는 지역변수 형태로 만들 수 없다.)
+	function test1(name) {
+		alert("호출" + name);
+	} //test1
+	test1("지승민");
+
+	//반환값이 있는 함수
+	function test2() {
+		return "월요일";
+	} //test2
+	var week = test2();
+	alert(week);
+	
+//////////////무기명함수/////////////////
+//이벤트 등록, 변수할당(closeur가 존재)
+//이벤트 등록: window.이벤트=function(){코드}
+window.onload=function(){
+	alert("윈도우가 로딩 되었음.");
+}//function
+
+
+
+	
+	
+</script>
+
+
+</head>
+<body>
+	<!-- 
+ 작성일 :2018. 6. 25.
+ 작성자 :owner
+ 내   용 :
+ -->
+</body>
+</html>

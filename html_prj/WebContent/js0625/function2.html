@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css"
+	href="http://localhost:8080/html_prj/common/css/main.css" />
+<script type="text/javascript">
+	function call() {
+		alert("Called!!!")
+	}
+</script>
+
+</head>
+<body>
+	<!-- <body onload="call()"> -->
+	<!-- <div onload="call()"></div> onload는 body에 정의할때만 동작 -->
+	<input type="button" value="클릭" class="btn" onclick="call()" />
+	<br />
+	<a href="#void" onclick="call()">클릭</a>
+	<br />
+
+	<!-- onXxx()="자바스크립트영역 - 자바스크립트 코드를 사용하면 된다." 
+	href="HTML영역 - 자바스크립트 코드를 사용할 수 없다."
+	HTML영역=> javascript영역으로 변경 방법:
+	href="javascript:자바스크립트 코드작성 가능"
+	-->
+	<a href="call()">클릭</a>
+	<br />
+	<a href="javascript:call()">클릭</a>
+	<br />
+	<a href="#" ondblclick="call()">더블클릭</a>
+	<br /> 마우스 포인터가 특정위치에 들어가면
+	<img src="../common/images/daram22.jpg" width="80px"
+		onmouseover="call()" style="border: 2px solid #333" />
+	<br /> 마우스 포인터가 특정위치에 빠져나가면
+	<img src="../common/images/daram22.jpg" width="80px"
+		onmouseout="call()" style="border: 2px solid #333" />
+	<br /> 키가 눌리면 :
+	<input type="text" class="inputBox" onkeydown="call()" />
+	<br /> 키가 올라오면 :
+	<input type="text" class="inputBox" onkeyup="call()" />
+	<br /> 값이 변경되면 :
+	<select onchange="call()">
+		<!-- 다른 옵션이 선택되면 -->
+		<option>A</option>
+		<option>B</option>
+		<option>C</option>
+	</select>
+	<br />
+	<!-- 커서가 들어갔을 때의 값과 나갔을 때의 값이 다르면 호출 -->
+	<input type="text" onchange="call()" />
+	<br /> 커서가 빠져 나갔을 때 :
+	<input type="text" onblur="call()" />
+</body>
+</html>
+
+
+
+
+
+
+
+

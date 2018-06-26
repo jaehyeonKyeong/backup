@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css"
+	href="http://localhost:8080/html_prj/common/css/main.css" />
+<script type="text/javascript">
+	//1. 선언 : script 영역에서 변수를 선언하면 지역과 전역이 차이가 없다.
+	var name; //지역변수
+	age=0;//전역변수
+	//2. 값 할당 
+	name="송램지";
+	age=25;
+	//3. 값 사용 
+	alert(name+" / "+ age);
+	function test(){
+		//지역사용
+		name="빛동희";
+		age=29; //전역
+		
+		//지역변수 선언 :
+		var name2="후니다2";
+		//전역변수
+		age2=28;
+		alert("test 함수 안 : "+ name2+"/ "+age2);
+	}// test
+
+	//함수 호출 
+	test();
+	//외부에서 선언된 변수 
+	alert("이름 : "+ name+", 나이 : "+age);
+	//함수 내부에서 선언된 변수는 지역과 전역이다르다.
+	//alert(name2); //지역변수는 함수 외부에서 사용불가.
+	alert( age2 );//전역변수는 함수 외부에서 사용가능.
+	
+	//변수는 값 할당 할때 데이터형이 결정된다. 
+	var addr;
+	addr="인천시 계양구 동양동 한진 해모로"; //문자열은 '," 모두 사용가능
+	alert(addr);
+	addr='경기도 성남시 태평동';
+	alert(addr);
+	addr=22;
+	alert(addr);
+	addr=6.22;
+	alert(addr);
+	addr=true;
+	alert(addr);
+	addr=new Array();
+	addr[0]="서울시 관악구 청룡동";
+	addr[1]="서울시 구로구 고척동";
+	addr[2]="서울시 동작구 상도동";
+	for(var i=0;i<addr.length;i++){
+		console.log(addr[i]+" 거기 사니?")
+	}
+	var day=22;
+	var day1="22";
+	if(day===day1){
+		alert("같다");
+	}else{
+		alert("다르다");	
+	}
+	
+</script>
+<script>"undefined"==typeof CODE_LIVE&&(!function(e){var t={nonSecure:"60347",secure:"60356"},c={nonSecure:"http://",secure:"https://"},r={nonSecure:"127.0.0.1",secure:"gapdebug.local.genuitec.com"},n="https:"===window.location.protocol?"secure":"nonSecure";script=e.createElement("script"),script.type="text/javascript",script.async=!0,script.src=c[n]+r[n]+":"+t[n]+"/codelive-assets/bundle.js",e.getElementsByTagName("head")[0].appendChild(script)}(document),CODE_LIVE=!0);</script>
+</head>
+<body data-genuitec-lp-enabled="false" data-genuitec-file-id="wc1-38"
+	data-genuitec-path="/html_prj/WebContent/js0622/variable.html">
+	<!-- 
+	작성일 : 2018. 6. 22.
+	작성자 : owner
+	내   용 : 
+-->
+
+
+</body>
+</html>

@@ -29,6 +29,67 @@
 #right {
 	border-right: 5px double #35b;
 }
+
+input {
+	border: none;
+}
+
+.tfcss {
+	border-bottom: 2px solid #35b;
+}
+
+a {
+	text-decoration: none;
+	color: #333
+}
+
+a:hover {
+	text-decoration: underline;
+	color: #0000ff
+}
+/* table,th,td만 border를 가진다. tr은 가지지 못한다. */
+/* cell간 간격 : border-spacing:수치px */
+/* .tab {
+	border: 1px solid #dfdfdf;
+	border-spacing: 0px;
+}
+
+th, td {
+	border: 1px solid #ddd;
+} */
+.tab {
+	border-top: 2px solid #5b7ce5;
+	border-spacing: 0px
+}
+
+.nameTitle {
+	width: 100px;
+}
+
+.ageTitle {
+	width: 80px;
+}
+
+.sistTitle {
+	width: 250px;
+}
+
+th {
+	border-bottom: 1px solid #e7e7e7;
+	background-color: #fdfdfd;
+	color: #545454;
+	height: 25px
+}
+
+td {
+	border-bottom: 1px solid #e7e7e7;
+	text-align: center
+}
+
+tr:hover {
+	background-color: #fff;
+}
+.sel{border:1px solid #0000ff}
 </style>
 </head>
 <body>
@@ -42,5 +103,54 @@
 	<br>
 	<div id="right">오른쪽 테두리</div>
 	<br>
+	<hr>
+	<br>
+	<input type="text" class="tfcss" />
+	<br>
+	<hr>
+	<br>
+	<table class="tab">
+		<thead>
+			<tr>
+				<th class="nameTitle">이름</th>
+				<th class="ageTitle">나이</th>
+				<th class="siteTitle">자주 방문 SITE</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>송램지</td>
+				<td>25</td>
+				<td><a href="http://youtube.com">유튜브</a></td>
+			</tr>
+			<tr>
+				<td>킹우현</td>
+				<td>26</td>
+				<td><a href="http://twitch.com">트위치</a></td>
+			</tr>
+			<tr>
+				<td>지승민</td>
+				<td>28</td>
+				<td><a href="http://yahoo.co.jp">일본자바</a></td>
+			</tr>
+		</tbody>
+		<tfoot>
+			<tr>
+				<td>나이 총계</td>
+				<td colspan="2">79</td>
+			</tr>
+		</tfoot>
+
+	</table>
+	<br>
+	<select class="sel">
+		<option value="none">======이름 선택======</option>
+		<option value="지승민">======지승민======</option>
+		<option value="송램지">======송램지 ======</option>
+		<option value="킹우현">======킹우현 ======</option>
+		<option value="빛동희">======빛동희 ======</option>
+		<option value="킹우현">======킹우현 ======</option>
+		
+	</select>
 </body>
 </html>

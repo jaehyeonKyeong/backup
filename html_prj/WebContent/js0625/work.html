@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css"
+	href="http://localhost:8080/html_prj/common/css/main.css" />
+<style type="text/css">
+#diceWrap {
+	width: 400px;
+	height: 400px;
+	margin: 0px auto
+}
+
+#playerInfo {
+	height: 150px;
+}
+
+#dice {
+	width: 300px;
+	height: 150px;
+	border-radius: 20px;
+	padding: 10px;
+	border: 1px solid #333;
+	box-shadow: 10px 10px 10px #efefef;
+	margin: 0px auto;
+	text-align: center;
+}
+</style>
+<script type="text/javascript">
+	var play = 1;
+	var countflag = 1;
+	var scoreflag = 1;
+	var player1Name =document.getElementById("p1_name");
+	var player2Name =document.getElementById("p2_name");
+	var player1Node = document.getElementById("p1");
+	var player2Node = document.getElementById("p2");
+	var player1 = "",
+		player2 = "";
+	var p1_score = 0,
+		p2_score = 0;
+	var p_name=document.getElementById("p_name");
+	function setInitDice() {
+		var countNode = document.getElementById("count");
+		var dice1 = document.getElementById("dice_1");
+		var dice2 = document.getElementById("dice_2");
+
+		var num1 = parseInt(Math.random() * 6 + 1);
+		var num2 = parseInt(Math.random() * 6 + 1);
+
+		dice1.src = "img/dice_" + num1 + ".png";
+		dice2.src = "img/dice_" + num2 + ".png";
+		if (countflag == 1) {
+			if (scoreflag == 1) {
+				p_name.value=player1Name.value;
+				p1_score += num1 + num2;
+				scoreflag++;
+			} else {
+				p2_score += num1 + num2;
+				scoreflag = 1;
+			}
+			countflag++;
+		} else {
+			countNode.innerHTML = play++;
+			if (play >= 4) {
+				play = 1;
+				p1_score = 0;
+				p2_score = 0;
+			}
+			countflag = 1;
+		}
+
+
+
+
+
+	}
+	function settingPlayer() {
+
+		player1 = player1Node.value;
+		player2 = player2Node.value;
+
+		player1Name.value = player1;
+		player2Name.value = player2;
+
+	}
+</script>
+</head>
+<body onload="setInitDice()">
+	<!--
+	작성일 : 2018. 6. 25.
+	작성자 : owner
+	내  용  : 
+ -->
+	<div id="diceWrap">
+		<div>던져버려 주사위!</div>
+		<div id="playerInfo">
+			<label>player1</label><input type="text" id="p1" class="inputBox">
+			<label>player2</label><input type="text" id="p2" class="inputBox">
+			<input type="button" value="설정" class="btn" onclick="settingPlayer()"><Br>
+			<div style="font-weight: bold; fontsize: 14px">
+				<!-- p1과 p2에 이름이 들어오고 "설정"버튼이 눌려지면 입력한 이름이 p1_name,p2_name에 입력된다. 
+				 "저ㅜ사위 던지기 버튼이 눌려지면 현재 회차를 "count"에 출력하고 던진사람의 이름을 p1_name,p2_name으로 
+				 번갈아 가며 출력한다. 게임은 "총3회"이며 3회가 끝난 이후에는 p1의 주사위 합산 값과 p2의 주사위 합산값을 비교하여 
+				 누가 이겼는지 alert창으로 출력한다. 3회가 끝나면 p1_name,p2_name을 초기화 하며,p1_name,p2_name이 초기화 된 상태에서는 주사위 던지기가 
+				 실행되지 않고 "경고창으로 이름을 넣으세요"를 보여준다	-->
+				<input type="text" id="p1_name" class="inputBox" />VS<input
+					type="text" id="p2_name" class="inputBox" /> <input type="button"
+					value="주사위 던지기" class="btn" onclick="setInitDice()" /><br> <span
+					id="count"></span>회차 던진사람 <input type="text" id="p_name"
+					class="inputBox">
+			</div>
+		</div>
+		<div id="dice">
+			<img id="dice_1" /> <img id="dice_2" />
+		</div>
+	</div>
+</body>
+</html>

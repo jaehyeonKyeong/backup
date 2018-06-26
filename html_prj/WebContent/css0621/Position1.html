@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<style type="text/css">
+#wrap {
+	margin:0px auto;
+	width:900px;
+	height:800px;
+}
+#top{
+	width:900px;
+	height:200px;
+}
+#left{
+	float:left;
+	width:450px;
+	height:500px;
+}
+#right{
+	float:right;
+	width:450px;
+	height:500px;
+}
+#bottom{
+	clear:both; /* 이전 태그의 position이 적용되는 경우도 있으므로 clear:both를 써준다. */
+	width:900px;
+	height:100px;
+}
+</style>
+<body>
+	<div id="wrap">
+<!--wrap (w)900x(h)800 -->
+		<div id="top">top (w)900x(h)200</div>
+		<div id="left">left (w)450x(h)500</div>
+		<div id="right">right (w)450x(h)500</div>
+		<div id="bottom">bottom (w)900x(h)100</div>
+	</div>
+</body>
+</html>

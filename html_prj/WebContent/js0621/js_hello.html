@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css"
+	href="http://localhost:8080/html_prj/common/css/main.css" />
+<script type="text/javascript" src="hello.js"/>
+<script type="text/javascript">
+	function test(){
+		alert("embed방식의 클릭");
+	}//test
+</script>
+</head>
+<body>
+	<input type="button" value="inline방식" class="btn"
+		onclick="alert('inline방식에서 클릭하셨습니다.');" /><br/>
+	<input type="button" value="embed방식" class="btn" onclick="test();"/><br>
+	<input type="button" value="external file방식" class="btn" onclick="test1();"/>
+</body>
+</html>

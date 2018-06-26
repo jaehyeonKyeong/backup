@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+body {
+	text-align: center
+} /* text-align: 문자열만 가운데 정렬 */
+div {
+	border: 1px solid #35b;
+	margin: 0px auto
+}
+
+#wrap {
+	width: 500px;
+	height: 300px
+}
+/* 왼쪽정렬 : float:left */
+#left {
+	border: none;
+	width: 250px;
+	height: 300px;
+	float: left;
+	background-color: red;
+}
+/* 오른쪽 정렬 : float:right */
+#right {
+	border: none;
+	width: 250px;
+	height: 300px;
+	background-color: blue;
+	float: right;
+}
+/* 크기에는 테두리의 두깨가 포함되어있지 않아서 실제크기는 250+2px; */
+#tab {
+	border-top: 2px solid #35b;
+	/* border-bottom:1px solid #35b; */
+	border-spacing: 0px;
+	margin: 0px auto;
+}
+
+th {
+	font-size: 14px;
+	color: white;
+	background-color: #101449;
+}
+
+td {
+	border-bottom: 1px solid #35b
+}
+</style>
+</head>
+<body>
+	안용하세요?
+	<div id="wrap">
+
+		<div id="left">왼쪽</div>
+		<div id="right">오른쪽</div>
+	</div>
+	<br>
+	<table id="tab">
+		<thead>
+			<tr>
+				<th>이름</th>
+				<th>잘하는 일</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>지승민</td>
+				<td>commit</td>
+			</tr>
+			<tr>
+				<td>송램지</td>
+				<td>요리,맛지적질,캬~하~~,잘 모르게쓰,누구인가</td>
+			</tr>
+			<tr>
+				<td>킹우현</td>
+				<td>오버워치,자바,오라클,HTML,더위,추위</td>
+			</tr>
+		</tbody>
+	</table>
+</body>
+</html>

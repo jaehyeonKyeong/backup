@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+#wrap {
+	position: relative;
+	width: 800px;
+	height: 900px;
+	border: 1px solid #333;
+	margin: 0px auto;
+	border: 1px solid #333;
+	height: 900px;
+	width: 800px;
+}
+/* fixed - 스크롤 바가 움직이면 좌표를 수정하여 항상 고정된 자리에서 보여진다.
+		 - relative에 영향을 받지 않는다. */
+#fix {
+	position: fixed;
+	top: 50px;
+	left: 810px;
+	width: 80px;
+	height: 160px;
+	background-color: #ffbc38;
+}
+
+/* absolute - 스크롤바가 움직여도 좌표를 수정하지 않고 처음 고정된 위치에서 보여진다.
+			- relative에 영향을 받는다. */
+#abs {
+	position: absolute;
+	top: 100px;
+	left: 100px;
+	background-color: #fd350d;
+	width: 200px;
+	height: 200px;
+}
+
+/* wrap div밖에 있는 abs2 div는 wrap의 relative에 영향을 받지 않는다 */
+#abs2 {
+	position: absolute;
+	top: 100px;
+	left: 100px;
+	background-color: #eee;
+	width: 200px;
+	height: 200px;
+}
+</style>
+</head>
+<body>
+	<div id="wrap">
+		<div id="fix">고정좌표</div>
+		<div id="abs">절대좌표</div>
+	</div>
+	<div id="abs2">절대좌표2</div>
+</body>
+</html>

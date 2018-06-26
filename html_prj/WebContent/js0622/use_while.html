@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css"
+	href="http://localhost:8080/html_prj/common/css/main.css" />
+<style type="text/css">
+#div {
+	border: 1px solid #333;
+	width: 1000px;
+	height: 80px;
+	border-radius: 10px;
+	box-shadow: 10px 5px 20px #333;
+	font-size:40px;
+	font-weight:bold;
+	vertical-align: middle;
+}
+</style><script type="text/javascript">
+	var num = prompt("숫자를 입력하면 \n숫자까지의 짝수의 합을 출력", "10");
+	document.write("<div id='div'>");
+	var i=1;
+	sum=0;//전역
+	while(i<=num){
+		if(i%2==0){
+			sum+=i;
+		}
+		i++;
+	}
+	document.write("<marquee behavior='alternate'> 1부터"+num+"까지의 짝수의 합 출력 : "+sum+"</marquee>")
+	document.write("</div>");
+</script>
+</head>
+<body>
+<!--
+	작성일 : 2018. 6. 22.
+	작성자 : owner
+	내  용  : 
+ -->
+</body>
+</html>

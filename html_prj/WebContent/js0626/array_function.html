@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css"
+	href="http://localhost:8080/html_prj/common/css/main.css" />
+<style type="text/css">
+div {
+	width: 500px;
+	height: 200px;
+	border: 1px solid #333;
+}
+</style>
+<script type="text/javascript">
+	function useArray() {
+		//문자열 합치기
+		var divNode = document.getElementById("output");
+		var output = "";
+		var name = "송재원";
+		output = name.concat("은 점심시간마다 송램지로 변신");
+		divNode.innerHTML = output;
+	}
+</script>
+</head>
+<body>
+	<!--
+	작성일 : 2018. 6. 26.
+	작성자 : owner
+	내  용  : 
+ -->
+	<input type="button" value="배열함수" onclick="useArray()" />
+	<br>
+	<div id="output"></div>
+</body>
+</html>

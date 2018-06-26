@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>그림자</title>
+<style type="text/css">
+#txt_shadow {
+	text-shadow: -10px -5px 3px #000000
+}
+/* div의 영역보다 데이터가 많다면 div외부로 데이터가 빠져나간다.
+	div에 스크롤바 설정 overflow:auto
+	  */
+#box_shadow {
+	width: 400px;
+	height: 100px;
+	border: 1px solid #333;
+	overflow: auto;
+	box-shadow: 10px 15px 10px #000000
+}
+/* 투명도 : opacity:0.1(10%) ~ 1(100%) 까지 설정 */
+img {
+	opacity: 0.5
+}
+
+#radius {
+	border: 1px solid #35b;
+	width: 400px;
+	height: 200px;
+	border-radius: 10px 30px 50px 70px;
+	box-shadow: 10px 10px 10px red;
+	padding-left:30px;
+}
+</style>
+</head>
+<body>
+	<span id="txt_shadow">반장 지승민 님</span>
+	<br>
+	<div id="box_shadow">
+		인천시에는 지승민과 킹우현과 정다은이 살고 있습니다.<br> 수원시에는 최주오와 강소예가 살고있습니다.<br>
+		성남시에는 송램지와 강지형이 살고 있습니다.<br> 후니다2는 광주에서 살고 있습니다.<br> 후니다2는
+		광주에서 살고 있습니다.<br> 후니다2는 광주에서 살고 있습니다.<br> 후니다2는 광주에서 살고
+		있습니다.<br>
+	</div>
+	<br>
+	<div id="radius">
+		<img src="../common/img/daum.png" />
+	</div>
+</body>
+</html>

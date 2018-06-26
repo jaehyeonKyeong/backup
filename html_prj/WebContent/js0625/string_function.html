@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>문자열함수</title>
+<link rel="stylesheet" type="text/css" href="http://localhost:8080/html_prj/common/css/main.css"/>
+<script type="text/javascript">
+	function test(){
+		var msg="오늘은 월요일 입니다.";
+		console.log(msg+"글자수:"+msg.length);
+		msg="AbCdEf";
+		console.log(msg+"대문자:"+msg.toUpperCase());
+		console.log(msg+"소문자:"+msg.toLowerCase());
+		console.log(msg+"'d'의 인덱스 :"+msg.indexOf("d"));
+		console.log(msg+"'k'의 인덱스 :"+msg.indexOf("k"));
+		console.log(msg+"4번째 인덱스의 문자 :"+msg.charAt(4));
+		console.log(msg+"'bCd'문자열 얻기 :"+msg.substring(1, 4));
+		console.log(msg+"'C'부터 끝까지 문자열 얻기 :"+msg.substring(2));
+		msg=" A BC ";
+		console.log(msg+"앞뒤 공백 제거한 문자열 얻기 :["+msg.trim()+"]");
+		//문자열 치환
+		msg="오늘 점심은 송램지가 결정한다. 송램지는 짬뽕을 잘 모르겠스~";
+		console.log(msg+"에서 '송램지'를 '송재원'으로 변경["+msg.replace("송램지", "송재원")+"]");
+		msg="a0b1CDg가나다06ㄱ0힣~!@#$%^2&*()";
+		//replace의 동작
+		alert("숫자만 제거 : "+msg.replace(/[0-9]/g, ""));
+		alert("영어 소문자만 제거 : "+msg.replace(/[a-z]/g, ""));
+		alert("영어 대문자만 제거 : "+msg.replace(/[A-Z]/g, ""));
+		alert("한글 문자만 제거 : "+msg.replace(/[ㄱ-힣]/g, ""));
+		//특수문자는 범위를 입력하지 못함
+		alert("영문자 제거 : "+msg.replace(/[a-zA-Z]/g,""));
+		alert("영문자,숫자,한글 제거 : "+msg.replace(/[a-zA-Z0-9ㄱ-힣]/g,""));
+		alert("모든문자 제거 : "+msg.replace(/[a-zA-Z0-9ㄱ-힣~!@#$%^&*()]/g,""));
+		
+		msg="오늘 점심은 송램지가 결정한다. 송램지는 짬뽕을 잘 모르겠스~";
+		alert(msg.replace(/[^송램지]/g, "쌔빠닥"));
+		//원하는 문자열이 입력되었는지 체크할 때
+		msg=prompt("영문자만 입력");
+		if(msg.replace(/[a-zA-Z]/g, "")!=""){
+			alert("영문자만 입력해주세요");
+		}else{
+			alert("입력성공! : "+msg);
+			
+		}
+		
+		
+		
+		
+	}//test
+
+</script>
+</head>
+<body>
+	<input type="button" value="문자열함수" onclick="test()"/>
+</body>
+</html>
