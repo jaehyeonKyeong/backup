@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css"
+	href="http://localhost:8080/html_prj/common/css/main.css" />
+<script type="text/javascript">
+	function useClosure() {
+		var closure = function() {
+			var temp = 6;
+			var myName = function() {
+				return "송램지";
+			}
+			function addr() {
+				alert("경기도 성남시 수정구 태평동");
+
+			}
+			return {
+				te : temp,
+				mn : myName,
+				addr : addr
+			}
+		}(); //function
+
+		//클로저를 정의 하지 않으면 함수내 영역은 접근이 불가능 하다.
+		alert(closure.te + " " + closure.mn());
+		closure.addr();
+	}
+	function closure1() {
+		var obj=document.frm
+		var name = obj.name.value;
+		var age = obj.age.value;
+
+		
+		//무기명함수 : 매개변수 잇는 closure작성
+		//처리 업무(이름에 "님"을 붙이고 태어난 해를 구하는 업무)가 closure하나로 묶여진다.
+		var business_obj = function(i_name, i_age) {
+			function returnName() {
+				return i_name + "님";
+			}
+			var birth = function() {
+				var date = new Date();
+				return date.getFullYear() - i_age + 1;
+			}
+			//closure
+			//정의된 클로저만 밖에서 사용할 수 있다.
+			//클로저는 하나의 기능으로 묶는다.
+			return {nameMsg : returnName,b_y : birth}
+		}(name, age)
+		
+		document.getElementById("name").innerHTML=business_obj.nameMsg();
+		document.getElementById("age").innerHTML=age;
+		document.getElementById("birth").innerHTML=business_obj.b_y();
+	}
+	window.onload = function() {
+		document.getElementById("btn").addEventListener("click", useClosure);
+		document.getElementById("btn2").addEventListener("click", closure1);
+	}
+</script>
+</head>
+<body>
+	<!--
+	작성일 : 2018. 6. 29.
+	작성자 : owner
+	내  용  : 
+ -->
+	<input type="button" value="클로저 사용" id="btn" class="btn" />
+	<form name="frm">
+		<label>이름</label> <input type=text name=name class=inputBox><br>
+		<label>나이</label> <input type=text name=age class=inputBox><br>
+		<input type="button" value="클로저 사용2" id="btn2" class="btn" />
+
+	</form>
+	<div>
+		이름:<span id="name"></span><Br> 나이:<span id="age"></span><br> 태어난해:<span
+			id="birth"></span>
+	</div>
+</body>
+</html>

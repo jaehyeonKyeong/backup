@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="http://localhost:8080/html_prj/common/css/main.css"/>
+<!-- CDN -->
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$("#btn").click(function() {
+			var output="<tr><td>"+$("#name").val()+"</td><td>"+
+					$("#like").val()+"</td><td>"+$("#age").val()+"</td></tr>";
+			//만들어진 데이터를 테이블에 가장 마지막에 추가한다.
+			$("#tab:last").append(output);
+			//입력데이터 초기화
+			$("#name").val("");
+			$("#like").val("");
+			$("#age").val("");
+			//커서 이동
+			$("#name").focus();
+			
+		});//click
+		
+		//추가
+		var tabcnt=1;
+		$("#add").click(function(){
+			tabcnt++;
+			//alert($("#career").html());
+			$("#carDiv:last").append($("#career").html());
+		});//click
+		
+		$("#del").click(function() {
+			if(tabcnt >1){
+			tabcnt--;
+			$("#carDiv:last table:last").remove();
+			}//end if
+		});//click
+		
+		
+	});//ready
+	
+	
+</script>
+<style type="text/css">
+	table{border-spacing: 0px; border-top: 2px solid #333; margin:0px auto;}
+	#nameTitle{width: 100px}
+	#ageTitle{width: 80px}
+	#likeTitle{width: 300px}
+	th,td{text-align: center; border-bottom: 1px solid #333}
+	th{height: 30px;}
+	td{height: 25px;}
+	
+</style>
+
+</head>
+<body>
+<label>이름</label>
+<input type="text" name="name" id="name" class="inputBox"/><br/>
+<label>나이</label>
+<input type="text" name="age" id="age" class="inputBox"/><br/>
+<label>좋아하는 것</label>
+<input type="text" name="like" id="like" class="inputBox"/><br/>
+<input type="button" value="입력" id="btn" class="btn"/><br/>
+<table id="tab">
+<thead>
+	<tr>
+		<th id="nameTitle">이름</th>
+		<th id="likeTitle">좋아하는 것</th>
+		<th id="ageTitle">나이</th>
+	</tr>
+</thead> 
+
+<tbody>
+	<tr>
+		<td>지승민</td><td>빵,카레</td><td>28</td>
+	</tr>
+	<tr>	
+		<td>빛동희</td><td>닭가슴살,계란,헬스</td><td>29</td>
+	</tr>
+</tbody>
+</table>
+
+<div style="width:700px; margin:0px auto;" id="carDiv">
+	<div style="margin-top: 30px;">
+	<div style="float: left; width: 600;text-align: left;">
+		<strong style="font-size: 30px; font-weight: bold;">경력사항</strong>
+	</div>
+	<div style="float: right; padding-right: 20px; width: 80px">
+	<img src="images/add.png" title="경력 추가" id="add" style="cursor:pointer;" />	
+	<img src="images/min.png" title="경력 삭제" id="del" style="cursor:pointer;"/>	
+	</div>
+	</div>
+</div>
+	<div style="clear: both;" id="career">
+		<table style="width: 700px; border:1px solid #333;margin-top:20px ">
+			<tr>
+			<td>회사명</td>
+			<td><input type="text" name="company" class="inputBox"/></td>
+			<td>근무기간</td>
+			<td>
+			입사일<input type="date" name="startDate" />~
+			퇴사일<input type="date" name="endDate" /></td>
+			</tr>
+			<tr>
+			<td>업무내용</td>
+			<td colspan="3">
+				<textarea style="width:400px; height:200;" ></textarea>
+			</td>
+		</table>
+		
+	</div>
+
+
+
+
+
+
+
+
+
+</body>
+</html>

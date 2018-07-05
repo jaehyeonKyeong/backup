@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css"
+	href="http://localhost:8080/html_prj/common/css/main.css" />
+<script type="text/javascript"
+	src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script type="text/javascript">
+	$(function() {
+
+		$("#btn").click(function() {
+			var names = [ "후니다2", "킹우현", "빛동희", "송램지", "탈붓다", "꿀형" ];
+			var output = "<ul>";
+			//배열 반복
+			$.each(names, function(i, name) {
+
+				output += "<li>" + i + "번 " + name + "</li>";
+			});
+			output += "</ul>";
+			//div출력
+			$("#output").html(output);
+		});
+		$("#even").click(function() {
+			$("li:even").css("color", "red");
+			$("li:odd").css("color", "black");
+		});
+		$("#odd").click(function() {
+			$("li:even").css("color", "black");
+			$("li:odd").css("color", "red");
+		});
+	});
+</script>
+</head>
+<body>
+	<input type="button" value="반복사용" id="btn" class="btn">
+	<br>
+	<input type="button" value="짝수번째" id="even" class="btn">
+	<br>
+	<input type="button" value="홀수번째" id="odd" class="btn">
+	<div id="output"></div>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css"
+	href="http://localhost:8080/html_prj/common/css/main.css" />
+<script type="text/javascript">
+	function historyBack() {
+		window. history.back();//back에는 매개변수가 없다
+	}
+	function historyGo() {
+		window.history.go(-1);//go에는 매개변수(이동할 history수)가 있다.
+	}
+	function cnt() {
+		//처음 페이지로 돌아가서 다른 페이지를 열면 이전 history가 사라진다.
+		alert("열어본 페이지 수 : " + window.history.length);
+
+	}
+
+	window.onload = function() {
+		document.getElementById("back").addEventListener("click", historyBack);
+		document.getElementById("go").addEventListener("click", historyGo);
+		document.getElementById("cnt").addEventListener("click", cnt);
+	}
+</script>
+</head>
+<body>
+	<input type="button" value="뒤로" id="back" name="back" class="btn" />
+	<input type="button" value="앞으로" id="go" name="back" class="btn" />
+	<input type="button" value="열어본 페이지 수" id="cnt" name="back" class="btn" />
+</body>
+</html>

@@ -1,0 +1,30 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="http://localhost:8080/html_prj/common/css/main.css"/>
+<script type="text/javascript">
+function popupCenter(){
+	//alert(window.screenX)
+	//브라우저의 x좌표 얻기 :  window.screenX
+	//브라우저의 y좌표얻기 : window.screenY
+	window.open("pop_child.html","pop1",
+			"width=270,height=340,top="+(window.screenY+100)
+			+",left="+(window.screenX+150));
+}//popupCenter
+</script>
+</head>
+<body onload="popupCenter()"> 
+사용자에게 제공할 내용들.......<br>
+<map name="map" id="map">
+	<area title="강남구청" shape="rect" coords="226,204,262,221" href="http://www.gangnam.go.kr/main.do" target="_new"/>
+	<area title="성북구청" shape="rect" coords="191,94,225,109" href="http://www.seongbuk.go.kr/" target="_new"/>
+</map> 
+
+<img src="img/seoulmap.jpg" usemap="#map"/>
+
+
+</body>
+</html>

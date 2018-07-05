@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css"
+	href="http://localhost:8080/html_prj/common/css/main.css" />
+<!-- CDN을 사용한 jQuery연결 -->
+<script	src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		//현제 Html의 구조가 로딩된 후 실행
+		alert("안녕 ready");
+	});
+	$(window).load(function() {
+		//현제 Html파일에서 사용할 모든 외부 파일들이 로딩된 후 실행
+		alert("안녕 load");
+	});
+</script>
+</head>
+<body>
+	<img src="../common/img/img.png">
+</body>
+</html>

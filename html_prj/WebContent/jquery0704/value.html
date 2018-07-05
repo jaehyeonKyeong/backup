@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css"
+	href="http://localhost:8080/html_prj/common/css/main.css" />
+<script type="text/javascript"
+	src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	$("#btn").click(function(){
+		alert($("div:first").find("div:last").text());
+		alert($("div:nth-child(3)").find("div:first").html());
+		
+	})
+	
+});
+</script>
+
+</head>
+<body>
+	<div>
+		<div>지승민</div>
+		<div>김대현</div>
+		<div>김동희</div>
+		<div>김우현</div>
+	</div>
+	<div>
+		<div>이상훈</div>
+		<div>오경림</div>
+		<div>신종성</div>
+	</div>
+	<div>
+		<div><strong>송재원</strong></div>
+		<div>강지형</div>
+		<div>이종민</div>
+	</div>
+	<div>
+		<input type="button" value="값얻기" id="btn" class="btn">
+	</div>
+</body>
+</html>

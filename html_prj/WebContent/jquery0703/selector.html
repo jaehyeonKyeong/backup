@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="http://localhost:8080/html_prj/common/css/main.css"/>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script type="text/javascript">
+//<script> 가 
+
+$(function(){
+//tag selector
+//$("p").css("color", "#FF0000");
+//tag selector
+//$("p, input, div").css("color","#0000FF");
+	//$("div>p").css("background-color","#FFEB00");// div안에있는 p에 넣을거다
+	//sub selector
+	//$()
+	//id selector
+	//$("#div1").css("font-size","30px");
+	//class selector
+	//$(".div2").css("font-size","30px");
+	
+	//속성 selector
+	//$("[type='text']").css("background-color","#00FF00");
+	//$("[name='age']").css("background-color","#00FF00");
+	//$("[class='inputBox']").css("background-color","#00FF00");
+	$("[id='age']").css("background-color","#00FF00");
+	
+});
+ 
+</script>
+</head>
+<body>
+	<label>이름</label>
+	<input type="text" name="name" class="inputBox" id="name"/><br/>
+	<label>나이</label>
+	<input type="text" name="age" class="inputBox" id="age"/><br/>
+	<div>
+		<p>어제는 월요일</p>
+	</div>
+	<p>오늘은 화요일</p>
+	<ul>
+		<li>러시안 블루</li>
+		<li>샴</li>
+		<li>노르웨이숲</li>
+		<li>봄베이</li>
+		<li>렉돌</li>
+		<li>스핑크스</li>
+	</ul>
+	<ol>
+		<li><p>시베리안 허스키</p></li>
+		<li>빠삐용</li>
+		<li>웰시코기</li>
+		<li>닥스훈트</li>
+	</ol>
+	<div class="div2">연습</div>
+	<div id="div1">연습</div>
+	<div class="div2">연습</div>
+</body>
+<script type="text/javascript">
+	//script나 body 아래에 정의되면 ready나 load가 정의되지 않아도 된다.
+	$("div").css("background-color","#28AEFF");
+
+</script>
+</html>

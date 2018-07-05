@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css"
+	href="http://localhost:8080/html_prj/common/css/main.css" />
+<script type="text/javascript">
+	function inline() {
+		//1.inline방식사용
+		alert("코드와 HTML의 결합도 상승");
+	}
+
+	window.onlode=function(){
+		document.getElementById("btn1").onclick=function(){
+			alert("무기명함수로 이벤트 처리");
+		}
+	}
+	
+	function addEvt() {
+		alert("이벤트 등록 처리");
+	}
+	//3.이벤트 등록
+	//HTMl과 코드분리
+
+	dcument.getElementById("btn2").addEventListener("click", addEvt);
+</script>
+</head>
+<body>
+	<input type="button" id="btn" value="인라인함수" class="btn" onclick="inline()"/><br>
+	<input type="button" id="btn1" value="무기명함수로 정의" class="btn"/><br>
+	<input type="button" id="btn2" value="이벤트를 등록하여 처리하는 방식" class="btn" />
+
+</body>
+</html>

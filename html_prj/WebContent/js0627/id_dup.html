@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="http://localhost:8080/html_prj/common/css/main.css"/>
+<script type="text/javascript">
+function sendId(obj){
+	
+	var id=obj.cId.value;
+	if(id==""){
+		alert("아이디 입력");
+		obj.cId.focus();
+		return;
+	}
+	
+	
+	opener.window.document.pFrm.id.value=id;
+	self.close();
+}
+</script>
+</head>
+<body>
+<div>
+<form name=cFrm>
+<label>아이디</label>
+<input type=text; name=cId class=inputBox autofocus=autofocus/>
+<input type=button value=사용 class=btn onclick="sendId(document.cFrm)"/>
+</form>
+</div>
+</body>
+</html>

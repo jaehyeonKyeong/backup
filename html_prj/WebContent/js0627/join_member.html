@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css"
+	href="http://localhost:8080/html_prj/common/css/main.css" />
+<script type="text/javascript">
+	function idDup() {
+		window.open("id_dup.html", "id_dup", "width=400,height=250,top="
+			+ (window.screenY + 120) + ", left=" + (window.screenX + 100));
+	}
+	function idDup2() {
+		var subWin = window.open("id_dup.html", "id_dup", "width=400,height=250,top="
+			+ (window.screenY + 120) + ", left=" + (window.screenX + 100));
+		//2.보내고 싶은 값을 저장
+		var id = document.pFrm.id2.value;
+		//3. 자식창의 formControl에 전달
+		subWin.window.document.cFrm.cId.value=id;
+	}
+</script>
+</head>
+<body>
+	<form name="pFrm">
+		<strong> 회원가입</strong><br> <label>아이디</label> <input type="text"
+			name="id" readonly="readonly" class="inputBox" /> <input
+			type="button" value="중복확인" onclick="idDup()" class="btn" /><br>
+		<label>아이디2</label> <input type="text" name="id2" 
+			class="inputBox" /> <input type="button" value="중복확인2"
+			onclick="idDup2()" class="btn" />
+	</form>
+</body>
+</html>

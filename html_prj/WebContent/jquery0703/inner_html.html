@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="http://localhost:8080/html_prj/common/css/main.css"/>
+<!--CDN -->
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$("#btn").click(function(){
+			var msg="<marquee> 오늘점심 뭐먹지?</marquee>";
+			//HTML설정
+			$("#html").html(msg);
+			//text
+			$("#text").text(msg);
+		})
+	});
+
+</script>
+</head>
+<body>
+<input type="button" value="설정"id="btn"class="btn"/>
+<div id="html"></div>
+<div id="text"></div>
+
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css"
+	href="http://localhost:8080/html_prj/common/css/main.css" />
+<style type="text/css">
+img {
+	width: 100px;
+	height: 100px;
+}
+</style>
+<script type="text/javascript">
+	function setData() {
+		var obj = document.frm;
+		if (obj.id.value == ""){
+			alert("계정명은 필수 입력!")
+			obj.id.focus();
+			return;
+		}
+		
+		var img="";
+		var tempNum=0;
+		for(var i=0;i<obj.img.length;i++){
+			if(obj.img[i].checked){
+				tempNum=i;
+				img=obj.img[i].value;
+			}
+		}
+		var flag = obj.img[0].checked || obj.img[1].checked || obj.img[2].checked || obj.img[3].checked;
+		if (img=="") {
+			alert("사용할 이미지를 선택해 주세요");
+			return;
+		}
+		localStorage.setItem("id", obj.id.value);
+		localStorage.setItem("img",img);
+		alert("설정 완료!");
+	}
+	function movePage() {
+		location.href = "storage2.html";
+	}
+	window.onload = function() {
+		document.getElementById("btn").addEventListener("click", setData);
+		document.getElementById("move").addEventListener("click", movePage);
+
+	}
+	function setMsg(flag){
+		var msg=["도적은 집에 꿀이 있으므로 칼퇴근 가능","승려는 인내심과 강인한 체력을 가지나 집이 멀어 항상 지각","지적질은 오늘도 한건!7H꾸르잼","딴짓은 현실이 괴로울때 현실세계 도피 @,.@"];
+		var spanNode=document.getElementById("info");
+		spanNode.innerHTML="<strong>"+msg[flag-1]+"</strong>"
+	}
+</script>
+</head>
+<body>
+	<form name=frm>
+		<label> 계정명</label> <input type=text name=id class=inputBox /> <br>
+		<label> 사용할 이미지 선택</label><Br>
+		<table>
+			<tr>
+				<td><img src=images/img1.png onmouseover="setMsg(1)" name=img1 title='꿀을 잘 훔치는 최고의 도적'  /></td>
+				<td><img src=images/img2.png onmouseover="setMsg(2)" name=img2 
+					title='삼천배를 주무기로 탑재한 고질적인 허리부상' /></td>
+				<td><img src=images/img3.png onmouseover="setMsg(3)" name=img3 title='응! 아니야~~' /></td>
+				<td><img src=images/img4.png onmouseover="setMsg(4)" name=img4 title='유체이탈......' /></td>
+			</tr>
+			<tr>
+				<td><input type=radio value=img1 name=img />도적</td>
+				<td><input type=radio value=img2 name=img />승려</td>
+				<td><input type=radio value=img3 name=img />지적질</td>
+				<td><input type=radio value=img4 name=img />딴짓</td>
+			</tr>
+		</table>
+		<input type="button" value="입력" id="btn" class="btn" />
+	</form>
+	<a href="#" id=move>이동</a><br>
+	특장점:<div id="info"></div>
+</body>
+</html>

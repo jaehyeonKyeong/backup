@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css"
+	href="http://localhost:8080/html_prj/common/css/main.css" />
+<script type="text/javascript" src="perents.js"></script>
+<script type="text/javascript">
+	function usePrototype() {
+		//2.비어있는 자식 클래스 선언
+		function Sub() {
+			/* function test() {
+				alert("자식함수");
+			}
+			return{test:test} */
+			//자식 클래스에 클로저가 들어가있으면 부모의 자원을 사용하지 못함.
+		}
+		//3. 자식의 원형(부모)선택 : 자식.prototype=new 부모명();
+		Sub.prototype = new Perents();
+		
+		//4.자식 생성
+		var sub = new Sub();
+		//5.사용
+		
+		sub.pa_i = "오늘은 월요일";
+		alert(sub.pa_i);
+		sub.parFunc();
+		/* sub.test(); */
+		//부모의 자원과 자식의 자원을 모두 사용하려면 prototype으로 추가한다.
+		Sub.prototype.name;//자식의 원형에 변수 추가
+		Sub.prototype.addr=function(){
+			return "인천시 계양구 동양동 한진해모로아파트";
+		}
+		sub.name="지승민";
+		
+		alert(sub.name);
+		alert(sub.addr());
+		
+		
+
+
+
+	}
+	window.onload = function() {
+		document.getElementById("btn").addEventListener("click", usePrototype);
+	}
+</script>
+</head>
+<body>
+	<input type="button" value="클릭" id="btn" class="btn" />
+</body>
+</html>

@@ -1,0 +1,61 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>HTML5에서 제공하는 Form Control</title>
+<link rel="stylesheet" type="text/css" href="http://localhost:8080/html_prj/common/css/main.css"/>
+<script type="text/javascript">
+	function getValue(){
+		//1. 폼얻기
+		var obj=document.frm;
+		//2. 값얻기 
+		var output="";
+		//<input type="date"
+		output="날짜 : " +obj.date.value+"<br/>";
+		//<input type="number"
+		output+="숫자 : " +obj.num.value+"<br/>";
+		//<input type="range"
+		output+="범위 : " +obj.ran.value;
+		
+		//3. 출력할 Tag얻기
+		var divNode=document.getElementById("output");
+		//4. 값 출력
+		divNode.innerHTML=output;
+	}//getValue
+	
+	function setValue(){
+		//값설정
+		//1. form 얻기
+		var obj=document.frm;
+		//2. 값 설정
+		//<input type="date" 는 xxxx-xx-xx 형식인 값만 설정된다. 
+		obj.date.value="2017-06-27";
+		//<input type="number"는 숫자형태만 설정된다. 
+		obj.num.value="27";
+		//<input type="range"는 숫자형태만 설정된다. 
+		obj.ran.value="15";
+		
+	}//setValue
+</script>
+</head>
+<body>
+<div>
+	<form name="frm">
+	날짜선택 : <input type="date" name="date"/><br/>
+	숫자입력 : <input type="number" name="num"/><br/>
+	범위선택 : 0<input type="range" name="ran"
+						min="0" max="100" value="50"/>100<br/>
+	<input type="button" value="값얻기" class="btn"
+			onclick="getValue()"/>
+	<input type="button" value="값설정" class="btn"
+			onclick="setValue()"/>
+	<fieldset style="width: 300px; height: 100px; border: 1px solid #333; padding-left: 10px">
+	<legend>출력창</legend>
+		<div id="output"></div>
+	</fieldset>
+	</form>
+</div>
+
+</body>
+</html>

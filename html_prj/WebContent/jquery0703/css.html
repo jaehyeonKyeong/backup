@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="http://localhost:8080/html_prj/common/css/main.css"/>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<!--CDN -->
+<script type="text/javascript">
+	$(function(){
+		//style속성 하나만 적용
+		$("input").css("font-size","20px");
+		//특정 태그에 적용된 속성을 얻기
+		var output="";
+		output="글꼴 : "+ $("li").css("font-family")+
+		"<br/>크기 : " +$("li").css("font-size")+
+		"<br/>글자 색 : "+ $("li").css("color");
+		
+		var divNode=document.getElementById("output");
+		divNode.innerHTML=output;
+	
+		//여러 속성을 적용
+		//("#test").addClass("test1");
+		//이전속성이 적용된 상태로 변경할 style이 제대로 적용되지 않으면
+		//이전 style을 삭제한 후 새로운 style을 적용한다.
+		$("#test").removeClass("test").addClass("test1");
+		//적용된 class 삭제
+		//$("#test").removeClass("test");
+	});
+</script>
+<style type="text/css">
+	#top{ position:absolute;top:30px;left: 50px; font-size: 17px; }
+	.test{font-size:40px; color:#3B1E1E; font-family:궁서체}
+	.test1{font-size: 50px; color:#FF0000;font-family:굴림}
+	li{font-family: 휴먼편지체}
+</style>
+</head>
+<body>
+	<div id="wrap">
+		<div id="top">
+			<label>이름</label>
+			<input type="text"name="name" class="inputBox"/><br/>
+			<ul>
+				<li>지승민</li>
+				<li>이종민</li>
+				<li>이상훈</li>
+				<li>김우현</li>
+				<li>김동희</li>
+			</ul>
+		<div id="output"></div>
+		<div id="test"class="test1">
+			오늘은 화창한 화요일입니다.
+		</div>
+		</div>
+	</div>
+</body>
+</html>

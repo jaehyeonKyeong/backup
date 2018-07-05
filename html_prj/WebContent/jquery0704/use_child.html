@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css"
+	href="http://localhost:8080/html_prj/common/css/main.css" />
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js">
+</script>
+<script type="text/javascript">
+$(function(){
+	$("#first").click(function(){
+		$("li:first").css("color","yellow");
+	});
+	$("#last").click(function(){
+		$("li:last").css("color","red");
+	});
+	$("#odd").click(function(){
+		$("li:odd").css("color","blue");
+	});
+	$("#even").click(function(){
+		$("li:even").css("color","green");
+	});
+	$("#nth").click(function(){
+		$("li:nth-child(3)").css("color","#ff00ff")
+	});
+})
+</script>
+</head>
+<body>
+	<ul>
+		<li>망고</li>
+		<li>바나나</li>
+		<li>복숭아</li>
+		<li>레몬</li>
+		<li>자두</li>
+		<li>블루베리</li>
+		<li>귤</li>
+		<li>두리안</li>
+		<li>망고스틴</li>
+		<li>딸기</li>
+	</ul>
+	<input type="button" value="처음" id="first" class="btn">
+	<input type="button" value="마지막" id="last" class="btn"><br>
+	<input type="button" value="홀수" id="odd" class="btn">
+	<input type="button" value="짝수" id="even" class="btn"><br>
+	<input type="button" value="좋아하는 과일" id="nth" class="btn">
+</body>
+</html>

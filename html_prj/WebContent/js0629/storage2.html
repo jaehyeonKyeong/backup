@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css"
+	href="http://localhost:8080/html_prj/common/css/main.css" />
+<script type="text/javascript">
+	window.onload = function() {
+		var id = localStorage.getItem("id");
+		var img = localStorage.getItem("img");
+		if (img == null) {
+			img="no_data";
+		}
+		if(id==null){
+			id="누구인가? 로그인을 방금 누가 했냐 물었다.";
+		}
+		document.getElementById("id").innerHTML="<strong>"+id+"</strong>";
+		document.getElementById("img").src="images/"+img+".png";
+	}
+</script>
+</head>
+<body>
+	<div id="wrap">
+		<div id="userInfo">
+			<div>
+				<img src="images/no_data.png" id="img" />
+			</div>
+			<div id="img"></div>
+			<span id="id"></span>
+		</div>
+		<a href="javascript:history.back()">뒤로</a>
+	</div>
+</body>
+</html>

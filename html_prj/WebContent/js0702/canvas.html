@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Canvas 사용</title>
+<link rel="stylesheet" type="text/css"
+	href="http://localhost:8080/html_prj/common/css/main.css" />
+<script type="text/javascript">
+	function useCanvas() {
+		var can = document.getElementById("can");
+		var ctx = can.getContext("2d");
+		//선긋기
+		ctx.beginPath();
+		ctx.moveTo(50, 50)
+		ctx.lineTo(100, 100);
+
+		ctx.closePath()
+
+		ctx.stroke();
+		//img넣기
+		//1.이미지를 넣을수 있는 객체를 생성
+		var img = new Image();
+		//2.이미지객체가 로딩되면
+		img.onload = function() {
+			//이미지가 보여질 위치를 설정
+			ctx.drawImage(img, 200, 200, 150, 150);
+		//새로 그릴 이미지의 경로 설정
+		}
+		img.src = "../common/img/img.png";
+
+		//원그리기
+		ctx.beginPath();
+		ctx.arc(75, 75, 60, 0, Math.PI * 2);
+		ctx.closePath();
+		ctx.stroke();
+	}
+	window.onload = function() {
+		document.getElementById("can").addEventListener("click", useCanvas);
+	}
+</script>
+<style type="text/css">
+canvas {
+	border: 1px solid #333
+}
+</style>
+</head>
+<body>
+	<canvas id="can" width="800" height="500">
+당신의 브라워는 이 태그를 지원하지 않습니다.
+</canvas>
+	<br>
+	<input type="button" value="버튼" class="btn" id="btn">
+</body>
+</html>

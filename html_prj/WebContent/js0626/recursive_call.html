@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css"
+	href="http://localhost:8080/html_prj/common/css/main.css" />
+<style type="text/css">
+#view {
+	font-size: 17px;
+	font-weight: bold
+}
+
+#time {
+	font-size: 14px;
+	font-weight: bold
+}
+</style>
+<script type="text/javascript">
+	function recCall() {
+		/* setTimeout(recCall,1000); */
+		/* setInterval(recCall,1500) */
+		var cnt = setTimeout(recCall, 1000);
+		var divNode = document.getElementById("view");
+		divNode.innerHTML = cnt;
+		var time="";
+		var date=new Date();
+		time=date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate()+" "+date.getHours()+":"+date.getMinutes()+":"+date.getSeconds();
+		
+		
+		var div=document.getElementById("time");
+		div.innerHTML=time;
+	}
+</script>
+</head>
+<body>
+	<!--
+	작성일 : 2018. 6. 26.
+	작성자 : owner
+	내  용  : 
+ -->
+	<input type="button" value="재귀호출" class="inputBox" onclick="recCall()">
+	<!-- span은 부분영역 div는 전체영역 -->
+	호출횟수
+	<span id="view">0</span>번
+	<div id="time"></div>
+</body>
+</html>

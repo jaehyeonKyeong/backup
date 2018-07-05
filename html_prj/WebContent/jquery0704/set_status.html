@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css"
+	href="http://localhost:8080/html_prj/common/css/main.css" />
+<script type="text/javascript"
+	src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script type="text/javascript">
+	$(function() {
+		$("#btn").click(function() {
+			var input = $("[name='text_gender']").val();
+			if (input == "남자" || input == "여자") {
+				if (input == "남자") {
+					$("[value='남']").prop("checked", true);
+				} else {
+					$("[value='여']").prop("checked", true);
+				}
+			} else {
+				alert("입력창에 '남자' 혹은 '여자'를 입력해주세요");
+			}
+		});
+		$("#btn1").click(function() {
+			var input = prompt("취미 입력", "당구");
+			var arr = $("[name='hobby']")
+
+			$.each(arr, function(i, hobby) {
+				if ($(this).val() == input) {
+					$(this).prop("checked", true);
+				}
+
+			})
+
+		})
+		$("#flag").click(function() {
+			var arr = $("[name='hobby']")
+			if ($(this).is(":checked")) {
+				$.each(arr, function(i, hobby) {
+					$(this).prop("checked", true);
+				});
+			} else {
+				$.each(arr, function(i, hobby) {
+					$(this).prop("checked", false);
+				});
+			}
+
+		});
+	});
+</script>
+</head>
+<body>
+	<label>성별</label>
+	<input type="text" name="text_gender" class="inputBox">
+	<input type="button" value="radio check" id="btn" class="btn">
+	<div>
+		<input type="radio" name="gender" value="남">남자 | <input
+			type="radio" name="gender" value="여">여자
+	</div>
+	<div>
+		<label>취미</label><br> <input type="checkbox" name="flag"
+			id="flag">전체선택<br> <input type="checkbox" name="hobby"
+			value="메이플스토리">메이플스토리<br> <input type="checkbox"
+			name="hobby" value="당구">당구<br> <input type="checkbox"
+			name="hobby" value="콘서트 관람">콘서트 관람<br> <input
+			type="checkbox" name="hobby" value="코딩">코딩<br> <input
+			type="checkbox" name="hobby" value="고양이 감상">고양이 감상<br> <input
+			type="button" id="btn1" class="btn" value="값설정">
+			<div>
+				<selecte value="none">
+					<option>피자</option>
+					<option>짬뽕</option>
+					<option>김치찜</option>
+					<option>짜장면</option>
+					<option>닭가슴살</option>
+					<option>콩나물 국밥</option>
+			</select>
+				<selecte value="none"><!-- 인원선택 -->
+					<option>0</option>
+					<option>1</option>
+					<option>2</option>
+					<option>
+					면</option>
+					<option>4</option>
+					<option>콩나물 국밥</option>
+			</select>
+				
+			</div>
+	</div>
+</body>
+</html>

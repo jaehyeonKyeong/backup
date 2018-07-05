@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>자바스크립트에서 클래스 사용</title>
+<link rel="stylesheet" type="text/css"
+	href="http://localhost:8080/html_prj/common/css/main.css" />
+<script type="text/javascript" src="Personinfo.js"></script>
+<script type="text/javascript">
+	function useClass() {
+		function Student() {
+			var name = "이종민";
+			var age = 27;
+			function getName() {
+				//자바 스크립트에서는 클래스 안의 변수를 사용할때, this를 붙여서 사용
+				//this를 사용하지 않으면 처음생성될때의 값만 가지고 있게 된다
+				//사용중 값을 변경하면 적용되지 않는당.
+				return this.name;
+			} //getName
+			function getAge() {
+				return this.age;
+			} //getAge
+			function setName(name) {
+				this.name = name;
+			}
+			function setAge(age) {
+				this.age = age;
+			}
+
+			return {name : name, age : age,	getName : getName,	getAge : getAge, setName : setName, setAge : setAge}
+		//객체생성
+		} //Student
+		//변수를 통해 직접 값설정
+		/* var data = new Student();
+		data.name = "꿀형";
+		data.age = 28;
+		 */
+
+		//함수를 통해 값 설정
+		var data = new Student();
+		data.setName("지승민");
+		data.setAge(28);
+		var output = "변수 : 이름-" + data.name + " , 나이-" + data.age + " <br>함수 : 이름 -" + data.getName() + " , 나이 - " + data.getAge() + " <br>"
+
+
+		var divNode = document.getElementById("view");
+		divNode.innerHTML = output;
+	}
+	function useExternalClass(){
+		//외부방식으로 선언된 클래스 생성
+		//필요한 곳에서 생성하여 사용하기 때문에 재 사용성이 좋아진다.
+		var pi=new Personinfro();
+		var obj=document.frm;
+		var name=obj.name.value;
+		var age=obj.age.value;
+		pi.setName(name);
+		pi.setAge(age);
+		
+		var output="<strong>"+pi.getName()+"</strong>님 "+pi.getAge()+" 살이며,<strong>"+pi.birthYear()+"년생</strong> 입니다."
+		divNode=document.getElementById("view");
+		divNode.innerHTML=output;
+		
+	}
+	window.onload = function() {
+		document.getElementById("btn").addEventListener("click", useClass);
+		document.getElementById("btnInput").addEventListener("click",useExternalClass);
+	}
+</script>
+</head>
+<body>
+	<input type="button" value="클릭" id="btn" class="btn" />
+	<form name="frm">
+		<label>이름</label> <input type="text" name="name" class="inputBox" /><br>
+		<label>나이</label> <input type="text" name="age" class="inputBox" /><br>
+		<input type="button" value="입력" id="btnInput" class="btn">
+	</form>
+	<div id="view"></div>
+
+</body>
+</html>

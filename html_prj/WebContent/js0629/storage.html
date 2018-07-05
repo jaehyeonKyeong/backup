@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css"
+	href="http://localhost:8080/html_prj/common/css/main.css" />
+<script type="text/javascript">
+
+	function useLocal() {
+		//브라우저가 종료되어도 유지된다.
+		//1.Storage값설정
+		window.localStorage.setItem("name", "경제현");
+		window.localStorage.setItem("addr", "경기도 구리시 인창동");
+		window.localStorage.setItem("age", 25);
+
+	//2.Storage값얻기
+	//3.Storage값제거
+	} //useLocal
+	function useSession() {
+		//브라우저가 종료되면 사라진da.
+		//1.Storage값설정
+		window.sessionStorage.setItem("name", "신종성");
+		window.sessionStorage.setItem("addr", "경기도 검은사막");
+		window.sessionStorage.setItem("age", 27);
+
+	} //useSession
+
+	window.onload = function() {
+		document.getElementById("btn1").addEventListener("click", useLocal);
+		document.getElementById("btn2").addEventListener("click", useSession);
+		document.getElementById("btn3").addEventListener("click", getLocal);
+		document.getElementById("btn4").addEventListener("click", getSession);
+		document.getElementById("btn5").addEventListener("click", removeStorage);
+		document.getElementById("btn6").addEventListener("click", clearStorage);
+	}
+	function getLocal() {
+		var name = localStorage.getItem("name");
+		var addr = localStorage.getItem("addr");
+		var age = localStorage.getItem("age");
+
+		var divNode = document.getElementById("view");
+		divNode.innerHTML = "<ul><li>이름 : " + name + "</li><li>주소 : " + addr + "</li><li>나이 : " + age + "</li></ul>"
+	}
+	function getSession() {
+		var name = sessionStorage.getItem("name");
+		var addr = sessionStorage.getItem("addr");
+		var age = sessionStorage.getItem("age");
+
+		var divNode = document.getElementById("view");
+		
+		divNode.innerHTML = "sessionStorage<br><ul><li>이름 : " + name + "</li><li>주소 : " + addr + "</li><li>나이 : " + age + "</li></ul>"
+	}
+	function removeStorage(){
+		localStorage.removeItem("name");
+		sessionStorage.removeItem("addr");
+	}
+	function clearStorage(){
+		localStorage.clear();
+		sessionStorage.clear();
+	}
+</script>
+</head>
+<body>
+	<input type="button" value="localStorage set" id="btn1"
+		class="btn" /><br>
+	<input type="button" value="sessionStorage set" id="btn2"
+		class="btn" /><br>
+	<input type="button" value="localStorage get" id="btn3"
+		class="btn" /><br>
+	<input type="button" value="sessionStorage get" id="btn4"
+		class="btn" /><br>
+	<input type="button" value="remove" id="btn5"
+		class="btn" /><br>
+	<input type="button" value="clear" id="btn6"
+		class="btn" /><br>
+	<div id="view"></div>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="http://localhost:8080/html_prj/common/css/main.css"/>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<!--CDN -->
+<script type="text/javascript">
+$(function(){
+	$("#btn").click(function(){
+		//값 설정
+		var date=new Date();
+		var month=date.getMonth()+1
+		var nowDate=date.getDate();
+		var monthZero="";
+		var dateZero="";
+		if(month<10){
+			monthZero="0"
+		}
+		if(nowDate<10){
+			dateZero="0"
+		}
+		$("#text").val("호타루 실망 2점 부여");
+		$("#age").val("test");
+		$("#addr").val("인천시 계양구")
+		$("#date").val(date.getFullYear()+"-"+monthZero+""+month
+				+"-"+dateZero+""+nowDate);
+		$("#score").val(20);
+		$("#ta").val("즐거운 화요일 점심이 오늘을 망첬다...");
+	});
+		$("#btn1").click(function(){
+		$("#attr").attr("value","attr함수로 값 변경");
+		$("#attr").attr("style","height:30px");
+		$("#prop").attr("value","prop함수로 값 변경")
+	})
+});
+</script>
+</head>
+<body>
+<label>텍스트</label><input type="text" name="name" id="text"/><br/>
+<label>패스워드</label><input type="password"name="age" id="age"/><br/>
+<label>히든</label><input type="hidden"name="addr"id="addr"/><br/>
+<label>날짜</label><input type="date"name="date" id="date"/><br/>
+<label>범위</label>0<input type="range"name="score" id="score"
+	min="0" max="100"/>100<br/>
+<textarea id="ta" style="width: 300px;height: 100px"></textarea><br/>
+<label>ATTR</label><input type="text" id="attr" class="inputBox"/><br/>
+<label>PROP</label><input type="text" id="prop" class="inputBox"/><br/>
+<input type="button"value="값설정"id="btn"class="btn"/>
+<input type="button"value="속성변경"id="btn1"class="btn"/>
+</body>
+</html>

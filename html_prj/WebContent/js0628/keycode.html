@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css"
+	href="http://localhost:8080/html_prj/common/css/main.css" />
+<script type="text/javascript">
+	function chkKey() {
+		//어떤키가 눌렸는지 확인 : window.event.keyCode 또는 window.event.which로 얻을 수 있다
+		if (window.event.keyCode == 13) {
+			chkNull();
+		}
+	}
+	function chkNull() {
+		//입력값이 모두 입력되었는지 확인
+		var obj = document.frm;
+		if (obj.id.value.trim() == "") {
+			obj.id.value = "";
+			obj.id.focus();
+			return;
+		}
+		if (obj.pwd.value.trim() == "") {
+			obj.pwd.value = "";
+			obj.pwd.focus();
+			return;
+		}
+		alert("로그인 작업 수행")
+	}
+	function len() {
+		var obj = document.frm;
+		if (obj.tel1.value.length == 4) {
+			obj.tel2.focus();
+		}
+	}
+	window.onload = function() {
+		//이벤트 등록 방식
+		document.getElementById("id").addEventListener("keydown", chkKey);
+		document.getElementById("pwd").addEventListener("keydown", chkKey);
+		document.getElementById("btn").addEventListener("click", chkNull);
+		//keydown : key가 눌렸을때 동작 : 눌릴당시는 값을 얻을수 없다.
+		//keyup : key가 올라올때 동작 : 눌리고 나서 동작하기 때문에 입력값을 얻을 수 있다.
+		document.getElementById("tel1").addEventListener("keyup", len);
+	}
+</script>
+</head>
+<body>
+	<div>
+		<form name="frm">
+			<table>
+				<tr>
+					<td><input type="text" name="id" id="id" class="inputBox"
+						placeholder="아이디" autofocus="autofocus" /></td>
+					<td rowspan="2"><input type="button" value="로그인" class="btn"
+						id="btn" style="height: 50px; width: 50px;" /></td>
+				</tr>
+				<tr>
+					<td><input type="password" name="pwd" id="pwd"
+						class="inputBox" placeholder="비밀번호" /></td>
+				</tr>
+				<tr>
+					<td>010-<input type="text" name="tel1" class="inputBox"
+						id="tel1" maxlenght="4" placeholder="전화번호1" />-<input type="text"
+						name="tel2" class="inputBox" id="t2" maxlenght="4"
+						placeholder="전화번호2" /></td>
+				</tr>
+			</table>
+		</form>
+	</div>
+</body>
+</html>

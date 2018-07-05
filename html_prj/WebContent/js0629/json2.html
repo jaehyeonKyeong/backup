@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css"
+	href="http://localhost:8080/html_prj/common/css/main.css" />
+<script type="text/javascript">
+	function useJson() {
+		var data = "{title:'4강의장 학생목록',result:true,search_date:'06-29-2018',"
+			+"search_condition:'별명',search_data:["
+			+"{name:'송재원',nick:'송램지',age:25},"
+			+"{name:'김우현',nick:'킹우현',age:26},"
+			+"{name:'경제현',nick:'경붓다',age:25},"
+			+"{name:'이상훈',nick:'후니다2',age:28},"
+			+"{name:'김동희',nick:'빛동희',age:29}]}";
+		//jsonobject 생성
+		var json_obj = eval("(" + data + ")");
+		//3.data parsing
+		var output = "<strong>조회된 데이터가 없습니다.</strong><br><img src='images/no_data.png' title='뎨동합니답.됴회된 데이타가 없습니댜'/>";
+		var divNode = document.getElementById("view");
+		if (json_obj.result) {
+			output="<div><strong>"+json_obj.title+"</strong></div>"
+			+"<br>조회일자:"+json_obj.search_date+"<br>조회조건:"+json_obj.search_condition+"<br>";
+			
+			 var json_arr=json_obj.search_data;
+			output+="<table><thead><tr><th>이름</th><th>별명</th><th>나이</th></tr></thead><tbody>"
+			var age=0;
+			for(var i=0;i<json_arr.length;i++){
+				age+=json_arr[i].age
+				output+="<tr><td>"+json_arr[i].name+"</td>"
+				+"<td>"+json_arr[i].nick+"</td>"
+				+"<td>"+json_arr[i].age+"</td></tr>"
+			}
+			output+="</tbody><tfoot><tr><td colspan='3' align='right'>나이 합 : "+age+"[평균나이 : "+parseInt(age/json_arr.length)+"]</td></tr></tfoot></table>"
+			
+		}
+		divNode.innerHTML = output;
+	}
+	window.onload = function() {
+		document.getElementById("btn").addEventListener("click", useJson);
+	}
+</script>
+</head>
+<body>
+	<input type="button" value="데이터사용" id="btn" class="btn" />
+	<div id="view"></div>
+</body>
+</html>

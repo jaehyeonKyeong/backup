@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="http://localhost:8080/html_prj/common/css/main.css"/>
+<script type="text/javascript">
+	function showTime(){
+		var date=new Date();
+		var output="";
+		output=date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDay()+" "+date.getHours()+":"+date.getMinutes()+":"+date.getSeconds();
+		
+		var textNode=document.getElementById("view");
+		textNode.value=output;
+	}
+</script>
+</head>
+<body>
+<!--
+	작성일 : 2018. 6. 26.
+	작성자 : owner
+	내  용  : 
+ -->
+ <input type="text" id="view" class="inputBox" style="width:200px"/>
+ <input type="button" value="시간보기" class="btn" onclick="showTime()"/>
+</body>
+</html>

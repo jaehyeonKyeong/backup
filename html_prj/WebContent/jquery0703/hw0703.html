@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="http://localhost:8080/html_prj/common/css/main.css"/>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<!--CDN -->
+<script type="text/javascript">
+$(function(){
+	$("#btn").click(function(){
+			var date=new Date();
+			var age=$("#age").val();
+			var name=$("#name").val();
+			$("#output").html(name+"님"+age+"살"+(date.getFullYear()-age+1));
+			var outImages="";
+			var su=date.getFullYear()-age+1
+			for(var i=0;i<12;i++){
+				if(su%12==i){	
+				 	outImages="<img src='image/zodiac_"+i+".PNG'>"
+				} 
+			}
+			$("#outImages").html(outImages);
+	});
+});
+</script>
+
+</head>
+<body>
+<div>
+<label>이름</label> <input type="text" id="name" /><br/>
+<label>나이</label> <input type="text" id="age" />
+<input type="button" value="입력"id="btn"  class="btn"/><br/>
+</div>
+<div id="output">
+</div>
+<div id="outImages">
+</div>
+</body>
+</html>

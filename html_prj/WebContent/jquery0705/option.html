@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="http://localhost:8080/html_prj/common/css/main.css"/>
+<!-- CDN -->
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script type="text/javascript">
+	var names=["이진영","이종민","송재원","김대현","지승민"];
+	var name2=new Array();
+	name2[0]=["뚜딘스","딴짓","박지영"];
+	name2[1]=["킹우현","강지형","최주오","정다은"];
+	name2[2]=["꿀형","탈붓다","강소예"];
+	name2[3]=["후니다2","경림쓰","빛동희"];
+	name2[4]=["지승민"];
+	
+	var data="{뚜딘스:'관리자,엽떼여',딴짓:'딴짓,내차관리',박지영:'로그인,관리자',킹우현:'결제,빠른손',강지형:'메뉴관리,야임마',최주오:'베스트메뉴5,지각',정다은:'로그인,주문관리',꿀형:'관리자,양봉',탈붓다:'사용자,탈출,거친언행',강소예:'사업자,검색',빛동희:'다이어트,헬스,새로운맏형',후니다2:'고양이,동물애호가',경림쓰:'지승민관리,지각',지승민:'반장,조장,null,안절부절,내잘못'}"
+	var json_obj=eval("("+data+")");
+	
+	$(function(){
+		$("#btn").click(function() {
+			var name1Sel=document.getElementById("name1");
+			$.each(names, function(i, name) {
+				name1Sel.options[i+1]=new Option(name,i);
+			});
+		});//click
+		
+		$("#name1").change(function() {
+			var name1Sel=document.getElementById("name1");
+			if(name1Sel.selectedIndex !=0){
+			var name2Sel=document.getElementById("name2");
+			//alert($("#name1").val());
+				var tempName=name2[$("#name1").val()];
+				//셀렉트의 옵션 갯수를 설정
+				name2Sel.length=1;
+				$.each(tempName, function(i, name) {
+					name2Sel.options[i+1]=new Option(name, name);
+				});//each
+			}//end if
+		});//change
+		
+		$("#name2").change(function() {
+			var name=$("#name2").val();
+			if(name !="none"){
+				//JSON의 키가 변수로 대체되어 사용될려면 json객체명[변수명]의 문법으로 사용한다. 
+				$("#output").html(json_obj[name]);
+				
+			}//end if
+		});//change
+		
+		
+		
+	});//ready
+
+</script>
+</head>
+<body>
+	<select id="name1">
+		<option>---조장선택---</option>
+	</select>
+	<select id="name2">
+		<option value="none">---조원선택---</option>
+	</select>
+	<div>
+		<input type="button" value="조장생성" class="btn" id="btn" />
+		
+ 	</div>
+	<div id="output"></div>
+</body>
+</html>

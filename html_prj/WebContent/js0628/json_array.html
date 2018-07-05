@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css"
+	href="http://localhost:8080/html_prj/common/css/main.css" />
+<script type="text/javascript">
+	function useJsonArray(){
+		//1.JSONArray 형식의 문자열 생성
+		var data="[{name:'빛동희',addr:'서울시 중구 신당동',age:29},"
+			+"{name:'송램지',addr:'경기도 성남시 태평동',age:25},"
+			+"{name:'킹우현',addr:'인천시 남동구 구월동',age:26},"
+			+"{name:'신종성',addr:'경기도 용인시 수지구 성복동',age:27},"
+			+"{name:'후니다2',addr:'경기도 광주시 역동',age:28}]";
+		//2.jsonArray생성
+		var json_arr=eval("("+data+")");
+		//2-1.생성된 json_arr에 값 추가
+		json_arr.push(eval("({name:'경붓다',addr:'경기도 구리시 인창동',age:25})"));
+		//3.값 얻기
+		var output="<table>"+"<tr><th id='num'>번호</th><th id='name'>이름</th><th id='addr'>주소</th><th id='age'>나이</th></tr>";
+		for(var i=0; i<json_arr.length;i++){
+			json_obj=json_arr[i];
+			output+="<tr><td>"+(i+1)+"</td><td>"+json_obj.name+"</td><td>"+json_obj.addr+"</td><td>"+json_obj.age+"</td>";
+		}
+		output+="</table>"
+		
+		var divNode=document.getElementById("view");
+		divNode.innerHTML=output;
+	}
+	window.onload = function() {
+		document.getElementById("btn").addEventListener("click", useJsonArray); //onload안에서 ()가 있으면 로드할때 실행하고 그 이후에 실행할 수 없다. 
+	}
+</script>
+<style type="text/css">
+table,td,th{ border:1px solid #333}
+
+
+</style>
+</head>
+<body>
+	<input type="button" value="JSONArray" id="btn" class="btn" />
+	<div id="view"></div>
+</body>
+</html>

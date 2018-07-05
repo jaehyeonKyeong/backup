@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="http://localhost:8080/html_prj/common/css/main.css"/>
+<script type="text/javascript">
+var name="";
+var age=0;
+var gender="";
+var lang="";
+function inputData(){
+	name=document.getElementById("nameBox").value;
+	age=document.getElementById("ageBox").value;
+	gender=document.getElementById("gender").value;
+	lang=document.getElementById("language").value;
+	
+	var data="{name:'"+name+"',age:"+age+",gender:'"+gender+"',lang:'"+lang+"'}";
+	var json_obj=eval("("+data+")");
+	
+	var output="<table><tr><th>이름</th><th>나이</th><th>성별</th><th>자주쓰는 언어</th></tr><tr><td>"
+		+json_obj.name+"</td><td>"+json_obj.age+"</td><td>"+json_obj.gender+"</td><td>"+json_obj.lang+"</td></tr></table>";
+	var divNode=document.getElementById("view");
+	divNode.innerHTML=output;
+	
+}
+
+
+
+window.onload=function(){
+	document.getElementById("inputBtn").addEventListener("click", inputData);
+}
+
+</script>
+<style type="text/css">
+#wrap{position:relative;border:1px solid #333;width:1000px;height:250px;margin:50px auto}
+#left{float:left;border:1px solid #333;width:200px;height:180px;padding:50px;padding-top:20px;}
+#right{float:right;border:1px solid #333;width:696px;height:250px}
+table{margin:0px auto;border:1px solid #333}th,td{border:1px solid #333}
+</style>
+</head>
+<body>
+<div id="wrap">
+	<span id="left">
+		<label style="font-size:15px"><strong>입력</strong></label><br><hr>
+		<label>이름&nbsp;<input type="text" id="nameBox" name="nameBox" class="inputBox"/></label><br>
+		<label>나이&nbsp;<input type="text" id="ageBox" name="ageBox" class="inputBox"/></label><br>
+		<label>성별&nbsp;</label><label><input type="radio" id="gender" name="gender" value="남자" checked="checked"/>남자</label><label><input type="radio" id="gender" name="gender" value="여자"/>여자</label><br>
+		<label>관심언어</label>&nbsp;<select id="language" name="language" style="height: 25px;">
+			<option value="none">--------- 선택 -----------</option>
+			<option value="Java">자바</option>
+			<option value="HTML">HTML</option>
+			<option value="CSS">CSS</option>
+			<option value="JavaScript">JavaScript</option>
+		</select><br><hr>
+		<input type="button" id="inputBtn" name="inputBtn" value="입력"/> 
+		<input type="button" id="viewBtn" name="viewBtn" value="보기"/> 
+		
+	</span>
+	<span id="right"><div id="view"></div></span>
+</div>
+</body>
+</html>

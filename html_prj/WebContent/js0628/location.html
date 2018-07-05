@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css"
+	href="http://localhost:8080/html_prj/common/css/main.css" />
+<script type="text/javascript">
+	function moveURL() {
+		var obj = document.frm;
+		//사용자가 선택한 값에 따라 코드를 실행하기 위해 confirm 다이얼로그를 사용
+		//if (obj.url.value != "none") { //value를 이용하여 처리
+		if(obj.url.selectedIndex!=0){	
+			if (confirm(obj.url.value + "으로 이동하시겠습니까?")) {
+				//window는 생략 가능하다.
+				//window.location.href="http://"+obj.url.value; //뒤로가기 제공
+				//location.reload(); // 현재페이지 갱신
+				location.replace("http://"+obj.url.value); //뒤로가기 불가
+			}
+		}
+		//}
+	}
+	window.onload = function() {
+		//이벤트 등록
+		document.getElementById("url").addEventListener("change", moveURL);
+	}
+</script>
+</head>
+<body>
+	<form id="frm" name="frm">
+		<select id="url" name="url" style="height: 25px;">
+			<option value="none">---------자주가는 사이트 선택 -----------</option>
+			<option value="youtube.com">유튜브</option>
+			<option value="twitch.com">트위치</option>
+			<option value="naver.com">네이버</option>
+			<option value="daum.net">다음</option>
+			<option value="musinsa.com">무신사</option>
+		</select>
+	</form>
+</body>
+</html>

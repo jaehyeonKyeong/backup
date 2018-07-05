@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css"
+	href="http://localhost:8080/html_prj/common/css/main.css" />
+<!-- CDN -->
+<script type="text/javascript"
+	src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script type="text/javascript">
+	$(function() {
+		$("#f_o").click(function() {
+			$("img").fadeOut(1000 * 2, function() {
+				alert("숨었음");
+			}); //fadeOut
+		}); //click
+
+
+		$("#f_i").click(function() {
+			$("img").fadeIn(1000, function() {
+				alert("나왔음");
+			}); //fadeOut
+		}); //click
+
+		$("#s_u").click(function() {
+			//보인 상태에서 보이지 않는 상태로 이동 
+			$("img").slideUp(1000);
+		}); //click
+		$("#s_d").click(function() {
+			//보인 상태에서 보이지 않는 상태로 이동 
+			$("img").slideDown(1000, function() {
+				$("img").fadeOut(500).fadeIn(500).fadeOut(500).fadeIn(500)
+			});
+		}); //click
+		$("#btn").click(function() {
+			var id = $("#id").val();
+
+			if (id == "") {
+				$("#idNone").fadeIn(300).fadeOut(300).fadeIn(300).fadeOut(300).fadeIn(100).fadeOut(300);
+				$("#id").focus();
+				return;
+			}
+			location.href="http://youtube.com"
+		});
+		$("#ani").click(function(){
+			var width=$("#img1").css("width");
+			$("img").animate({marginLeft:width,opacity: "0.3"},1000);
+			$("img").animate({marginLeft:"-="+width,opacity: "1"},300);
+		})
+	}); //ready
+</script>
+<style type="text/css">
+#idNone {
+	font-size: 14px;
+	color: #ff0000;
+	display: none
+}
+</style>
+</head>
+<body>
+	<div>
+		<input type="button" value="숨기기" class="btn" id="f_o" /> <input
+			type="button" value="보이기" class="btn" id="f_i" /> <input
+			type="button" value="slideUp" class="btn" id="s_u" /> <input
+			type="button" value="slideDown" class="btn" id="s_d" />
+	</div>
+	<div id="img1">
+		<img src="../common/img/img.png" />
+	</div>
+	<div>
+		<label>아이디</label> <input type="text" id="id" class="inputBox">
+		<span id="idNone">아이디는 필수 입력!</span><br> <input type="button"
+			value="회원가입" class="btn" id="btn"><input type="button" value="이동" id="ani" class="btn">
+	</div>
+</body>
+</html>
