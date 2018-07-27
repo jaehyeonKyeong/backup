@@ -1,4 +1,4 @@
-package properties;
+package kr.co.sist.properties;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -16,17 +16,16 @@ public class DataBaseConnection {
 	private String pass;
 	
 	
-	public DataBaseConnection() throws FileNotFoundException,IOException{
+	private DataBaseConnection() throws FileNotFoundException, IOException {
 		Properties prop=new Properties();
-		prop.load(new FileInputStream("C:/dev/workspace/jdbc_prj/src/properties/database.properties"));
+		prop.load(new FileInputStream("C:/dev/workspace/group_project2/src/kr/co/sist/properties/database.properties"));
 		driver=prop.getProperty("driver");
-		url=prop.getProperty("url");
-		id=prop.getProperty("id");
-		pass=prop.getProperty("pass");
-		
-	}//DataBaseConnection
+		 url=prop.getProperty("url");
+		 id=prop.getProperty("id");
+		 pass=prop.getProperty("pass");
+	}//databaseconnection
 	public static DataBaseConnection getInstance() {
-		if(dbc == null) {
+		if(dbc==null) {
 			try {
 				dbc=new DataBaseConnection();
 			} catch (FileNotFoundException e) {
@@ -36,26 +35,35 @@ public class DataBaseConnection {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			
+				
 		}
 		return dbc;
-	}
-
-	public Connection getConnection() throws SQLException {
+	}//getinstance
+	
+	public Connection getConnection()throws SQLException {
 		Connection con=null;
-		//1.driver 로딩
+		
+		//1. 드라이버 로딩
 		try {
 			Class.forName(driver);
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		//2.connection 얻기
-		con=DriverManager.getConnection(url, id, pass);
-		
+		//2. 커넥션 얻기
+		con=DriverManager.getConnection(url,id, pass);
 		return con;
 		
-	}
+		
+	}//getconnection
 	
+	
+	
+	
+	public static DataBaseConnection getDbc() {
+		return dbc;
+	}
 	public String getDriver() {
 		return driver;
 	}
@@ -70,4 +78,9 @@ public class DataBaseConnection {
 	}
 	
 	
-}
+	public static void main(String[] args)throws SQLException{
+		System.out.println(getInstance().getConnection());
+		
+	}// 데이터베이스 연결 확인 
+
+}//class

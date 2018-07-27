@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css"
+	href="http://localhost:8080/html_prj/common/css/main.css" />
+<!-- 1.plugin에 필요한 js나 css를 외부방식으로 연결 -->
+<link rel="stylesheet"
+	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="/resources/demos/style.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script type="text/javascript">
+	$(function() {
+		$("#tabs").tabs({
+			event : "mouseover"
+		});
+	});
+</script>
+<style type="text/css">
+	#tabs{width:600px;height:400px;}
+</style>
+</head>
+<body>
+<div id="tabs">
+  <ul>
+    <li><a href="#tabs-1">1조</a></li>
+    <li><a href="#tabs-2">2조</a></li>
+    <li><a href="#tabs-3">3조</a></li>
+    <li><a href="#tabs-4">4조</a></li>
+  </ul>
+  <div id="tabs-1">
+    <p>프로젝트 제목 : 자동차 관리</p>
+    <p>조명 : 붕붕이조</p>
+    <p>개요 : 1인 1차량 보유시대에 나는 왜 차가 없지?</p>
+    <p>조원 : 뚜딘스, 휴가중 딴짓,박지영</p>
+  </div>
+  <div id="tabs-2">
+    <p>프로젝트 제목 : 치킨포스</p>
+    <p>조명 : 요다</p>
+    <p>개요 : 1인1닭시대</p>
+    <p>조원 : 이종민,강지형,정다은,최주오,킹우현</p>
+  </div>
+  <div id="tabs-3">
+    <p>프로젝트 제목 : 식당 정보 조회</p>
+    <p>조명 : 칼퇴하조</p>
+    <p>개요 : 자영업자들을 위한 프로그램 전략은 칼퇴</p>
+    <p>조원 : 송램지,탈붓다,강복치,꿀빠는형</p>
+  </div>
+  <div id="tabs-4">
+    <p>프로젝트 제목 : 애견호텔예약</p>
+    <p>조명 : 갓대와 떨거지덜..</p>
+    <p>개요 : 짐승들에게 호텔이 무슨 소용?</p>
+    <p>조원 : 갓대현(조장),떨거지1,떨거지2,방해꾼,닭가슴</p>
+  </div>
+</div>
+</body>
+</html>

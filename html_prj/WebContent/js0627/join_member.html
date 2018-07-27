@@ -18,6 +18,91 @@
 		//3. 자식창의 formControl에 전달
 		subWin.window.document.cFrm.cId.value=id;
 	}
+	function popupCenter(){
+		window.open("id_dup2.html","pop1","width=300,height=100,top="+(window.screenY+100)
+					+",left="+(window.screenX+150))
+		
+	}
+	function zipcodeCenter(){
+		window.open("zipcode.html","pop2","width=400,height=300,top="+(window.screenY+100)
+				+",left="+(window.screenX+150))
+	}
+
+	function checkPw(){
+		var obj=document.pFrm;
+		var pass=obj.pass.value;
+		var pass1=obj.pass1.value;
+		if(pass!=pass1){
+			alert("비밀번호를 확인해주세요")
+			obj.pass.value="";
+			obj.pass1.value="";
+			obj.pass.focus();
+		}
+	}
+	function checkSq(){
+		var obj=document.pFrm;
+		var ssn1=obj.ssn1.value;
+		var ssn2=obj.ssn2.value;
+		
+		var year=ssn1.substring(0,2);
+		var month=ssn1.substring(2,4);
+		var day=ssn1.substring(4,6);
+		var gender=ssn2.substring(0,1);
+		
+		obj.birth_year.value=year;
+		obj.birth_month.value=month;
+		obj.birth_day.value=day;
+		
+		if(parseInt(gender)%2==1){
+			obj.gender[0].checked=true;
+		}else{
+			obj.gender[1].checked=true;
+		}
+
+	}
+
+	function check(){
+		var obj=document.pFrm;
+		if(obj.id.value==""){
+			alert("아이디는 필수입력입니다")
+			obj.id.focus();
+		}	
+		
+		if(obj.pass.value==""){
+			alert("패스워드는 필수입력입니다")
+			obj.pass.focus();
+		}
+		if(obj.pass.value==""){
+			alert("패스워드는 필수입력입니다")
+			obj.pass.focus();
+		}
+		if(obj.name.value==""){
+			alert("이름은 필수입력입니다")
+			obj.name.focus();
+		}
+		if((obj.zipcode1.value=="") ||(obj.zipcode2.value=="" )){
+			alert("우편번호는 필수입력입니다")
+			obj.zipcode1.focus();
+		}
+		if(obj.addr.value==""){
+			alert("주소는 필수입력입니다")
+			obj.pass.focus();
+		}
+		if((obj.ssn1.value=="") || (obj.ssn2.value=="" )){
+			alert("주민번호는 필수입력입니다")
+			obj.pass.focus();
+		}
+		if(obj.gender[0].checked==false && obj.gender[1].checked==false){
+			alert("성별 체크해주세요!")
+			obj.gender[0].focus();
+		}
+		if(obj.birth_year.value==""){
+			alert("생년월일 입력해주세용")
+			obj.birth_year.focus();
+		}
+		
+	}
+
 </script>
 </head>
 <body>

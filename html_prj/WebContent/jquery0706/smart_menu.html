@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="http://localhost:8080/html_prj/common/css/main.css"/>
+<!--CDN -->
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<!-- SmartMenus core CSS (required) -->
+    <link href="../common/js/smart/css/sm-core-css.css" rel="stylesheet" type="text/css" />
+   <!-- "sm-blue" menu theme (optional, you can use your own CSS, too) -->
+<!--     <link href="../common/js/smart/css/sm-blue/sm-blue.css" rel="stylesheet" type="text/css" /> -->
+    <link href="../common/js/smart/css/sm-blue/sm-blue.css" rel="stylesheet" type="text/css" />
+    <link href="../common/js/smart/css/sm-mint/sm-mint.css" rel="stylesheet" type="text/css" />
+    <link href="../common/js/smart/css/sm-clean/sm-clean.css" rel="stylesheet" type="text/css" />
+    <link href="../common/js/smart/css/sm-simple/sm-simple.css" rel="stylesheet" type="text/css" />
+     <!-- SmartMenus jQuery plugin -->
+    <script type="text/javascript" src="../common/js/smart/jquery.smartmenus.min.js"></script>
+<script type="text/javascript">
+
+$(function() {
+	$('#main-menu').smartmenus({
+		subMenusSubOffsetX: 1,
+		subMenusSubOffsetY: -8
+	});
+});
+</script>
+</head>
+<body>
+<div id="wrap" style="margin: 0px auto;width: 1000px">
+<div style="position: absolute;top:100px;">
+  <nav id="main-nav">
+      <!-- Sample menu definition -->
+      <ul id="main-menu" class="sm sm-blue ">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">3조에 대해서</a>
+          <ul>
+            <li><a href="#">송램지</a></li>
+            <li><a href="#">양봉형</a></li>
+            <li><a href="#">거친언행</a></li>
+            <li><a href="#">강복치</a>
+              <ul>
+                <li><a href="#">대창,막창,곱창</a></li>
+                <li><a href="#">독서</a></li>
+                <li><a href="#">드라마감상</a></li>
+              </ul>
+            </li>
+            <li><a href="#" class="disabled">현준씨 </a></li>
+          </ul>
+        </li>
+        <li><a href="#">불법다운로드</a></li>
+        <li><a href="#">지원</a>
+          <ul>
+            <li><a href="#">빛동희</a></li>
+            <li><a href="#">갓대현</a></li>
+          </ul>
+        </li>
+        <li><a href="#">4강의 장에대해서</a>
+          <ul class="mega-menu">
+            <li>
+              <!-- The mega drop down contents -->
+              <div style="width:400px;max-width:100%;">
+                <div style="padding:5px 24px;">
+					<p>쌍용교육센터 4강의장은 활기차며 분위기 매우 좋다.</p>
+					<p>그중에 가장 분위기를 띄우는 사람은 꺄하~~</p>
+                </div>
+              </div>
+              
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+    </div>
+</div>
+
+</body>
+</html>
