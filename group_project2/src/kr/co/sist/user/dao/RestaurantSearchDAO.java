@@ -52,7 +52,7 @@ public class RestaurantSearchDAO {
 		try {
 
 			con = getConnection();
-			String selectSql = "select restaurant_number, restaurant_image, restaurant_name, restaurant_category from restaurant";
+			String selectSql = "select restaurant_number, restaurant_image, restaurant_name, restaurant_category from restaurant where activity='0'";
 			pstmt = con.prepareStatement(selectSql);
 			rs = pstmt.executeQuery();
 			RestaurantSearchVO rv = null;
