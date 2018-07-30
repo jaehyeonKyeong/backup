@@ -59,7 +59,7 @@ public class LoginEvt implements ActionListener {
 					 licenssenameDate name =l_dao.licenseeLogin(lv);
 					if(name !=null) {
 						new RestaurantManagementView(name);
-						JOptionPane.showMessageDialog(lg, "정상적으로 로그인되었습니다." ,"확인.",JOptionPane.INFORMATION_MESSAGE);
+						lg.dispose();
 					}
 				} catch (SQLException e) {
 					e.printStackTrace();

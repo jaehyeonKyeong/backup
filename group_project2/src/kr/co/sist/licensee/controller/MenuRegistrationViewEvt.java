@@ -4,13 +4,18 @@ import java.awt.FileDialog;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 import kr.co.sist.licensee.dao.RestaurantRegistrationDAO;
 import kr.co.sist.licensee.view.MenuRegistrationView;
+import kr.co.sist.licensee.view.RestaurantRegistrationView;
 import kr.co.sist.licensee.vo.MenuRegistrationVO;
+import kr.co.sist.licensee.vo.MenuVO;
 import kr.co.sist.licensee.vo.RestaurantRegistrationVO;
 
 public class MenuRegistrationViewEvt implements ActionListener {
@@ -19,6 +24,7 @@ public class MenuRegistrationViewEvt implements ActionListener {
 	
 	public MenuRegistrationViewEvt(MenuRegistrationView mrv) {
 		this.mrv=mrv;
+		mrv.setVisible(true);
 	}//MenuRegistrationViewEvt
 	
 	@Override
@@ -69,12 +75,12 @@ public class MenuRegistrationViewEvt implements ActionListener {
 			try {
 				rr_dao.insertMenu(mrvo);
 				JOptionPane.showMessageDialog(mrv, "등록이 성공적으로 완료되었습니다.");
+				mrv.dispose();
 			} catch (SQLException se) {
 				JOptionPane.showMessageDialog(mrv, "등록이 실패했습니다. 잠시 후 다시 시도해주세요.");
 				se.printStackTrace();
 			}//end catch
 		}//end switch
 	}//addRest
-	
 	
 }//class

@@ -1,14 +1,11 @@
 package kr.co.sist.licensee.vo;
 
-import java.util.List;
-
-public class RestaurantSelectVO {
+public class RestaurantUpdateVO {
 	private String rImg, mapImg, rName, bNumber, cName, rAddr, cPrice, rTel, rIntro;
 	private int foodCategory;
-	private List<MenuVO> menuList;
 	
 	
-	public RestaurantSelectVO(String rImg, String mapImg, String rName, String bNumber, String cName, String rAddr,
+	public RestaurantUpdateVO(String rImg, String mapImg, String rName, String bNumber, String cName, String rAddr,
 			String cPrice, String rTel, String rIntro, int foodCategory) {
 		super();
 		this.rImg = rImg;
@@ -51,12 +48,6 @@ public class RestaurantSelectVO {
 	}
 	public int getFoodCategory() {
 		return foodCategory;
-	}
-	public List<MenuVO> getMenuList() {
-		return menuList;
-	}
-	public void setMenuList(List<MenuVO> menuList) {
-		this.menuList = menuList;
 	}
 	
 }

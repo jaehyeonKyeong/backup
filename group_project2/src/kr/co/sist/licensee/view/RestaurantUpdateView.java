@@ -19,7 +19,7 @@ import kr.co.sist.licensee.vo.RestaurantLicenseeVO;
 
 @SuppressWarnings("serial")
 public class RestaurantUpdateView extends JFrame {
-	private JButton btnAddImg, btnMapImg, btnChange, btnMenuChange, btnMenuDelete, btnOk, btnCc;
+	private JButton btnAddImg, btnMapImg, btnChange,btnMenuAdd, btnMenuChange, btnMenuDelete, btnOk, btnCc,btnNewMenu;
 	private ImageIcon iiRestaurantImg, iiMapImg;
 	private JTable jMenuTable;
 	private JTextArea taIntro;
@@ -30,11 +30,21 @@ public class RestaurantUpdateView extends JFrame {
 	private DefaultTableModel dtmMenu;
 	private String rNum;
 
+	public JButton getBtnMenuAdd() {
+		return btnMenuAdd;
+	}
+
+
+	public JButton getBtnNewMenu() {
+		return btnNewMenu;
+	}
+
+
 	public RestaurantUpdateView(String rNumber) {
 		super("식당수정");
 		rNum=rNumber;
 		System.out.println("view:"+rNum);
-		imgURL1 = "C:\\Users\\owner\\Pictures\\sist.jpg";
+		imgURL1 = "C:/Users/owner/Pictures/sist.jpg";
 		ImageIcon iiRestaurantImg = new ImageIcon(imgURL1);
 		lblImg1 = new JLabel(iiRestaurantImg);
 
@@ -42,7 +52,7 @@ public class RestaurantUpdateView extends JFrame {
 
 		add(lblImg1);
 
-		imgURL2 = "C:\\Users\\owner\\Pictures\\sist.jpg";
+		imgURL2 = "C:/Users/owner/Pictures/sist.jpg";
 		ImageIcon iiMapImg = new ImageIcon(imgURL2);
 		lblImg2 = new JLabel(iiMapImg);
 
@@ -50,7 +60,7 @@ public class RestaurantUpdateView extends JFrame {
 
 		add(lblImg2);
 
-		String category[] = { "한식", "중식", "일식", "분식" };
+		String category[] = { "한식", "중식", "일식","양식", "분식" };
 
 		//////////// 메뉴등록 table 시작////////////////
 		String[] header = { "메뉴", "가격" };
@@ -78,6 +88,8 @@ public class RestaurantUpdateView extends JFrame {
 		btnChange = new JButton("수정");
 		btnMenuChange = new JButton("메뉴수정");
 		btnMenuDelete = new JButton("메뉴삭제");
+		btnNewMenu=new JButton("새로고침");
+		btnMenuAdd=new JButton("메뉴 추가");
 		btnOk = new JButton("확인");
 		btnCc = new JButton("취소");
 		iiRestaurantImg = new ImageIcon();
@@ -120,6 +132,9 @@ public class RestaurantUpdateView extends JFrame {
 		add(btnMenuDelete);
 		add(btnOk);
 		add(btnCc);
+		add(btnNewMenu);
+		add(btnMenuAdd);
+
 
 		add(lblName);
 		add(lblNumber);
@@ -155,6 +170,9 @@ public class RestaurantUpdateView extends JFrame {
 		tfAddr.addActionListener(ruve);
 		tfCustomerTransaction.addActionListener(ruve);
 		tfTel.addActionListener(ruve);
+		btnNewMenu.addActionListener(ruve);
+		btnMenuAdd.addActionListener(ruve);
+
 
 		// 수동배치
 		setLayout(null);
@@ -167,6 +185,9 @@ public class RestaurantUpdateView extends JFrame {
 		btnMenuDelete.setBounds(370, 600, 90, 23);
 		btnOk.setBounds(160, 630, 70, 25);
 		btnCc.setBounds(260, 630, 70, 25);
+		btnMenuAdd.setBounds(170,600,90,23);
+		btnNewMenu.setBounds(70,600,90,23);
+
 
 		lblName.setBounds(210, 10, 70, 70);
 		lblNumber.setBounds(210, 50, 100, 50);

@@ -84,9 +84,9 @@ public class RestaurantDAO {
 		try {
 			
 			con=DataBaseConnection.getInstance().getConnection();
-			String deleteRestaurant="delete from restaurant where restaurant_number=?";
+			String deleteRestaurant="delete from restaurant where trim(restaurant_number)=?";
 			pstmt=con.prepareStatement(deleteRestaurant);
-			pstmt.setString(1, rNumber);
+			pstmt.setString(1, rNumber.trim());
 			pstmt.executeUpdate();
 			
 		}finally {

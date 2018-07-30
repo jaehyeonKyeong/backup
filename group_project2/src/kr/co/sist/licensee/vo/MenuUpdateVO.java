@@ -1,4 +1,4 @@
-package kr.co.sist.licensee.dao;
+package kr.co.sist.licensee.vo;
 
 public class MenuUpdateVO {
 	String menuName,menuIntro,menuImage,rNum;
@@ -32,6 +32,12 @@ public class MenuUpdateVO {
 		this.menuImage = menuImage;
 		this.rNum = rNum;
 	}
+
+	public MenuUpdateVO() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	
 	
 	
 }

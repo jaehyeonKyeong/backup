@@ -4,6 +4,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
@@ -17,7 +18,7 @@ public class MenuChangeView extends JFrame {
 	private JTextArea taIntroduction;
 	private String  imgURL;
 	private JLabel  lblImg;
-	String rNum;
+	private String rNum,mName;
 	
 	
 	public String getrNum() {
@@ -25,9 +26,15 @@ public class MenuChangeView extends JFrame {
 	}
 
 
-	public MenuChangeView(String rNum) {
+	public String getmName() {
+		return mName;
+	}
+
+
+	public MenuChangeView(String rNum, String mName) {
 		super("메뉴 수정");
 		this.rNum=rNum;
+		this.mName=mName;
 		
 		imgURL="C:\\Users\\owner\\Pictures\\sist.jpg";
 		ImageIcon iiRestaurantImg=new ImageIcon(imgURL);
@@ -45,13 +52,14 @@ public class MenuChangeView extends JFrame {
 		jtfName=new JTextField();
 		jtfPrice=new JTextField();
 		taIntroduction=new JTextArea("소개글");
+		JScrollPane jsp=new JScrollPane(taIntroduction);
 		JLabel lblName=new JLabel("이름");
 		JLabel lblPrice=new JLabel("가격");
 		
 		add(btnAddMenuImg);
 		add(btnChange);
 		add(btnCancle);
-		add(taIntroduction);
+		add(jsp);
 		add(jtfName);
 		add(jtfPrice);
 		add(lblName);
@@ -73,7 +81,7 @@ public class MenuChangeView extends JFrame {
 		btnCancle.setBounds(170, 200, 60, 30);
 		jtfName.setBounds(150, 30, 150, 25);
 		jtfPrice.setBounds(150, 80, 150, 25);
-		taIntroduction.setBounds(150, 110, 150, 80);
+		jsp.setBounds(150, 110, 150, 80);
 		lblName.setBounds(150, -5, 40, 50);
 		lblPrice.setBounds(150, 45, 40, 50);
 		
@@ -81,7 +89,6 @@ public class MenuChangeView extends JFrame {
 		setVisible(true);
 		setResizable(false);
 
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		
 		

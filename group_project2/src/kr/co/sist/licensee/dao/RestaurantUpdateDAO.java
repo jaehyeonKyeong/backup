@@ -7,9 +7,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import kr.co.sist.licensee.vo.MenuUpdateVO;
 import kr.co.sist.licensee.vo.MenuVO;
-import kr.co.sist.licensee.vo.MenuVO2;
 import kr.co.sist.licensee.vo.RestaurantSelectVO;
+import kr.co.sist.licensee.vo.RestaurantUpdateVO;
 import kr.co.sist.properties.DataBaseConnection;
 
 public class RestaurantUpdateDAO {
@@ -83,11 +84,11 @@ public class RestaurantUpdateDAO {
 		
 	}//selectRestaurant
 	
-	public List<MenuVO2> selectMenu(String rNumber)throws SQLException{
-		List<MenuVO2> list=new ArrayList<MenuVO2>();
+	public List<MenuVO> selectMenu(String rNumber)throws SQLException{
+		List<MenuVO> list=new ArrayList<MenuVO>();
 		
 		
-		MenuVO2 mv=null;
+		MenuVO mv=null;
 
 		Connection con=null;
 		PreparedStatement pstmt=null;
@@ -108,8 +109,8 @@ public class RestaurantUpdateDAO {
 			rs=pstmt.executeQuery();
 			if(rs.next()) {
 				//조회결과를 VO에 설정
-				mv=new MenuVO2(rs.getString("menu_name"),
-						rs.getString("price"));
+				mv=new MenuVO(rs.getString("menu_name"),
+						rs.getInt("price"));
 				list.add(mv);
 			}//end if
 			
@@ -157,24 +158,61 @@ public class RestaurantUpdateDAO {
 	
 	
 	//식당 수정테이블에서 메뉴목록 삭제 //확인해봐야함
-	public void deleteMenu(String mName)throws SQLException {
+	public void deleteMenu(String rNum,String mName)throws SQLException {
 		Connection con=null;
 		PreparedStatement pstmt=null;
 		
 		try {
 			con=DataBaseConnection.getInstance().getConnection();
 			String deleteMenu=
-					"delete from menu where menu_name=?";
+					"delete from menu where menu_name=? and trim(restaurant_number)=?";
 			pstmt=con.prepareStatement(deleteMenu);
 			pstmt.setString(1, mName);
+			pstmt.setString(2, rNum.trim());
 			
 			pstmt.executeUpdate();
-		
 		}finally {
 			if(pstmt !=null) {pstmt.close();} //end if
 			if(con !=null) {con.close();} //end if
 		
 		}//end finally
 	}//deleteMenu
+
+	//식당 수정 버튼이 눌렸을때 식당의 값을 받아서 dataBase에 업데이트 한다.
+	//update restaurant set column=value where restaurant_number=?
+	public void updateRestaurnat(String rNum, RestaurantUpdateVO ruvo) throws SQLException {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		try {
+			
+			con=DataBaseConnection.getInstance().getConnection();
+			String updateSql="update restaurant set restaurant_name=?,corporate_number=?,ceo_name=?,restaurant_addr=?"
+					+ ",restaurant_image=?,map_image=?,customer_transaction=?,phone_number=?,restaurant_category=?"
+					+ ",restaurant_intro where restaurant_number=?";
+			pstmt=con.prepareStatement(updateSql);
+			pstmt.setString(1,ruvo.getrName());
+			pstmt.setString(2,ruvo.getbNumber());
+			pstmt.setString(3,ruvo.getcName());
+			pstmt.setString(4,ruvo.getrAddr());
+			pstmt.setString(5,ruvo.getrImg());
+			pstmt.setString(6,ruvo.getMapImg());
+			pstmt.setString(7,ruvo.getcPrice());
+			pstmt.setString(8,ruvo.getrTel());
+			pstmt.setInt(9,ruvo.getFoodCategory());
+			pstmt.setString(10,ruvo.getrIntro());
+			pstmt.setString(11,rNum);
+			
+			pstmt.executeUpdate();
+			
+			
+			
+		}finally {
+			if(pstmt!=null) {pstmt.close();}
+			if(con!=null) {con.close();}
+		}
+	}
+	
+	
+	
 	
 }//class

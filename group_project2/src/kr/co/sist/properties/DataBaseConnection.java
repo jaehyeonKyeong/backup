@@ -16,7 +16,7 @@ public class DataBaseConnection {
 	private String pass;
 	private DataBaseConnection() throws FileNotFoundException, IOException {
 		Properties prop=new Properties();
-		prop.load(new FileInputStream("C:/Users/Administrator/git/backup/group_project2/src/kr/co/sist/properties/database.properties"));
+		prop.load(new FileInputStream("C:/Users/kimkn/git/backup/group_project2/src/kr/co/sist/properties/database.properties"));
 		
 		driver=prop.getProperty("driver");
 		url=prop.getProperty("url");      

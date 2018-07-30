@@ -28,7 +28,9 @@ public class RestaurantManagementViewEvt extends MouseAdapter implements ActionL
 	public RestaurantManagementViewEvt(RestaurantManagementView rmv) {//생성자
 		this.rmv=rmv;
 		//사업자 아이디를 가지고 사업자의 식당 리스트를 조회.
+		JOptionPane.showMessageDialog(rmv, "정상적으로 로그인되었습니다." ,"확인.",JOptionPane.INFORMATION_MESSAGE);
 		selectRest();
+		rmv.setVisible(true);
 		id=rmv.getId();
 	}//RestaurantManagementViewEvt
 	
@@ -42,19 +44,30 @@ public class RestaurantManagementViewEvt extends MouseAdapter implements ActionL
 		
 		//식당수정
 		if(ae.getSource()==rmv.getBtnChange()) {
+			try {
 			int row=rmv.getJtRestaurant().getSelectedRow();
 			String rNum=listrNum.get(row);
-			System.out.println("evt"+rNum);
 			new RestaurantUpdateView(rNum);
+			}catch(ArrayIndexOutOfBoundsException aioobe) {
+				JOptionPane.showMessageDialog(rmv, "식당을 선택해주세요", "식당이 존재하지 않아요!", JOptionPane.INFORMATION_MESSAGE);
+				aioobe.printStackTrace();
+			}
 			
 		}//end if
 		
 		//식당삭제
 		if(ae.getSource()==rmv.getBtnRemove()) {
+			switch(JOptionPane.showConfirmDialog(rmv, "정말로 삭제하실건가요?\n 삭제하게되면 되돌릴수 없어요")) {
+			case JOptionPane.OK_OPTION:
 			int row=rmv.getJtRestaurant().getSelectedRow();
 			String rNum=listrNum.get(row);
 			delectRest(rNum);
+			default:
+			}
 		}//end if
+		if(ae.getSource()==rmv.getBtnNew()) {
+			selectRest();
+		}
 			
 	}//actionPerformed
 
@@ -65,7 +78,6 @@ public class RestaurantManagementViewEvt extends MouseAdapter implements ActionL
 		
 		try {
 			list=r_dao.selectMyRe(rmv.getId());
-			System.out.println("===="+ list.size()+"/"+rmv.getId());
 			Object[] rowData=null;
 			
 			//주문현황을 보여줄 
@@ -83,6 +95,7 @@ public class RestaurantManagementViewEvt extends MouseAdapter implements ActionL
 				dtm.addRow(rowData);
 				listrNum.add(rNum);
 			}//end for
+			
 		}catch(SQLException se) {
 			se.printStackTrace();
 		}//end catch

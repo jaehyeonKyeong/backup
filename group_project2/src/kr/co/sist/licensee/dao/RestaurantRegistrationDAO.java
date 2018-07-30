@@ -4,8 +4,13 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.w3c.dom.ls.LSInput;
 
 import kr.co.sist.licensee.vo.MenuRegistrationVO;
+import kr.co.sist.licensee.vo.MenuVO;
 import kr.co.sist.licensee.vo.RestaurantRegistrationVO;
 import kr.co.sist.properties.DataBaseConnection;
 
@@ -117,6 +122,35 @@ public class RestaurantRegistrationDAO {
 		
 		
 	}//insertMenu
+
+
+
+	//메뉴를 뷰테이블에 조회한다
+	//select MENU_NAME, PRICE from menu where restaurant_number=?;
+	public List<MenuVO> selectMenu(String rNum) throws SQLException{
+		List<MenuVO> menuList=new ArrayList<>();
+		MenuVO mvo=null;
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		try {
+			con=DataBaseConnection.getInstance().getConnection();
+			String selectSql="select * from menu where trim(restaurant_number)=?";
+			pstmt=con.prepareStatement(selectSql);
+			pstmt.setString(1, rNum.trim());
+			rs=pstmt.executeQuery();
+			while(rs.next()) {
+				mvo=new MenuVO(rs.getString("menu_name"), rs.getInt("price"));
+				menuList.add(mvo);
+			}
+			
+		}finally {
+			if(rs!=null) {rs.close();}
+			if(pstmt!=null) {pstmt.close();}
+			if(con!=null) {con.close();}
+		}
+		return menuList;
+	}
 	
 	
 	

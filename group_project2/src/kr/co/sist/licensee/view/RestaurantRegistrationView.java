@@ -17,7 +17,7 @@ import kr.co.sist.licensee.controller.RestaurantRegistrationViewEvt;
 
 @SuppressWarnings("serial")
 public class RestaurantRegistrationView extends JFrame {
-	private JButton btnRImg, btnMapImg, btnRegistration, btnMenuegistration, btnOk, btnCc;
+	private JButton btnRImg, btnMapImg, btnRegistration, btnMenuegistration, btnOk, btnCc,btnNewMenu;
 	private ImageIcon iiRestaurantImg, iiMapImg;
 	private JTable jMenuTable;
 	private JTextArea taIntro;
@@ -27,12 +27,11 @@ public class RestaurantRegistrationView extends JFrame {
 	private JLabel lblImg1, lblImg2;
 	private DefaultTableModel dtmMenu;
 	String id;
-	
-	
+
 	public RestaurantRegistrationView(String id) {
 		super("식당등록");
-		this.id=id;
-		
+		this.id = id;
+
 		imgURL1 = "C:\\Users\\owner\\Pictures\\sist.jpg";
 		ImageIcon iiRestaurantImg = new ImageIcon(imgURL1);
 		lblImg1 = new JLabel(iiRestaurantImg);
@@ -49,29 +48,33 @@ public class RestaurantRegistrationView extends JFrame {
 
 		add(lblImg2);
 
-		//음식카테고리
-		String category[] = { "한식", "중식", "양식","일식", "분식" };
+		// 음식카테고리
+		String category[] = { "한식", "중식", "일식", "양식", "분식" };
 
-		
-		////////////메뉴등록 table 시작///////////// 
+		//////////// 메뉴등록 table 시작/////////////
 		String[] header = { "메뉴", "가격" };
-		
-		dtmMenu = new DefaultTableModel(header, 0) {
+		String[][] data= {};
+
+		dtmMenu = new DefaultTableModel(header, data.length) {
 			@Override
 			public boolean isCellEditable(int row, int column) {
 				return false;
 			}// isCellEditable{
 		};
-		
+		for(int i=1;i<data.length;i++) {
+			for(int j=1;j<data[i].length;j++) {
+				dtmMenu.setValueAt(data[i][j], i, j);
+			}
+		}
+
 		jMenuTable = new JTable(dtmMenu);
 		JScrollPane jsp1 = new JScrollPane(jMenuTable);
-		
-		
 
 		btnRImg = new JButton("식당 이미지");
 		btnMapImg = new JButton("지도 이미지");
 		btnRegistration = new JButton("등록");
 		btnMenuegistration = new JButton("메뉴등록");
+		btnNewMenu=new JButton("새로고침");
 		btnOk = new JButton("확인");
 		btnCc = new JButton("취소");
 		iiRestaurantImg = new ImageIcon();
@@ -84,7 +87,6 @@ public class RestaurantRegistrationView extends JFrame {
 		tfCustomerTransaction = new JTextField();
 		tfTel = new JTextField();
 		cbFoodCategory = new JComboBox<String>(category);
-
 
 		JLabel lblName = new JLabel("상호명");
 		JLabel lblNumber = new JLabel("사업자번호");
@@ -112,6 +114,7 @@ public class RestaurantRegistrationView extends JFrame {
 		add(btnMenuegistration);
 		add(btnOk);
 		add(btnCc);
+		add(btnNewMenu);
 
 		add(lblName);
 		add(lblNumber);
@@ -138,6 +141,7 @@ public class RestaurantRegistrationView extends JFrame {
 		btnMapImg.addActionListener(rrve);
 		btnRegistration.addActionListener(rrve);
 		btnMenuegistration.addActionListener(rrve);
+		btnNewMenu.addActionListener(rrve);
 		btnOk.addActionListener(rrve);
 		btnCc.addActionListener(rrve);
 
@@ -158,6 +162,7 @@ public class RestaurantRegistrationView extends JFrame {
 		btnMenuegistration.setBounds(370, 600, 90, 25);
 		btnOk.setBounds(160, 630, 70, 25);
 		btnCc.setBounds(260, 630, 70, 25);
+		btnNewMenu.setBounds(260,600,90,25);
 
 		lblName.setBounds(210, 10, 70, 70);
 		lblNumber.setBounds(210, 50, 100, 50);
@@ -186,10 +191,7 @@ public class RestaurantRegistrationView extends JFrame {
 		setVisible(true);
 		setResizable(false);
 
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
 	}// RestaurantRegistrationView
-
 
 	public JButton getBtnRImg() {
 		return btnRImg;
@@ -286,8 +288,10 @@ public class RestaurantRegistrationView extends JFrame {
 	public String getId() {
 		return id;
 	}
-	public static void main(String[] args) {
-		new RestaurantRegistrationView("a");
+
+	public JButton getBtnNewMenu() {
+		return btnNewMenu;
 	}
+	
 
 }// class
