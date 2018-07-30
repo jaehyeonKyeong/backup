@@ -9,20 +9,25 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 
+import kr.co.sist.user.controller.UserGiftCardInfoEvt;
+
 @SuppressWarnings("serial")
 public class UserGiftCardInfo extends JFrame {
 	private DefaultTableModel dtmGiftCard;
 	private JTable tGiftCard;
 	private JScrollPane spScroll;
 	private JButton btnClose;
-	public UserGiftCardInfo() {
-		super("경붓다님 상품권 리스트");
+	private String id;
+	
+
+
+	public UserGiftCardInfo(String id,String name) {
+		super(name+"님 상품권 리스트");
+		this.id=id;
 		String[]  title= {"받은 날짜","상품권 명","사용여부"};
-		String[][] date= {
-				{"2018/07/08","2000원","O"},
-				{"2018/07/09","3000원",""},
-				{"2018/07/10","4000원",""}
-		};//가데이터
+		String[][] date= null;
+//		for(int i=0; i<)
+				
 		//1. 모델과 데이터를 연결
 		dtmGiftCard=new DefaultTableModel(date, title);
 		tGiftCard=new JTable(dtmGiftCard); //테이블에 모델추가
@@ -41,16 +46,38 @@ public class UserGiftCardInfo extends JFrame {
 		tcmSchedule.getColumn(i).setCellRenderer(tScheduleCellRenderer);
 		}
 		
+//		tGiftCard.getColumnModel().getColumn(0).setMaxWidth(100); 
+//		tGiftCard.getColumnModel().getColumn(0).setMinWidth(100); 
+		tGiftCard.getColumnModel().getColumn(0).setWidth(200); 
+		
+		setLayout(null);
+		spScroll.setBounds(20, 20, 350, 250);
+		btnClose.setBounds(125, 290, 60, 30);
+		setBounds(100,100,400,400);
+		
+		UserGiftCardInfoEvt ugie=new UserGiftCardInfoEvt(this);
+		btnClose.addActionListener(ugie);
+		ugie.setDtm();
+		
 		add(btnClose);
 		add(spScroll);
-		setLayout(null);
-		spScroll.setBounds(20, 20, 280, 250);
-		btnClose.setBounds(125, 290, 60, 30);
-		setBounds(100,100,340,400);
 		
 		setVisible(true);
+//		ugci_dao.selectLogin(ugci_vo);
 	}
-	public static void main(String[] args) {
-		new UserGiftCardInfo();
+	
+	public DefaultTableModel getDtmGiftCard() {
+		return dtmGiftCard;
+	}
+
+	public void setDtmGiftCard(DefaultTableModel dtmGiftCard) {
+		this.dtmGiftCard = dtmGiftCard;
+	}
+
+	public String getId() {
+		return id;
+	}
+	public JButton getBtnClose() {
+		return btnClose;
 	}
 }

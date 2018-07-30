@@ -10,6 +10,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import kr.co.sist.user.controller.UserShopEvt;
+import kr.co.sist.user.vo.UserGiftCardInfoVO;
 
 @SuppressWarnings("serial")
 public class UserShop extends JFrame {
@@ -20,6 +21,7 @@ public class UserShop extends JFrame {
 //	private UserShopEvt use 
 	public UserShop(Category cg) {
 		super("모바일상품권 상점");
+		
 		this.cg=cg;
 		jpCategory=new JPanel();
 		iiThousandImg=new ImageIcon("C:/dev/workspace/group_project/src/kr/co/sist/user/images/1000.png");
@@ -45,6 +47,9 @@ public class UserShop extends JFrame {
 		btnThousandImg.setBorderPainted(false);
 		btnFiveThousandImg.setBorderPainted(false);
 		btnTenThousandImg.setBorderPainted(false);
+		
+		
+		
 		lblTitle.setFont(fGothic);
 		add(lblTitle);
 		add(btnThousandImg);
@@ -53,6 +58,7 @@ public class UserShop extends JFrame {
 		add(jpCategory);
 		setBounds(100,100,550,300);
 		setVisible(true);
+//		System.out.println("상점에서 부른 아이디  : "+ugci.getId());
 	}
 	public Category getCg() {
 		return cg;

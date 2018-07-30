@@ -23,13 +23,15 @@ public class RestaurantSearchView extends JFrame {
 	ImageIcon imgRestaurantImg;
 	JComboBox<String> cBoxGrade,cBoxCategory;
 	JButton btnRestaurant,btnSearch,btnSelectAll;
+	String id;
 	
 	
 	
 	
-	public RestaurantSearchView() {
+	public RestaurantSearchView(String id) {
 		super("식당찾기");
 		setLayout(null);
+		this.id=id;
 		
 		//선언
 		tfSearch = new JTextField();
@@ -101,7 +103,6 @@ public class RestaurantSearchView extends JFrame {
 		
 		setBounds(500,100,450,250);
 		setVisible(true);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		RestaurantSearchViewEvt rsve=new RestaurantSearchViewEvt(this);
 		tfSearch.addActionListener(rsve);
@@ -111,10 +112,6 @@ public class RestaurantSearchView extends JFrame {
 		cBoxCategory.addActionListener(rsve);
 		btnSelectAll.addActionListener(rsve);
 		
-	}
-	
-	public static void main(String[] args) {
-		new RestaurantSearchView();
 	}
 
 	public JTextField getTfSearch() {

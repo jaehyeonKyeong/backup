@@ -17,18 +17,23 @@ public class Category extends JFrame implements Runnable {
 	private JLabel lblUserPoint;
 	private int userPoint;
 	private CategoryEvt ce;
+	private String id,name;
 
-
+	public String getName() {
+		return name;
+	}
 	public Category(UserInfoVO uiv)  {
 //		int point=10000;//포인트 지급시에 포인트 상승 (현재 가데이터)
 		super("CATEGORY");
+		id=uiv.getId();
 		userPoint=uiv.getPoint();//update시 사용할 포인트데이터
+		name=uiv.getName();
 //		System.out.println(userPoint);
 //		String sPoint="POINT : "+Integer.toString(uiv.getPoint());
 		btnRestaurant=new JButton("오늘 뭐 먹지");
 		btnReview=new JButton("리뷰");
 		btnShop=new JButton("포인트 상점");
-		btnID=new JButton(uiv.getId());
+		btnID=new JButton(id);
 		lblUserPoint=new JLabel();
 		
 		
@@ -57,6 +62,9 @@ public class Category extends JFrame implements Runnable {
 		th.start();
 	
 	}
+	public String getId() {
+		return id;
+	}
 	public JButton getBtnRestaurant() {
 		return btnRestaurant;
 	}
@@ -79,7 +87,7 @@ public class Category extends JFrame implements Runnable {
 	public void run() {
 		while (true) {
 			try {
-				System.out.println("쓰레드으");
+//				System.out.println("쓰레드으");
 				Thread.sleep(1000*5);
 				ce.setPoint();
 				userPoint=ce.getPoint();

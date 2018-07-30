@@ -39,7 +39,7 @@ public class RestaurantSearchViewEvt extends MouseAdapter implements ActionListe
 			selectCategoryRestaurant(categoriNum);
 			flag = true;
 		}
-		if (e.getSource() == rsv.getcBoxGrade()) {//
+		if (e.getSource() == rsv.getcBoxGrade()) {
 			orderbyNum = rsv.getcBoxGrade().getSelectedIndex();
 			if (!flag) {
 				orderingRestaurant(orderbyNum);// 평점순 정렬
@@ -185,14 +185,12 @@ public class RestaurantSearchViewEvt extends MouseAdapter implements ActionListe
 			e.printStackTrace();
 		}
 	}
-
 	private void selectRestaurant() { //Restaurant선택했을때
 		int row = rsv.getTable().getSelectedRow();
 		String tableItem = (String) rsv.getTable().getValueAt(row, 1);
 		String rNum=listRNum.get(row);
 		new RestaurantViewInfo(rNum);
 	}
-
 	private void selectAllRestaurant() { // 최초실행하였을때 모든 레스토랑을 보여준다
 		RestaurantSearchDAO rs_dao = RestaurantSearchDAO.getInstance();
 		List<RestaurantSearchVO> list = null;
@@ -222,5 +220,4 @@ public class RestaurantSearchViewEvt extends MouseAdapter implements ActionListe
 			e.printStackTrace();
 		}
 	}
-
 }

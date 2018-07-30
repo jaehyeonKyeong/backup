@@ -2,43 +2,61 @@ package kr.co.sist.user.vo;
 
 public class UserGiftCardInfoVO {
 
-private String giftCardName,giftCardNum,dateIssued;
-private boolean use; //사용여부
+private String giftCardNum,id,giftCardName,use,dateIssued;
 
-public UserGiftCardInfoVO() {
-	// TODO Auto-generated constructor stub
-}
+	public UserGiftCardInfoVO() {
+		// TODO Auto-generated constructor stub
+	}
 
-public UserGiftCardInfoVO(String giftCardName, String giftCardNum, String dateIssued, boolean use) {
-	this.giftCardName = giftCardName;
-	this.giftCardNum = giftCardNum;
-	this.dateIssued = dateIssued;
-	this.use = use;
-}
+	
+	public UserGiftCardInfoVO(String giftCardNum, String id, String giftCardName, String use, String dateIssued) {
+		this.giftCardNum = giftCardNum;
+		this.id = id;
+		this.giftCardName = giftCardName;
+		this.use = use;
+		this.dateIssued = dateIssued;
+	}
 
-public String getGiftCardName() {
-	return giftCardName;
-}
-public void setGiftCardName(String giftCardName) {
-	this.giftCardName = giftCardName;
-}
-public String getGiftCardNum() {
-	return giftCardNum;
-}
-public void setGiftCardNum(String giftCardNum) {
-	this.giftCardNum = giftCardNum;
-}
-public String getDateIssued() {
-	return dateIssued;
-}
-public void setDateIssued(String dateIssued) {
-	this.dateIssued = dateIssued;
-}
-public boolean isUse() {
-	return use;
-}
-public void setUse(boolean use) {
-	this.use = use;
-}
+
+	public String getGiftCardNum() {
+		return giftCardNum;
+	}
+
+	public void setGiftCardNum(String giftCardNum) {
+		this.giftCardNum = giftCardNum;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public String getGiftCardName() {
+		return giftCardName;
+	}
+
+	public void setGiftCardName(String giftCardName) {
+		this.giftCardName = giftCardName;
+	}
+
+	public String getUse() {
+		return use;
+	}
+
+	public void setUse(String use) {
+		this.use = use;
+	}
+
+	public String getDateIssued() {
+		return dateIssued;
+	}
+
+	public void setDateIssued(String dateIssued) {
+		this.dateIssued = dateIssued;
+	}
+
 
 }

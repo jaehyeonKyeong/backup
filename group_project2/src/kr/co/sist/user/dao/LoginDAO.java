@@ -36,6 +36,7 @@ public class LoginDAO {
 		String url = dbc.getUrl();
 		String id = dbc.getId();
 		String pass = dbc.getPass();
+	
 		// 1. 드라이버로딩
 		try {
 			Class.forName(driver);
@@ -43,8 +44,9 @@ public class LoginDAO {
 			e.printStackTrace();
 		}
 		//2.커넥션 얻기
+		System.out.println("호로로로"+url+"/"+id+"/"+pass);
 		con = DriverManager.getConnection(url, id, pass);
-
+		System.out.println("로그인다오"+id+"/"+pass+"/"+driver);
 		return con;
 	}
 	
@@ -68,7 +70,7 @@ public class LoginDAO {
 			con=getConnection();
 			//3.
 			String UserSelectLogin=
-					"select id from "+lv.getTableName()+" where id=? and PASSWORD=?";
+					"select name from "+lv.getTableName()+" where id=? and PASSWORD=?";
 			
 			pstmt=con.prepareStatement(UserSelectLogin);
 			//4.bind변수에 값 넣기
@@ -78,7 +80,7 @@ public class LoginDAO {
 			//5.
 			rs=pstmt.executeQuery();
 			if(rs.next()) {
-				Id=new licenssenameDate(rs.getString("id"));
+				Id=new licenssenameDate(rs.getString("name"));
 			}//end if
 		}finally {
 			//6.연결끊기
@@ -95,7 +97,6 @@ public class LoginDAO {
 	 * @throws SQLException
 	 */
 	public UserInfoVO selectLogin(LoginVO lv) throws SQLException {
-		boolean flag=false;
 		String id,pass="";
 		Connection con=null;
 		PreparedStatement pstmt=null;
@@ -107,7 +108,7 @@ public class LoginDAO {
 			con=getConnection();
 		//3.
 			String UserSelectLogin=
-					"select id,point from "+lv.getTableName()+" where id=? and PASSWORD=?";
+					"select id,point,name from "+lv.getTableName()+" where id=? and PASSWORD=?";
 				
 			pstmt=con.prepareStatement(UserSelectLogin);
 			//4.bind변수에 값 넣기
@@ -120,6 +121,7 @@ public class LoginDAO {
 				uiv=new UserInfoVO();
 				uiv.setId(rs.getString("id"));
 				uiv.setPoint(rs.getInt("point"));
+				uiv.setName(rs.getString("name"));
 			}//end if
 		}finally {
 		//6.연결끊기

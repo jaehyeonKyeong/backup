@@ -6,24 +6,27 @@ import java.sql.SQLException;
 
 import kr.co.sist.user.dao.MemberDAO;
 import kr.co.sist.user.view.Category;
-import kr.co.sist.user.view.UserFindRestaurant;
+import kr.co.sist.user.view.RestaurantSearchView;
 import kr.co.sist.user.view.UserGiftCardInfo;
 import kr.co.sist.user.view.UserReview;
 import kr.co.sist.user.view.UserShop;
 
 public class CategoryEvt implements ActionListener {
+	private UserGiftCardInfoEvt ugie;
+	private UserGiftCardInfo ugi;
 	Category cg;
+	UserShop us;
 //	String point;
 	int point;
 	public CategoryEvt(Category cg) {
 		this.cg=cg;
+//		ugci=us.getUgci();
 	}
 
 	public void setPoint() {
 		MemberDAO m_dao=MemberDAO.getInstance();
 		try {
 			point=m_dao.selectPoint(cg.getBtnID().getText());
-			System.out.println("-----"+point);
 			cg.getLblUserPoint().setText(String.valueOf(point)+"Point");
 //			this.point=String.valueOf(point);
 			
@@ -40,17 +43,18 @@ public class CategoryEvt implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent ae) {
 		if (ae.getSource() == cg.getBtnRestaurant()) {
-			new UserFindRestaurant();
+			new RestaurantSearchView(cg.getId());
 		} // ¿À´Ã ¹¹ ¸ÔÁö
 		if (ae.getSource() == cg.getBtnID()) {
-			new UserGiftCardInfo();
+			ugi=new UserGiftCardInfo(cg.getId(),cg.getName());
 		} // ¾ÆÀÌµð¹öÆ°
 		if (ae.getSource() == cg.getBtnReview()) {
-			new UserReview();
+			new UserReview(cg.getId(),cg.getName());
 		} // ¸®ºä
 		if (ae.getSource() == cg.getBtnShop()) {
 			new UserShop(cg);
 		} // »óÁ¡
 	}
+
 
 }
