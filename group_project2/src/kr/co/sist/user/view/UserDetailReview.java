@@ -9,6 +9,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
 import kr.co.sist.user.controller.UserDetailReviewEvt;
+import oracle.net.aso.b;
 
 public class UserDetailReview extends JFrame {
 	private JLabel lUserID,lRestaurant,lGradeName; 

@@ -3,17 +3,22 @@ package kr.co.sist.admin.vo;
 public class LunchListVO {
 	private String img, prdName,lunchCode,lunchInfo;
 	private int price;
+	
+	
+	
 	public LunchListVO() {
-		
+		super();
 	}
+	
 	public LunchListVO(String img, String prdName, String lunchCode, String lunchInfo, int price) {
-		
+		super();
 		this.img = img;
 		this.prdName = prdName;
 		this.lunchCode = lunchCode;
 		this.lunchInfo = lunchInfo;
 		this.price = price;
 	}
+	
 	public String getImg() {
 		return img;
 	}
@@ -45,5 +50,6 @@ public class LunchListVO {
 		this.price = price;
 	}
 	
-
-}
+	
+	
+}//class

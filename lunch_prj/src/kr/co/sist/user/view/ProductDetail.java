@@ -22,8 +22,6 @@ import kr.co.sist.user.vo.LunchDetailVO;
 @SuppressWarnings("serial")
 public class ProductDetail extends JFrame {
 
-	
-
 	private JTextField tfLunch_code, tfPrd_name, tfPrice, tfName, tfPhone, tfAddress, tfTotal_price;
 	private JTextArea taPrd_info;
 	private JComboBox<Integer> cbQuantity;
@@ -34,7 +32,6 @@ public class ProductDetail extends JFrame {
 		JLabel lblImg = new JLabel();
 		ImageIcon icon_img;
 
-		
 		icon_img = new ImageIcon("C:/dev/workspace/lunch_prj/src/kr/co/sist/user/img/"+ldv.getImg());
 		lblImg = new JLabel(icon_img);
 
@@ -47,22 +44,28 @@ public class ProductDetail extends JFrame {
 		JLabel lblAddress = new JLabel("주소");
 		JLabel lblQuantity = new JLabel("수량");
 		JLabel lblTotal_price = new JLabel("총주문가격");
-		tfLunch_code = new JTextField(ldv.getLunchCode(),20);
+		
+		tfLunch_code = new JTextField(ldv.getLunch_code(),20);
 		tfPrd_name = new JTextField(ldv.getPrdName(),20);
 		tfPrice = new JTextField(String.valueOf(ldv.getPrice()),20);
-		tfLunch_code.setEditable(false);
+		
+		tfLunch_code.setEditable(false); //수정x
 		tfPrd_name.setEditable(false);
 		tfPrice.setEditable(false);
+		
 		tfName = new JTextField(10);
 		tfPhone = new JTextField(15);
 		tfAddress = new JTextField(40);
 		tfTotal_price = new JTextField(String.valueOf(ldv.getPrice())+"원",10);
 		tfTotal_price.setEditable(false);
+		
+		
 		taPrd_info = new JTextArea(ldv.getPrdInfo(), 5, 20);
 		taPrd_info.setEditable(false);
 		
 		JScrollPane jsp = new JScrollPane(taPrd_info);
 		Integer[] temp = { 1,2,3,4,5,6,7,8,9 };
+		
 		cbQuantity = new JComboBox<Integer>(temp);
 		btnOrder = new JButton("주문");
 		btnClose = new JButton("닫기");
@@ -141,7 +144,8 @@ public class ProductDetail extends JFrame {
 		add("North", panelPrd);
 		add("Center", panelPrd_2);
 		add("South", panelOrderer);
-		//이벤트 객체 생성 
+		
+		//이벤트 객체 생성
 		ProductDetailEvt pde=new ProductDetailEvt(this);
 		btnOrder.addActionListener(pde);
 		btnClose.addActionListener(pde);
@@ -154,14 +158,16 @@ public class ProductDetail extends JFrame {
 				dispose();
 			}// windowClosing
 		});
+		
 		setVisible(true);
 		setResizable(false);
 		
 		tfName.requestFocus();
 
-
 	}// order_detail
 
+	
+	
 	public JTextField getTfLunch_code() {
 		return tfLunch_code;
 	}
@@ -205,7 +211,6 @@ public class ProductDetail extends JFrame {
 	public JButton getBtnClose() {
 		return btnClose;
 	}
-
 
 	
 	

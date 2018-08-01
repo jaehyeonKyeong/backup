@@ -135,7 +135,7 @@ public class RestaurantUpdateDAO {
 			con=DataBaseConnection.getInstance().getConnection();
 			
 			String updateMenu=
-					"update menu set menu_name=? price=? menu_intro=? menu_image=? input_date=sysdate where restaurant_number=? and menu_name=?";
+					"update menu set  menu_name=? price=? menu_intro=? menu_image=? input_date=sysdate where restaurant_number=? and menu_name=?";
 			pstmt=con.prepareStatement(updateMenu);
 			
 			pstmt.setString(1, mv.getMenuName());
@@ -188,7 +188,7 @@ public class RestaurantUpdateDAO {
 			con=DataBaseConnection.getInstance().getConnection();
 			String updateSql="update restaurant set restaurant_name=?,corporate_number=?,ceo_name=?,restaurant_addr=?"
 					+ ",restaurant_image=?,map_image=?,customer_transaction=?,phone_number=?,restaurant_category=?"
-					+ ",restaurant_intro where restaurant_number=?";
+					+ ",restaurant_intro=? where restaurant_number=?";
 			pstmt=con.prepareStatement(updateSql);
 			pstmt.setString(1,ruvo.getrName());
 			pstmt.setString(2,ruvo.getbNumber());

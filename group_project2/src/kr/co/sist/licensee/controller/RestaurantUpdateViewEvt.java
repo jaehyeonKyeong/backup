@@ -118,7 +118,8 @@ public class RestaurantUpdateViewEvt implements ActionListener {
 				ruvo = new RestaurantUpdateVO(imgDirName + imgFileName, mapDirName + mapFileName,
 						ruv.getTfName().getText(), ruv.getTfbNumber().getText(), ruv.getTfCeo().getText(),
 						ruv.getTfAddr().getText(), ruv.getTfCustomerTransaction().getText(), ruv.getTfTel().getText(),
-						ruv.getTaIntro().getText(), ruv.getCbFoodCategory().getSelectedIndex() - 1);
+						ruv.getTaIntro().getText(), ruv.getCbFoodCategory().getSelectedIndex()+1);
+				System.out.println("------"+ruvo.getFoodCategory());
 				restaurantChange(rNum, ruvo);
 			}
 		} // end if
@@ -221,7 +222,7 @@ public class RestaurantUpdateViewEvt implements ActionListener {
 			String cPrice = tv.getcPrice().trim();
 			String rTel = tv.getrTel().trim();
 			String rIntro = tv.getrIntro().trim();
-			int foodCategory = tv.getFoodCategory();
+			int foodCategory = tv.getFoodCategory()-1;
 
 			tv = new RestaurantSelectVO(rImg, mapImg, rName, bNumber, cName, rAddr, cPrice, rTel, rIntro, foodCategory);
 			ruv.getTfName().setText(tv.getrName());

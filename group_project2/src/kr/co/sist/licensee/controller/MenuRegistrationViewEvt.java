@@ -4,23 +4,18 @@ import java.awt.FileDialog;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
 
 import kr.co.sist.licensee.dao.RestaurantRegistrationDAO;
 import kr.co.sist.licensee.view.MenuRegistrationView;
-import kr.co.sist.licensee.view.RestaurantRegistrationView;
 import kr.co.sist.licensee.vo.MenuRegistrationVO;
-import kr.co.sist.licensee.vo.MenuVO;
-import kr.co.sist.licensee.vo.RestaurantRegistrationVO;
 
 public class MenuRegistrationViewEvt implements ActionListener {
 	private MenuRegistrationView mrv;
-	String imgPath;
+	String path,name;
 	
 	public MenuRegistrationViewEvt(MenuRegistrationView mrv) {
 		this.mrv=mrv;
@@ -36,16 +31,34 @@ public class MenuRegistrationViewEvt implements ActionListener {
 		
 		//버튼
 		if(ae.getSource()==mrv.getBtnAdd()) {
-			FileDialog menu_img=new FileDialog(mrv,"Open",FileDialog.LOAD);
-			menu_img.setVisible(true);
-			
-			String DirName=menu_img.getDirectory();
-			String FileName=menu_img.getFile();
-			imgPath=DirName+FileName;
-			mrv.getLblImg().setIcon(new ImageIcon(imgPath));
-			
-			System.out.println(DirName+FileName);
-			
+			//TODO
+			FileDialog fd=new FileDialog(mrv, "이미지선택",FileDialog.LOAD);
+			fd.setVisible(true);
+
+			path=fd.getDirectory();
+			name=fd.getFile();
+
+			if(name !=null) {
+				//이미지 파일만 등록하도록 설정
+				String ext=name.substring(name.lastIndexOf(".")+1).toLowerCase();
+				//사용가능한 확장자일 때만 처리
+				//jpg,gif,png,bmp 등
+				if("jpg".equals(ext)||"gif".equals(ext)||
+						"png".equals(ext)||"bmp".equals(ext)) {
+
+					JLabel lblImg=mrv.getLblImg();
+					//선택한 이미지를 보여준다.
+					ImageIcon ii=new ImageIcon(path+name);
+					lblImg.setIcon(ii);
+
+				}else {//사용가능한 확장자가 아님
+					JOptionPane.showMessageDialog(mrv, 
+							name+"은 사용가능한 이미지가 아닙니다.");
+
+				}//end else
+
+
+			}//end if
 			
 		}//end if
 		if(ae.getSource()==mrv.getBtnRegistration()) {
@@ -61,7 +74,7 @@ public class MenuRegistrationViewEvt implements ActionListener {
 	//식당메뉴등록//확인해야함~~
 	public void addMenu(String rNum){
 	
-		String m_Img=imgPath;
+		String m_Img=name;
 		String m_Name=mrv.getJtfName().getText().trim();
 		String m_Price=mrv.getJtfPrice().getText().trim();
 		String m_Intro=mrv.getTaIntroduction().getText().trim();

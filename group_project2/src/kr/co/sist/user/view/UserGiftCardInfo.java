@@ -10,6 +10,9 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 
 import kr.co.sist.user.controller.UserGiftCardInfoEvt;
+import kr.co.sist.user.controller.UserShopEvt;
+import kr.co.sist.user.dao.UserGiftCardInfoDAO;
+import kr.co.sist.user.vo.UserGiftCardInfoVO;
 
 @SuppressWarnings("serial")
 public class UserGiftCardInfo extends JFrame {

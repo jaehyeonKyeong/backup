@@ -28,10 +28,8 @@ public class CategoryEvt implements ActionListener {
 		try {
 			point=m_dao.selectPoint(cg.getBtnID().getText());
 			cg.getLblUserPoint().setText(String.valueOf(point)+"Point");
-//			this.point=String.valueOf(point);
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

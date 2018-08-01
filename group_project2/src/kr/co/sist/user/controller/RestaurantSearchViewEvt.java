@@ -4,14 +4,18 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.File;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 import kr.co.sist.user.dao.RestaurantSearchDAO;
+import kr.co.sist.user.controller.FileClient;
 import kr.co.sist.user.view.RestaurantSearchView;
 import kr.co.sist.user.view.RestaurantViewInfo;
 import kr.co.sist.user.vo.RestaurantSearchVO;
@@ -19,6 +23,7 @@ import kr.co.sist.user.vo.RestaurantSearchVO;
 public class RestaurantSearchViewEvt extends MouseAdapter implements ActionListener {
 	RestaurantSearchView rsv;
 	int categoriNum, orderbyNum;
+	File file;
 	
 	List<String> listRNum;
 	boolean flag = false;
@@ -187,9 +192,8 @@ public class RestaurantSearchViewEvt extends MouseAdapter implements ActionListe
 	}
 	private void selectRestaurant() { //Restaurant선택했을때
 		int row = rsv.getTable().getSelectedRow();
-		String tableItem = (String) rsv.getTable().getValueAt(row, 1);
 		String rNum=listRNum.get(row);
-		new RestaurantViewInfo(rNum);
+		new RestaurantViewInfo(rNum,rsv.getId(),file.getAbsolutePath());
 	}
 	private void selectAllRestaurant() { // 최초실행하였을때 모든 레스토랑을 보여준다
 		RestaurantSearchDAO rs_dao = RestaurantSearchDAO.getInstance();
@@ -207,8 +211,26 @@ public class RestaurantSearchViewEvt extends MouseAdapter implements ActionListe
 			listRNum=new ArrayList<>();
 			for (int i = 0; i < list.size(); i++) {
 				rv = list.get(i);
+				//TODO
+				file=new File("C:/Users/kimkn/git/backup/lunch_prj/src/kr/co/sist/img/"+rv.getrImg());
+				if(!file.exists()) {
+					FileClient fc=new FileClient();
+					try {
+						fc.uploadProcess(file);//서버에서 제공하는 파일 받기
+
+					}catch(IOException e) {
+						e.printStackTrace();
+						//서버에서 파일을 읽어들이지 못하는 상황이면 기본 이미지를 보여준다.
+						file=new File("C:/Users/kimkn/git/backup/lunch_prj/src/kr/co/sist/img/"+rv.getrImg());
+					}//end catch
+
+					//해당 파일이 없다면 서버에서 받아온다.
+					//작은 이미지로부터 큰 이미지를 생성
+//					file=new File("C:/dev/workspace/lunch_prj/src/kr/co/sist/user/img/s_default.jpg");
+
+				}//end if
 				rowData = new Object[2];
-				rowData[0] = rv.getrImg();
+				rowData[0] = new ImageIcon(file.getAbsolutePath());
 				rowData[1] = rv.getrName();
 				rNum=rv.getrNum();
 				

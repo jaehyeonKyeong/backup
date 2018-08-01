@@ -41,7 +41,7 @@ public class PreparedStatemnetDAO {
 			e.printStackTrace();
 		}
 		// 2. Ä¿³Ø¼Ç ¾ò±â
-		String url = "jdbc:oracle:thin:@localhost:1521:orcl";
+		String url = "jdbc:oracle:thin:@211.63.89.140:1521:orcl";
 		String id = "scott";
 		String pass = "1111";
 		con = DriverManager.getConnection(url, id, pass);

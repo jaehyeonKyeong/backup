@@ -92,9 +92,9 @@
          Documentation at /docs/config/engine.html -->
 
     <!-- You should set jvmRoute to support load-balancing via AJP ie :
-    <Engine name="Catalina" defaultHost="localhost" jvmRoute="jvm1">
+    <Engine name="Catalina" defaultHost="211.63.89.140" jvmRoute="jvm1">
     -->
-    <Engine defaultHost="localhost" name="Catalina">
+    <Engine defaultHost="211.63.89.140" name="Catalina">
 
       <!--For clustering, please take a look at documentation at:
           /docs/cluster-howto.html  (simple how to)
@@ -113,7 +113,7 @@
         <Realm className="org.apache.catalina.realm.UserDatabaseRealm" resourceName="UserDatabase"/>
       </Realm>
 
-      <Host appBase="webapps" autoDeploy="true" name="localhost" unpackWARs="true">
+      <Host appBase="webapps" autoDeploy="true" name="211.63.89.140" unpackWARs="true">
 
         <!-- SingleSignOn valve, share authentication between web applications
              Documentation at: /docs/config/valve.html -->
@@ -124,7 +124,7 @@
         <!-- Access log processes all example.
              Documentation at: /docs/config/valve.html
              Note: The pattern used is equivalent to using pattern="common" -->
-        <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs" pattern="%h %l %u %t &quot;%r&quot; %s %b" prefix="localhost_access_log." suffix=".txt"/>
+        <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs" pattern="%h %l %u %t &quot;%r&quot; %s %b" prefix="211.63.89.140_access_log." suffix=".txt"/>
 
       <Context docBase="servlet_prj" path="/servlet_prj" reloadable="true" source="org.eclipse.jst.jee.server:servlet_prj"/></Host>
     </Engine>

@@ -1,12 +1,17 @@
 package kr.co.sist.licensee.view;
 
+import java.awt.Color;
+import java.awt.Font;
+
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.border.EtchedBorder;
 
 import kr.co.sist.licensee.controller.MenuChangeViewEvt;
 
@@ -19,6 +24,10 @@ public class MenuChangeView extends JFrame {
 	private String  imgURL;
 	private JLabel  lblImg;
 	private String rNum,mName;
+	private JPanel panel;
+	private Color b_Color=new Color(0,100,121);
+	private Color t_Color=new Color(245,247,249);
+	
 	
 	
 	public String getrNum() {
@@ -32,7 +41,7 @@ public class MenuChangeView extends JFrame {
 
 
 	public MenuChangeView(String rNum, String mName) {
-		super("메뉴 수정");
+		super(":::메뉴 수정:::");
 		this.rNum=rNum;
 		this.mName=mName;
 		
@@ -55,6 +64,7 @@ public class MenuChangeView extends JFrame {
 		JScrollPane jsp=new JScrollPane(taIntroduction);
 		JLabel lblName=new JLabel("이름");
 		JLabel lblPrice=new JLabel("가격");
+		panel=new JPanel();
 		
 		add(btnAddMenuImg);
 		add(btnChange);
@@ -64,6 +74,7 @@ public class MenuChangeView extends JFrame {
 		add(jtfPrice);
 		add(lblName);
 		add(lblPrice);
+		add(panel);
 		
 		MenuChangeViewEvt mcve=new MenuChangeViewEvt(this);
 		btnAddMenuImg.addActionListener(mcve);
@@ -76,6 +87,7 @@ public class MenuChangeView extends JFrame {
 		//수동배치
 		setLayout(null);
 		
+		
 		btnAddMenuImg.setBounds(45, 160, 60, 25);
 		btnChange.setBounds(80, 200, 60, 30);
 		btnCancle.setBounds(170, 200, 60, 30);
@@ -84,6 +96,29 @@ public class MenuChangeView extends JFrame {
 		jsp.setBounds(150, 110, 150, 80);
 		lblName.setBounds(150, -5, 40, 50);
 		lblPrice.setBounds(150, 45, 40, 50);
+		panel.setBounds(0,0,330, 280);
+		
+		lblName.setFont(new Font("SanSerif", Font.BOLD, 14));
+		lblPrice.setFont(new Font("SanSerif", Font.BOLD, 14));
+		btnAddMenuImg.setFont(new Font("SanSerif", Font.BOLD, 12));
+		btnChange.setFont(new Font("SanSerif", Font.BOLD, 12));
+		btnCancle.setFont(new Font("SanSerif", Font.BOLD, 12));
+		
+		
+		panel.setBackground(Color.white);
+		EtchedBorder eb=new EtchedBorder();
+		lblImg.setBorder(eb);
+		btnAddMenuImg.setBackground(b_Color);
+		btnChange.setBackground(b_Color);
+		btnCancle.setBackground(b_Color);
+		taIntroduction.setBackground(t_Color);
+		btnAddMenuImg.setBorderPainted(false);
+		btnChange.setBorderPainted(false);
+		btnCancle.setBorderPainted(false);
+		btnAddMenuImg.setForeground(Color.WHITE);
+		btnChange.setForeground(Color.WHITE);
+		btnCancle.setForeground(Color.WHITE);
+		
 		
 		setBounds(120, 40, 330, 280);
 		setVisible(true);

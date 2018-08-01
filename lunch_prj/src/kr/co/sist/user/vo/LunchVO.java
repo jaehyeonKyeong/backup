@@ -1,22 +1,22 @@
 package kr.co.sist.user.vo;
 
-
 public class LunchVO {
-	private String img,prdName,lunchCode,lunchInfo;
+	private String img,prdName,lunchCode, lunchInfo;
 
 	
 	public LunchVO() {
-		
+		super();
 	}
 
+	
 	public LunchVO(String img, String prdName, String lunchCode, String lunchInfo) {
-		
+		super();
 		this.img = img;
 		this.prdName = prdName;
 		this.lunchCode = lunchCode;
 		this.lunchInfo = lunchInfo;
-		
 	}
+	
 
 	public String getImg() {
 		return img;
@@ -41,7 +41,7 @@ public class LunchVO {
 	public void setLunchCode(String lunchCode) {
 		this.lunchCode = lunchCode;
 	}
-	
+
 	public String getLunchInfo() {
 		return lunchInfo;
 	}
@@ -52,4 +52,5 @@ public class LunchVO {
 
 	
 
-}
+	 
+}//class

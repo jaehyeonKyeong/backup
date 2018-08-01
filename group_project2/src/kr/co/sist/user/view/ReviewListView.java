@@ -1,8 +1,12 @@
 package kr.co.sist.user.view;
 
+import java.awt.Color;
+import java.awt.Font;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
@@ -15,25 +19,63 @@ public class ReviewListView extends JFrame {
 	RestaurantViewInfo rvi;
 	DefaultTableModel todayReviewDtm, rankReviewDtm;
 	JTable todayReviewTable, rankReviewTable;
-	JButton btnAddReview, btnViewReview, btnClose;
+	JButton btnAddReview, btnViewReview, btnClose,btnNewReview;
+	private JPanel panel;
+	private Color b_Color=new Color(0,100,121);
+	String rNum,id;
 
-	public ReviewListView() {
-		super("리뷰 목록");
+	
+	
+
+	public JButton getBtnNewReview() {
+		return btnNewReview;
+	}
+
+
+	public JPanel getPanel() {
+		return panel;
+	}
+
+
+	public Color getB_Color() {
+		return b_Color;
+	}
+
+
+	public String getrNum() {
+		return rNum;
+	}
+
+
+	public String getId() {
+		return id;
+	}
+
+
+	public ReviewListView(String rNum, String id) {
+		super(":::리뷰 목록:::");
 		todayReviewTable=new JTable();
 		rankReviewTable=new JTable();
+		this.rNum=rNum;
+		this.id=id;
 		
 		
 		btnAddReview=new JButton("리뷰 등록");
 		btnViewReview=new JButton("보기");
 		btnClose=new JButton("닫기");
+		panel=new JPanel();
+		btnNewReview=new JButton("새로고침");
+		
 		
 		JLabel lblTodayReview=new JLabel("오늘 등록된 리뷰");
 		JLabel lblThumbsReview=new JLabel("추천 많이받은 리뷰");
 		
+		
+		
 		//table
 		String[] todayTitle= {"ID","리뷰제목","추천수"};
 		String[][] todayData= {
-				{"ssong1","식당1의 최고","11"},{"gang1","식당1의 최악","11"},{"btt3","식당1의 평범","11"},{"honey4","식당1의 리뷰","22"}
+				{"","",""}
 		};
 		
 		todayReviewDtm=new DefaultTableModel(todayTitle, todayData.length) {
@@ -55,8 +97,8 @@ public class ReviewListView extends JFrame {
 		
 		String[] ThumbsTitle= {"ID","리뷰제목","추천수"};
 		String[][] ThumbsData= {
-				{"ssong1","최고다","1231"},{"gang1","그저그럼","1100"},{"btt3"," 평범","441"},{"honey4","리뷰당","222"}
-		};
+				{"","",""}
+			};
 		
 		rankReviewDtm=new DefaultTableModel(ThumbsTitle, ThumbsData.length) {
 
@@ -88,9 +130,11 @@ public class ReviewListView extends JFrame {
 		scrollTodayReview.setBounds(25,40,450,85);
 		lblThumbsReview.setBounds(25,130,450,20);
 		scrollrankReview.setBounds(25,150,450,85);
-		btnAddReview.setBounds(90,245,100,30);
-		btnViewReview.setBounds(200,245,100,30);
-		btnClose.setBounds(310,245,100,30);
+		btnAddReview.setBounds(40,245,100,30);
+		btnViewReview.setBounds(145,245,100,30);
+		btnClose.setBounds(250,245,100,30);
+		btnNewReview.setBounds(355,245,100,30);
+		panel.setBounds(0,0,500,360);
 		
 		
 		
@@ -102,23 +146,42 @@ public class ReviewListView extends JFrame {
 		add(btnAddReview);
 		add(btnViewReview);
 		add(btnClose);
+		add(btnNewReview);
+		add(panel);
+		
+		panel.setBackground(Color.WHITE);
+		btnAddReview.setBackground(b_Color);
+		btnViewReview.setBackground(b_Color);
+		btnClose.setBackground(b_Color);
+		
+		btnAddReview.setFont(new Font("SanSerif",Font.BOLD,15));
+		btnViewReview.setFont(new Font("SanSerif",Font.BOLD,15));
+		btnClose.setFont(new Font("SanSerif",Font.BOLD,15));
+		btnAddReview.setForeground(Color.WHITE);
+		btnViewReview.setForeground(Color.WHITE);
+		btnClose.setForeground(Color.WHITE);
+		
+		btnAddReview.setBorderPainted(false);
+		btnViewReview.setBorderPainted(false);
+		btnClose.setBorderPainted(false);
+		
+		
+		
 		
 		ReviewListViewEvt rlve=new ReviewListViewEvt(this);
 		btnAddReview.addActionListener(rlve);
 		btnClose.addActionListener(rlve);
 		btnViewReview.addActionListener(rlve);
+		btnNewReview.addActionListener(rlve);
 		todayReviewTable.addMouseListener(rlve);
 		rankReviewTable.addMouseListener(rlve);
 		
 		setLayout(null);
-		setBounds(400,100,500,350);
+		setBounds(400,100,500,360);
 		setVisible(true);
 		
 	}
 
-	public static void main(String[] args) {
-		new ReviewListView();
-	}
 
 	public RestaurantViewInfo getRvi() {
 		return rvi;

@@ -19,13 +19,17 @@ import kr.co.sist.user.vo.RestaurantDetailVO;
 
 public class RestaurantViewInfoEvt implements ActionListener {
 	private RestaurantViewInfo rvi;
+	private String rNum;
+	private String id;
 
 	public RestaurantViewInfoEvt(RestaurantViewInfo rvi) {
 		this.rvi = rvi;
-		RestaurantDetailView(this.rvi.getRNum());
+		rNum=rvi.getRNum();
+		id=rvi.getId();
+		RestaurantDetailView(rNum,id);
 	}
 
-	private void RestaurantDetailView(String rNum) {// restaurantViewInfo에 rNum에 대한 모든 정보를 띄어주는 일
+	private void RestaurantDetailView(String rNum, String id) {// restaurantViewInfo에 rNum에 대한 모든 정보를 띄어주는 일
 		RestaurantDetailDAO rd_dao = RestaurantDetailDAO.getInstance();
 		RestaurantDetailVO rdVO = null;
 		List<MenuSearchVO> menuList = null;
@@ -122,8 +126,7 @@ public class RestaurantViewInfoEvt implements ActionListener {
 	}
 
 	public void reviewView() {
-		new ReviewListView();
-
+		new ReviewListView(rNum,id);
 	}
 
 }

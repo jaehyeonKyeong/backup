@@ -6,6 +6,6 @@ public class RunLunchMainFrame {
 
 	public static void main(String[] args) {
 		new TestLogin();
-	}
-	
-}
+	}//main
+
+}//class

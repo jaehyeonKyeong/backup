@@ -14,16 +14,19 @@ public class DataBaseConnection {
 	private String url;
 	private String id;
 	private String pass;
-	
-	
+
+
 	private DataBaseConnection() throws FileNotFoundException, IOException {
 		Properties prop=new Properties();
-		prop.load(new FileInputStream("C:/dev/workspace/lunch_prj/src/kr/co/sist/properties/database.properties"));
+		prop.load(new FileInputStream("C:/Users/kimkn/git/backup/lunch_prj/src/kr/co/sist/properties/database.properties"));
+		
 		driver=prop.getProperty("driver");
-		 url=prop.getProperty("url");
-		 id=prop.getProperty("id");
-		 pass=prop.getProperty("pass");
-	}//databaseconnection
+		url=prop.getProperty("url");
+		id=prop.getProperty("id");
+		pass=prop.getProperty("pass");
+
+	}//DataBaseConnection
+
 	public static DataBaseConnection getInstance() {
 		if(dbc==null) {
 			try {
@@ -34,33 +37,32 @@ public class DataBaseConnection {
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}
-			
-				
-		}
+			}//end catch	
+		}//end if
+
 		return dbc;
-	}//getinstance
-	
+	}//getInstance
+
 	public Connection getConnection()throws SQLException {
 		Connection con=null;
-		
+
 		//1. 드라이버 로딩
 		try {
 			Class.forName(driver);
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}//end catch
+
 		//2. 커넥션 얻기
 		con=DriverManager.getConnection(url,id, pass);
 		return con;
-		
-		
-	}//getconnection
-	
-	
-	
-	
+
+
+	}//getConnection
+
+
+
 	public static DataBaseConnection getDbc() {
 		return dbc;
 	}
@@ -76,11 +78,7 @@ public class DataBaseConnection {
 	public String getPass() {
 		return pass;
 	}
-	
-	
-	public static void main(String[] args)throws SQLException{
-		System.out.println(getInstance().getConnection());
-		
-	}// 데이터베이스 연결 확인 
+
+
 
 }//class

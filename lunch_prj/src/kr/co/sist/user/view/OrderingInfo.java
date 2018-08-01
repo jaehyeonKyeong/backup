@@ -2,7 +2,6 @@ package kr.co.sist.user.view;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -32,7 +31,7 @@ public class OrderingInfo extends JFrame {
 		tfPhone = new JTextField(30);
 		btnOrder = new JButton("조회");
 
-		String tableName[] = { "이미지", "제품명", "단가", "수량", "금액" };
+		String tableName[] = { "이미지","제품명","단가", "수량", "금액" };
 
 		dtm = new DefaultTableModel(tableName,0) {
 			@Override
@@ -42,15 +41,15 @@ public class OrderingInfo extends JFrame {
 		};
 
 		tableView = new JTable(dtm) {
+
 			@Override
 			public Class<?> getColumnClass(int column) {
-				// TODO Auto-generated method stub
 				return getValueAt(0, column).getClass();
 			}
-
+			
 		};
-
 		tableView.setRowHeight(90);
+		
 		tableView.getColumnModel().getColumn(0).setPreferredWidth(60);
 		tableView.getColumnModel().getColumn(1).setPreferredWidth(60);
 		tableView.getColumnModel().getColumn(2).setPreferredWidth(30);
@@ -75,6 +74,7 @@ public class OrderingInfo extends JFrame {
 
 	}// UserOrderInfo
 
+	
 	public JLabel getLblPhone() {
 		return lblPhone;
 	}
@@ -94,5 +94,6 @@ public class OrderingInfo extends JFrame {
 	public DefaultTableModel getDtm() {
 		return dtm;
 	}
+
 
 }// class

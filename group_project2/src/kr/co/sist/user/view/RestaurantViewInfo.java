@@ -3,12 +3,11 @@ package kr.co.sist.user.view;
 import java.awt.Color;
 import java.awt.Font;
 
-import javax.swing.GrayFilter;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JList;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
@@ -24,11 +23,47 @@ public class RestaurantViewInfo extends JFrame{
 	private JTextArea taRestaurantInfo;
 	private JLabel lblRestaurantName,lblGrade;
 	private RestaurantSearchView rsv;
-	private String rNum;
+	private String rNum,id,imgFile;
+	private JPanel panel;
+	private Color b_Color=new Color(0,100,121);
+	private Color t_Color = new Color(245, 247, 249);
 	
-	public RestaurantViewInfo(String rNum)  {
-		super("½Ä´ç");
+	
+	public String getrNum() {
+		return rNum;
+	}
+
+
+	public String getId() {
+		return id;
+	}
+
+
+	public String getImgFile() {
+		return imgFile;
+	}
+
+
+	public JPanel getPanel() {
+		return panel;
+	}
+
+
+	public Color getB_Color() {
+		return b_Color;
+	}
+
+
+	public Color getT_Color() {
+		return t_Color;
+	}
+
+
+	public RestaurantViewInfo(String rNum, String id, String imgFile)  {
+		super(":::½Ä´ç:::");
 		this.rNum=rNum;
+		this.id=id;
+		this.imgFile=imgFile;
 		setLayout(null);
 		ImageIcon imgLogo=new ImageIcon("C:/dev/workspace/group_project2/src/kr/co/sist/user/view/images/logo (3).jpg");
 		JLabel lblLogo=new JLabel();
@@ -41,10 +76,11 @@ public class RestaurantViewInfo extends JFrame{
 		taRestaurantInfo.setEditable(false);
 		taRestaurantInfo.setBackground(new Color(0xf3, 0xf3, 0xf3));
 		JScrollPane scroll=new JScrollPane(taRestaurantInfo);
+		panel=new JPanel();
+		
 		String[] title= {"¸Þ´º","¼Ò°³","°¡°Ý"};
-		String[][] data= {{"ºÒ´ß","ºÒ¸À","15000"},{"Ä¡ÁîºÒ´ß","Ä¡ÁîºÒ¸À","20000"},{"¹°´ß","¹°¸À","14000"}};
+		String[][] data= {{"","",""}};
 		dtm=new DefaultTableModel(title, 3) {
-
 			@Override
 			public boolean isCellEditable(int row, int column) {
 				return false;
@@ -65,18 +101,21 @@ public class RestaurantViewInfo extends JFrame{
 		restaurantImg=new ImageIcon("C:/dev/workspace/group_project2/src/kr/co/sist/user/view/images/restaurant.jpg");
 		JLabel lblRestaurantimg=new JLabel(restaurantImg);
 		
+		//tableMenuView.getTableHeader().setFont(new Font("SanSerif",Font.BOLD,13));
+		//tableMenuView.getTableHeader().setBackground(t_Color);
 		
 		
-		lblRestaurantName.setBounds(220,30,100,20);
-		btnReport.setBounds(480,20,100,25);
+		lblRestaurantName.setBounds(210,30,150,20);
+		btnReport.setBounds(460,20,100,25);
 		scroll.setBounds(200,55,200,200);
 		btnMapView.setBounds(420,115,120,25);
 		btnReviewListView.setBounds(420,145,120,25);
-		tableScroll.setBounds(25,280,500,70);
+		tableScroll.setBounds(30,280,515,90);
 		lblLogo.setBounds(25,5,45,45);
-		lblRestaurantimg.setBounds(25, 55, 170, 200);
+		lblRestaurantimg.setBounds(20, 55, 200, 200);
+		panel.setBounds(0,0,600,450);
 		
-		lblRestaurantName.setFont(new Font("¸¼Àº °íµñ", NORMAL, 18));
+		lblRestaurantName.setFont(new Font("SanSerif", Font.BOLD, 12));
 		
 		add(lblRestaurantName);
 		add(btnReport);
@@ -86,9 +125,29 @@ public class RestaurantViewInfo extends JFrame{
 		add(tableScroll);
 		add(lblLogo);
 		add(lblRestaurantimg);
+		add(panel);
 		
 		
-		setBounds(500,100,600,400);
+		
+		
+		panel.setBackground(Color.white);
+		
+		btnReport.setBackground(b_Color);
+		btnMapView.setBackground(b_Color);
+		btnReviewListView.setBackground(b_Color);
+		btnReport.setFont(new Font("SanSerif",Font.BOLD,14));
+		btnMapView.setFont(new Font("SanSerif",Font.BOLD,14));
+		btnReviewListView.setFont(new Font("SanSerif",Font.BOLD,12));
+		btnReport.setForeground(Color.WHITE);
+		btnMapView.setForeground(Color.WHITE);
+		btnReviewListView.setForeground(Color.WHITE);
+		btnReport.setBorderPainted(false);
+		btnMapView.setBorderPainted(false);
+		btnReviewListView.setBorderPainted(false);
+		
+		
+		
+		setBounds(500,100,600,450);
 	
 		RestaurantViewInfoEvt rvie= new RestaurantViewInfoEvt(this);
 		btnReport.addActionListener(rvie);
@@ -140,6 +199,5 @@ public class RestaurantViewInfo extends JFrame{
 	public String getRNum() {
 		return rNum;
 	}
-	
 
 }

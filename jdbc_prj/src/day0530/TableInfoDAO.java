@@ -28,7 +28,7 @@ public class TableInfoDAO {
 		} catch (ClassNotFoundException cnfe) {
 			cnfe.printStackTrace();
 		}
-		String url = "jdbc:oracle:thin:@localhost:1521:orcl";
+		String url = "jdbc:oracle:thin:@211.63.89.140:1521:orcl";
 		String id = "scott";
 		String pass = "1111";
 

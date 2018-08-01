@@ -47,6 +47,7 @@ public class LoginEvt implements ActionListener {
 					
 					if(uiv!=null) {
 						new Category(uiv);
+						lg.dispose();
 					}
 				} catch (SQLException e) {
 					e.printStackTrace();

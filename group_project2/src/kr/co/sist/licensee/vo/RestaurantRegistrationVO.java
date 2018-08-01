@@ -12,11 +12,11 @@ public class RestaurantRegistrationVO {
 		this.bNumber = bNumber;
 		this.cName = cName;
 		this.rAddr = rAddr;
-		this.cPrice = cPrice;
 		this.rTel = rTel;
+		this.cPrice = cPrice;
 		this.rIntro = rIntro;
 		this.l_id = l_id;
-		this.foodCategory = foodCategory;
+		this.foodCategory = foodCategory+1;
 	}
 	public String getrImg() {
 		return rImg;

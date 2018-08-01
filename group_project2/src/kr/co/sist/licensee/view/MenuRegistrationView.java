@@ -1,12 +1,17 @@
 package kr.co.sist.licensee.view;
 
+import java.awt.Color;
+import java.awt.Font;
+
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.border.EtchedBorder;
 
 import kr.co.sist.licensee.controller.MenuRegistrationViewEvt;
 
@@ -21,12 +26,14 @@ public class MenuRegistrationView extends JFrame {
 	private String  rNum;
 	private RestaurantRegistrationView rrv;
 	private RestaurantUpdateView ruv;
-	
+	private JPanel panel;
+	private Color b_Color=new Color(0,100,121);
+	private Color t_Color=new Color(245,247,249);
 
 	
 
 	public MenuRegistrationView(String rNum, RestaurantRegistrationView rrv) {
-		super("메뉴 등록");
+		super(":::메뉴 등록:::");
 		this.rNum=rNum;
 		this.rrv=rrv;
 		
@@ -48,6 +55,8 @@ public class MenuRegistrationView extends JFrame {
 		JScrollPane jsp=new JScrollPane(taIntroduction);
 		JLabel lblName=new JLabel("이름");
 		JLabel lblPrice=new JLabel("가격");
+		panel=new JPanel();
+		
 		
 		add(btnAdd);
 		add(btnRegistration);
@@ -57,7 +66,7 @@ public class MenuRegistrationView extends JFrame {
 		add(jsp);
 		add(lblName);
 		add(lblPrice);
-		
+		add(panel);
 		
 	
 		
@@ -72,6 +81,7 @@ public class MenuRegistrationView extends JFrame {
 		jsp.setBounds(150, 110, 150, 80);
 		lblName.setBounds(150, -5, 40, 50);
 		lblPrice.setBounds(150, 45, 40, 50);
+		panel.setBounds(0, 0, 330, 280);
 		
 		setBounds(120, 40, 330, 280);
 		setVisible(false);
@@ -84,6 +94,32 @@ public class MenuRegistrationView extends JFrame {
 		jtfName.addActionListener(mrve);
 		jtfPrice.addActionListener(mrve);
 		
+		lblName.setFont(new Font("SanSerif",Font.PLAIN,16));
+		lblPrice.setFont(new Font("SanSerif",Font.PLAIN,16));
+		btnAdd.setFont(new Font("SanSerif", Font.BOLD, 12));
+		btnRegistration.setFont(new Font("SanSerif", Font.BOLD, 12));
+		btnCancle.setFont(new Font("SanSerif", Font.BOLD, 12));
+		
+		panel.setBackground(Color.white);
+		btnAdd.setBackground(b_Color);
+		btnCancle.setBackground(b_Color);
+		btnRegistration.setBackground(b_Color);
+		taIntroduction.setBackground(t_Color);
+		
+		btnAdd.setForeground(Color.WHITE);
+		btnRegistration.setForeground(Color.WHITE);
+		btnCancle.setForeground(Color.WHITE);
+		
+		
+		
+		btnAdd.setBorderPainted(false);
+		btnRegistration.setBorderPainted(false);
+		btnCancle.setBorderPainted(false);
+		
+		EtchedBorder eb=new EtchedBorder();
+		lblImg.setBorder(eb);
+		
+		
 		
 		
 		
@@ -91,7 +127,7 @@ public class MenuRegistrationView extends JFrame {
 
 
 	public MenuRegistrationView(String rNum2, RestaurantUpdateView ruv) {
-		super("메뉴 등록");
+		super(":::메뉴 등록:::");
 		this.rNum=rNum2;
 		this.ruv=ruv;
 		
@@ -112,6 +148,7 @@ public class MenuRegistrationView extends JFrame {
 		taIntroduction=new JTextArea("소개글");
 		JLabel lblName=new JLabel("이름");
 		JLabel lblPrice=new JLabel("가격");
+		panel =new JPanel();
 		
 		add(btnAdd);
 		add(btnRegistration);
@@ -121,6 +158,7 @@ public class MenuRegistrationView extends JFrame {
 		add(taIntroduction);
 		add(lblName);
 		add(lblPrice);
+		add(panel);
 		
 		
 	
@@ -136,6 +174,32 @@ public class MenuRegistrationView extends JFrame {
 		taIntroduction.setBounds(150, 110, 150, 80);
 		lblName.setBounds(150, -5, 40, 50);
 		lblPrice.setBounds(150, 45, 40, 50);
+		
+		
+		lblName.setFont(new Font("SanSerif", Font.BOLD, 14));
+		lblPrice.setFont(new Font("SanSerif", Font.BOLD, 14));
+		btnAdd.setFont(new Font("SanSerif", Font.BOLD, 17));
+		btnCancle.setFont(new Font("SanSerif", Font.BOLD, 17));
+		btnRegistration.setFont(new Font("SanSerif", Font.BOLD, 17));
+		
+		panel.setBackground(Color.white);
+		btnAdd.setBackground(b_Color);
+		btnCancle.setBackground(b_Color);
+		btnRegistration.setBackground(b_Color);
+		taIntroduction.setBackground(t_Color);
+		
+		btnAdd.setBorderPainted(false);
+		btnRegistration.setBorderPainted(false);
+		btnCancle.setBorderPainted(false);
+		
+		btnAdd.setForeground(Color.WHITE);
+		btnRegistration.setForeground(Color.WHITE);
+		btnCancle.setForeground(Color.WHITE);
+		
+		
+		
+		EtchedBorder eb=new EtchedBorder();
+		lblImg.setBorder(eb);
 		
 		setBounds(120, 40, 330, 280);
 		setVisible(false);
@@ -203,4 +267,6 @@ public class MenuRegistrationView extends JFrame {
 		return rNum;
 	}
 
+
+	
 }// class

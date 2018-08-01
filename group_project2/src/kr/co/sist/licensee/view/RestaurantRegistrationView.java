@@ -1,5 +1,6 @@
 package kr.co.sist.licensee.view;
 
+import java.awt.Color;
 import java.awt.Font;
 
 import javax.swing.ImageIcon;
@@ -7,6 +8,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
@@ -27,9 +29,12 @@ public class RestaurantRegistrationView extends JFrame {
 	private JLabel lblImg1, lblImg2;
 	private DefaultTableModel dtmMenu;
 	String id;
+	private JPanel panel;
+	private Color b_Color=new Color(0,100,121);
+	private Color t_Color=new Color(245,247,249);
 
 	public RestaurantRegistrationView(String id) {
-		super("½Ä´çµî·Ï");
+		super(":::½Ä´çµî·Ï:::");
 		this.id = id;
 
 		imgURL1 = "C:\\Users\\owner\\Pictures\\sist.jpg";
@@ -66,7 +71,7 @@ public class RestaurantRegistrationView extends JFrame {
 				dtmMenu.setValueAt(data[i][j], i, j);
 			}
 		}
-
+		
 		jMenuTable = new JTable(dtmMenu);
 		JScrollPane jsp1 = new JScrollPane(jMenuTable);
 
@@ -87,7 +92,9 @@ public class RestaurantRegistrationView extends JFrame {
 		tfCustomerTransaction = new JTextField();
 		tfTel = new JTextField();
 		cbFoodCategory = new JComboBox<String>(category);
-
+		panel=new JPanel();
+		
+		
 		JLabel lblName = new JLabel("»óÈ£¸í");
 		JLabel lblNumber = new JLabel("»ç¾÷ÀÚ¹øÈ£");
 		JLabel lblCeoName = new JLabel("´ëÇ¥ÀÚ¸í");
@@ -98,15 +105,17 @@ public class RestaurantRegistrationView extends JFrame {
 		JLabel lblIntro = new JLabel("¾÷¼Ò ¼Ò°³");
 		JLabel lblMenu = new JLabel("¸Þ´º¸ñ·Ï");
 
-		lblName.setFont(new Font("¸¼Àº°íµñ", NORMAL, 16));
-		lblNumber.setFont(new Font("¸¼Àº°íµñ", NORMAL, 16));
-		lblCeoName.setFont(new Font("¸¼Àº°íµñ", NORMAL, 16));
-		lblAddr.setFont(new Font("¸¼Àº°íµñ", NORMAL, 16));
-		lblPrice.setFont(new Font("¸¼Àº°íµñ", NORMAL, 16));
-		lblTel.setFont(new Font("¸¼Àº°íµñ", NORMAL, 16));
-		lblFCategory.setFont(new Font("¸¼Àº°íµñ", NORMAL, 16));
-		lblIntro.setFont(new Font("¸¼Àº°íµñ", NORMAL, 16));
-		lblMenu.setFont(new Font("¸¼Àº°íµñ", NORMAL, 16));
+		jMenuTable.getTableHeader().setFont(new Font("SanSerif",Font.BOLD,13));
+		jMenuTable.getTableHeader().setBackground(t_Color);
+		lblName.setFont(new Font("SanSerif",Font.PLAIN,16));
+		lblNumber.setFont(new Font("SanSerif",Font.PLAIN,16));
+		lblCeoName.setFont(new Font("SanSerif",Font.PLAIN,16));
+		lblAddr.setFont(new Font("SanSerif",Font.PLAIN,16));
+		lblPrice.setFont(new Font("SanSerif",Font.PLAIN,16));
+		lblTel.setFont(new Font("SanSerif",Font.PLAIN,16));
+		lblFCategory.setFont(new Font("SanSerif",Font.PLAIN,16));
+		lblIntro.setFont(new Font("SanSerif",Font.PLAIN,16));
+		lblMenu.setFont(new Font("SanSerif",Font.PLAIN,16));
 
 		add(btnRImg);
 		add(btnMapImg);
@@ -133,7 +142,11 @@ public class RestaurantRegistrationView extends JFrame {
 		add(tfCustomerTransaction);
 		add(tfTel);
 		add(cbFoodCategory);
-		add(jsp1).setBounds(40, 430, 420, 160);
+		JScrollPane sp = new JScrollPane(taIntro);
+		sp.setBounds(40, 275, 420, 100);
+		add(sp);
+		add(jsp1).setBounds(40, 440, 420, 160);
+		add(panel);
 
 		////
 		RestaurantRegistrationViewEvt rrve = new RestaurantRegistrationViewEvt(this);
@@ -159,10 +172,11 @@ public class RestaurantRegistrationView extends JFrame {
 		btnRImg.setBounds(60, 95, 110, 20);
 		btnMapImg.setBounds(60, 220, 110, 20);
 		btnRegistration.setBounds(370, 380, 90, 25);
-		btnMenuegistration.setBounds(370, 600, 90, 25);
-		btnOk.setBounds(160, 630, 70, 25);
-		btnCc.setBounds(260, 630, 70, 25);
-		btnNewMenu.setBounds(260,600,90,25);
+		btnOk.setBounds(160, 660, 70, 25);
+		btnCc.setBounds(260, 660, 70, 25);
+		btnMenuegistration.setBounds(370, 610, 90, 25);
+		btnNewMenu.setBounds(260,610,90,25);
+		panel.setBounds(0,0,500, 750);
 
 		lblName.setBounds(210, 10, 70, 70);
 		lblNumber.setBounds(210, 50, 100, 50);
@@ -172,7 +186,7 @@ public class RestaurantRegistrationView extends JFrame {
 		lblTel.setBounds(210, 175, 70, 50);
 		lblFCategory.setBounds(210, 195, 100, 70);
 		lblIntro.setBounds(40, 240, 70, 50);
-		lblMenu.setBounds(40, 390, 70, 50);
+		lblMenu.setBounds(40, 400, 70, 50);
 
 		tfName.setBounds(320, 30, 150, 25);
 		tfbNumber.setBounds(320, 65, 150, 25);
@@ -181,13 +195,41 @@ public class RestaurantRegistrationView extends JFrame {
 		tfCustomerTransaction.setBounds(320, 155, 150, 25);
 		tfTel.setBounds(320, 190, 150, 25);
 		cbFoodCategory.setBounds(360, 220, 100, 25);
+		
+		
+		
+		
+		
+		taIntro.setBackground(t_Color);
+		jMenuTable.setBackground(new Color(227,227,222));
+		panel.setBackground(Color.white);
+		
+		btnRImg.setForeground(Color.WHITE);
+		btnMapImg.setForeground(Color.WHITE);
+		btnRegistration.setForeground(Color.WHITE);
+		btnNewMenu.setForeground(Color.WHITE);
+		btnMenuegistration.setForeground(Color.WHITE);
+		btnOk.setForeground(Color.WHITE);
+		btnCc.setForeground(Color.WHITE);
+		
+		btnRImg.setBackground(b_Color);
+		btnMapImg.setBackground(b_Color);
+		btnRegistration.setBackground(b_Color);
+		btnMenuegistration.setBackground(b_Color);
+		btnOk.setBackground(b_Color);
+		btnCc.setBackground(b_Color);
+		btnNewMenu.setBackground(b_Color);
+		
+		btnRImg.setBorderPainted(false);
+		btnMapImg.setBorderPainted(false);
+		btnRegistration.setBorderPainted(false);
+		btnMenuegistration.setBorderPainted(false);
+		btnOk.setBorderPainted(false);
+		btnCc.setBorderPainted(false);
+		btnNewMenu.setBorderPainted(false);
+		
 
-		JScrollPane sp = new JScrollPane(taIntro);
-		sp.setBounds(40, 275, 420, 100);
-		add(sp);
-
-		setTitle("½Ä´çµî·Ï");
-		setBounds(120, 40, 500, 700);
+		setBounds(120, 40, 500, 750);
 		setVisible(true);
 		setResizable(false);
 
@@ -293,5 +335,4 @@ public class RestaurantRegistrationView extends JFrame {
 		return btnNewMenu;
 	}
 	
-
 }// class

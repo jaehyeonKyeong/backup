@@ -70,7 +70,7 @@ public class LoginDAO {
 			con=getConnection();
 			//3.
 			String UserSelectLogin=
-					"select name from "+lv.getTableName()+" where id=? and PASSWORD=?";
+					"select id from "+lv.getTableName()+" where id=? and PASSWORD=?";
 			
 			pstmt=con.prepareStatement(UserSelectLogin);
 			//4.bind변수에 값 넣기
@@ -80,7 +80,7 @@ public class LoginDAO {
 			//5.
 			rs=pstmt.executeQuery();
 			if(rs.next()) {
-				Id=new licenssenameDate(rs.getString("name"));
+				Id=new licenssenameDate(rs.getString("id"));
 			}//end if
 		}finally {
 			//6.연결끊기

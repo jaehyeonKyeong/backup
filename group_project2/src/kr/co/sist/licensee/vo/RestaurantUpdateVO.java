@@ -17,7 +17,7 @@ public class RestaurantUpdateVO {
 		this.cPrice = cPrice;
 		this.rTel = rTel;
 		this.rIntro = rIntro;
-		this.foodCategory = foodCategory-1;
+		this.foodCategory = foodCategory;
 	}
 	public String getrImg() {
 		return rImg;

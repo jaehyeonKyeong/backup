@@ -97,7 +97,8 @@ public class RestaurantRegistrationViewEvt implements ActionListener {
 		if (ae.getSource() == rrv.getBtnOk()) {
 			switch (JOptionPane.showConfirmDialog(rrv, "이대로\n 등록 하시겠습니까?")) {
 			case JOptionPane.OK_OPTION:
-				
+				rrv.dispose();
+			default:
 			}
 		} // end if
 
