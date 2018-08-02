@@ -19,7 +19,7 @@ public class FileClient{
 		//2.업로드 할 파일의 정보 얻기
 		int size=0; //보내는 byte배열의 총 갯수
 		int len=0; //읽어들인 실제크기
-		String fileName="";
+		String fileName=""; //파일명
 		//HDD가 한번 읽어 들일때의 크기만큼 저장하기위한 배열
 		byte[] readData=new byte[512]; 
 

@@ -11,28 +11,36 @@ import java.net.Socket;
 
 @SuppressWarnings("serial")
 public class FileServer extends Thread{
+	
 	private ServerSocket server;
-
-
+	
 	@Override
 	public void run() {
 		//1.서버소켓열고
 		try {
 			server=new ServerSocket(20000);
 			System.out.println("파일업로드 서버 동작\n");
+
 			Socket socket=null;
+			
+			
+			
 			DataInputStream dis=null;
 			DataOutputStream dos=null;
+			//data Stream
+			
 			FileOutputStream fos=null;
+			FileInputStream  fis=null;
+			//file Stream
 			
 			int size=0; //보내오는 파일의 크기(배열의 총 갯수) 
 			int len=0; //한번에 보내오는 byte[]내 채워진 크기
+			
 			String fileName="";
 			byte[] readData=null; //클라이언트가 보내오는 파일의 binary를 받기 위한 배열
 
 			File file=null;
 
-			FileInputStream  fis=null;
 
 			while( true) {
 				//1-2 접속자 소켓을 받는다
@@ -41,6 +49,7 @@ public class FileServer extends Thread{
 				//2-1.소켓에서 스트림 연결
 				dis=new DataInputStream(socket.getInputStream());
 				fileName=dis.readUTF(); //클라이언트가 보내오는 파일명 받기
+
 				
 				file=new File("C:/dev/workspace/lunch_prj/src/kr/co/sist/img/"+fileName);
 				fis=new FileInputStream(file);//선택한 파일 
@@ -63,15 +72,12 @@ public class FileServer extends Thread{
 				while(size>0) { //전송할 파일의 갯수가(byte[] 바이트 배열의 세트) 존재한다면
 					len=fis.read(readData); //읽어들인 파일의 크기만큼 크기를 얻어
 					dos.write(readData,0,len); //데이터와 파일의 크기까지를 기록
-					dos.flush();
+					dos.flush(); //보내기
 					size--; //파일의 내용을 한번 보낼 때 마다 크기를 줄인다.
 				}//end while
-
 				
 				if(fis !=null) {fis.close();} //end if
 				if(dos !=null) {dos.close();} //end if
-				
-				
 				
 			}//end while
 		} catch (IOException e) {

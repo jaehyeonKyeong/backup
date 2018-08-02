@@ -75,6 +75,7 @@ public class ReviewListViewEvt extends MouseAdapter implements ActionListener {
 			Object[] rowData = null;
 			DefaultTableModel dtm1=rlv.getRankReviewDtm();
 			dtm1.setRowCount(0);
+			System.out.println(reviewList.size());
 			for(int i=0;i<reviewList.size();i++) {
 				rvo=reviewList.get(i);
 				rowData = new Object[3];
@@ -85,6 +86,7 @@ public class ReviewListViewEvt extends MouseAdapter implements ActionListener {
 				String reviewNum=rvo.getReview_number();
 				listRankRestNum.add(restNum);
 				listRankReviewNum.add(reviewNum);
+				System.out.println(rowData[0]);
 				
 				dtm1.addRow(rowData);
 			}

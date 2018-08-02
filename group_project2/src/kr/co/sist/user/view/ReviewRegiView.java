@@ -84,6 +84,7 @@ public class ReviewRegiView extends JFrame {
 		btnRegiImg=new JButton("사진추가");
 		panel=new JPanel();
 		JLabel lblReviewTitle=new JLabel("리뷰제목");
+		tfReviewerID.setEditable(false);
 		
 		lblReviewerIcon.setIcon(reviewerIcon);
 		lblReviewImg.setIcon(reviewImg);
@@ -149,7 +150,6 @@ public class ReviewRegiView extends JFrame {
 		setBounds(500, 100, 600, 500);
 		setResizable(false);
 		setVisible(true);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 	
 

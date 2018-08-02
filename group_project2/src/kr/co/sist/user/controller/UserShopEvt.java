@@ -26,7 +26,8 @@ public class UserShopEvt implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent ae) {
 		userId=us.getCg().getBtnID().getText();//아이디 받음
-		userPoint=us.getCg().getUserPoint();
+		userPoint=us.getUserPoint();
+		System.out.println("상점에서본 포인트 : "+userPoint);
 		boolean flag=false; // 트루로 변환될경우 유저 상품권 리스트에 추가
 		UserShopDAO u_dao=UserShopDAO.getInstance();
 		UserGiftCardInfoDAO ugci_dao=UserGiftCardInfoDAO.getInstance();
@@ -38,14 +39,17 @@ public class UserShopEvt implements ActionListener {
 			int optionType=JOptionPane.showConfirmDialog(us, giftCardName+"을(를) 구매하시겠습니까?", "구매확인", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
 			switch (optionType) {
 			case JOptionPane.OK_OPTION://예 클릭시
-				userPoint-=1000;
-				System.out.println( "---구매확인---"+ userPoint);
 				try {
+					if(userPoint>=1000) {
+						userPoint-=1000;
+						us.setUserPoint(userPoint);
 					u_dao.updateUserInfo(userId,userPoint);
 //					flag=true;
 					ugci_vo=new UserGiftCardInfoVO("1",userId,"1000원","X","");
 					ugci_dao.insertUserGiftCard(ugci_vo);
-					
+					}else {
+						JOptionPane.showMessageDialog(us, "보유포인트가 부족합니다", "구매 실패! :(", JOptionPane.WARNING_MESSAGE);
+					}
 				} catch (SQLException e) {
 					e.printStackTrace();
 				}
@@ -62,7 +66,9 @@ public class UserShopEvt implements ActionListener {
 			int optionType=JOptionPane.showConfirmDialog(us, giftCardName+"을(를) 구매하시겠습니까?", "구매확인", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
 			switch (optionType) {
 			case JOptionPane.OK_OPTION://예 클릭시
-				userPoint-=5000;
+				if(userPoint>=5000) {
+					userPoint-=5000;
+					us.setUserPoint(userPoint);
 				try {
 					u_dao.updateUserInfo(userId,userPoint);
 					ugci_vo=new UserGiftCardInfoVO("5",userId,"5000원","X","");
@@ -70,7 +76,9 @@ public class UserShopEvt implements ActionListener {
 				} catch (SQLException e) {
 					e.printStackTrace();
 				}
-				
+				}else {
+					JOptionPane.showMessageDialog(us, "보유포인트가 부족합니다", "구매 실패! :(", JOptionPane.WARNING_MESSAGE);
+				}
 				break;
 			default://아니오 클릭시
 				//
@@ -83,7 +91,9 @@ public class UserShopEvt implements ActionListener {
 			int optionType=JOptionPane.showConfirmDialog(us, giftCardName+"을(를) 구매하시겠습니까?", "구매확인", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
 			switch (optionType) {
 			case JOptionPane.OK_OPTION://예 클릭시
-				userPoint-=10000;
+				if(userPoint>=10000) {
+					userPoint-=10000;
+					us.setUserPoint(userPoint);
 				try {
 					u_dao.updateUserInfo(userId,userPoint);
 					flag=true;
@@ -92,6 +102,9 @@ public class UserShopEvt implements ActionListener {
 					
 				} catch (SQLException e) {
 					e.printStackTrace();
+				}
+				}else {
+					JOptionPane.showMessageDialog(us, "보유포인트가 부족합니다", "구매 실패! :(", JOptionPane.WARNING_MESSAGE);
 				}
 				break;
 			default://아니오 클릭시

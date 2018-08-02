@@ -31,7 +31,13 @@ public class ReviewContentsViewEvt implements ActionListener{
 		}
 	}
 	private void reportReview() {
-		
+		ReviewDAO r_dao=ReviewDAO.getInstance();
+		try {
+			r_dao.reportReview(rcv.getrNum(),rcv.getRiNum());
+			JOptionPane.showMessageDialog(rcv, "신고되었습니다", "신고완료", JOptionPane.INFORMATION_MESSAGE);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 	//추천테이블에 like카운터를 1증가하는 일
 	private void thumbsUp() {

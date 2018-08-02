@@ -18,15 +18,16 @@ public class UserShop extends JFrame {
 	private ImageIcon iiThousandImg,iiFiveThousandImg,iiTenThousandImg;
 	private JPanel jpCategory;
 	private Category cg;
+	private int userPoint;
 //	private UserShopEvt use 
 	public UserShop(Category cg) {
 		super("모바일상품권 상점");
-		
+		userPoint=cg.getUserPoint();
 		this.cg=cg;
 		jpCategory=new JPanel();
-		iiThousandImg=new ImageIcon("C:/dev/workspace/group_project/src/kr/co/sist/user/images/1000.png");
-		iiFiveThousandImg=new ImageIcon("C:/dev/workspace/group_project/src/kr/co/sist/user/images/5000.png");
-		iiTenThousandImg=new ImageIcon("C:/dev/workspace/group_project/src/kr/co/sist/user/images/10000.png");
+		iiThousandImg=new ImageIcon("C:\\Users\\kimkn\\git\\backup\\group_project2\\src\\kr\\co\\sist\\user\\images\\1000.png");
+		iiFiveThousandImg=new ImageIcon("C:\\Users\\kimkn\\git\\backup\\group_project2\\src\\kr\\co\\sist\\user\\images\\5000.png");
+		iiTenThousandImg=new ImageIcon("C:\\Users\\kimkn\\git\\backup\\group_project2\\src\\kr\\co\\sist\\user\\images\\10000.png");
 		btnThousandImg=new JButton(iiThousandImg);
 		btnFiveThousandImg=new JButton(iiFiveThousandImg);
 		btnTenThousandImg=new JButton(iiTenThousandImg);
@@ -59,6 +60,12 @@ public class UserShop extends JFrame {
 		setBounds(100,100,550,300);
 		setVisible(true);
 //		System.out.println("상점에서 부른 아이디  : "+ugci.getId());
+	}
+	public void setUserPoint(int userPoint) {
+		this.userPoint = userPoint;
+	}
+	public int getUserPoint() {
+		return userPoint;
 	}
 	public Category getCg() {
 		return cg;

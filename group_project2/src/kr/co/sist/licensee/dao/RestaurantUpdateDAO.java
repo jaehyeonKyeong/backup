@@ -45,10 +45,10 @@ public class RestaurantUpdateDAO {
 			con=DataBaseConnection.getInstance().getConnection();
 		//3.
 			String selectRestaurant=
-					"select r.restaurant_image,r.map_image,r.restaurant_name,r.corporate_number,r.ceo_name,r.restaurant_addr, r.phone_number,r.customer_transaction,r.restaurant_category,r.restaurant_intro,m.menu_name,m.price from restaurant r,menu m where m.restaurant_number=r.restaurant_number(+) and r.restaurant_number=?";
+					"select r.restaurant_image,r.map_image,r.restaurant_name,r.corporate_number,r.ceo_name,r.restaurant_addr, r.phone_number,r.customer_transaction,r.restaurant_category,r.restaurant_intro,m.menu_name,m.price from restaurant r,menu m where m.restaurant_number=r.restaurant_number(+) and trim(r.restaurant_number)=?";
 			pstmt=con.prepareStatement(selectRestaurant);
 		//4.
-			pstmt.setString(1, rNumber);
+			pstmt.setString(1, rNumber.trim());
 			
 		//5.
 			rs=pstmt.executeQuery();
@@ -63,7 +63,7 @@ public class RestaurantUpdateDAO {
 						rs.getString("customer_transaction"),
 						rs.getString("phone_number"),
 						rs.getString("restaurant_intro"), 
-						rs.getInt("restaurant_category"));
+						rs.getInt("restaurant_category")-1);
 				mnuVO=new MenuVO(rs.getString("menu_name"), rs.getInt("Price"));
 				menuList.add(mnuVO);
 				

@@ -63,7 +63,7 @@ public class RestaurantRegistrationDAO {
 		//2.
 			con=DataBaseConnection.getInstance().getConnection();
 		//3.
-			String insertRestaurant="insert into restaurant(restaurant_number,restaurant_name,corporate_number,ceo_name,restaurant_addr,customer_transaction,phone_number,restaurant_category,restaurant_intro,restaurant_image,map_image,id)values(?,?,?,?,?,?,?,?,?,?,?,?)";
+			String insertRestaurant="insert into restaurant(restaurant_number,restaurant_name,corporate_number,ceo_name,restaurant_addr,customer_transaction,phone_number,restaurant_category,restaurant_intro,restaurant_image,map_image,id,input_date)values(?,?,?,?,?,?,?,?,?,?,?,?,sysdate)";
 			pstmt=con.prepareStatement(insertRestaurant);
 			
 		//4.

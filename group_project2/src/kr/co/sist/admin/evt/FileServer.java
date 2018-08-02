@@ -10,124 +10,113 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 public class FileServer extends Thread {
+	// 서버는 먼저 클라이언트에 말을 걸수 없다.
+	// 클라이언트가 말을 걸어주면 응답은 가능하다.
 	private ServerSocket server;
+	public static final int SERVER_PORT = 13880;
+	// msg = [이미지 종류_img_(업로드/다운로드)]
+	public static final String RESTAURANT_IMAGE_UPLOAD = "[rest_img_up]"; // 클라이언트가 보내오는 msg에따라 일이 달라진다.
+	public static final String RESTAURANT_IMAGE_DOWNLOAD = "[rest_img_down]";
+	public static final String REVIEW_IMAGE_UPLOAD = "[review_img_up]";
+	public static final String REVIEW_IMAGE_DOWNLOAD = "[review_img_down]";
+	public static final String MENU_IMAGE_UPLOAD = "[menu_img_up]";
+	public static final String MENU_IMAGE_DOWNLOAD = "[menu_img_down]";
+
+	private DataInputStream dis;
+	private DataOutputStream dos;
+
+	private FileInputStream fis;
+	private FileOutputStream fos;
 
 	@Override
 	public void run() {
 		try {
-			//서버소켓을 열고
-			server=new ServerSocket(55000);
-			System.out.println("파일업로드 서버 동작\n");
-			Socket socket = null; //접속자가 보내온 소켓을 담음.
-			
-			DataInputStream dis = null;
-			DataOutputStream dos = null;
-			
-			int size = 0;// 보내오는 파일의 크기(배열의 총 갯수)
-			int len = 0;// 한번에 보내오는 byte[]내 채워진 크기
-			
-			String fileName = "";
-			byte[] readData = null;// 클라이언트가 보내오는 파일의 binary를 받기 위한 배열
-			
-			File file = null;
-			FileInputStream fis = null;
-			
-			while (true) {
-				// 1-2 접속자 소켓을 받는다.
-				socket = server.accept();
-				// 2.클라이언트가 보내오는 파일 정보 순서대로 받고
-				// 2-1.소켓에서 스트림 연결
-				dis = new DataInputStream(socket.getInputStream());
+			server = new ServerSocket(SERVER_PORT);
+			// 클라이언트에서 보내온 이미지 파일을 생성하는 일을 해주는 클래스
+			System.out.println("서버 실행");
+			Socket client = null;
 
-				fileName = dis.readUTF();// 클라이언트가 보내오는 "파일명" 받기
-				System.out.println(fileName);
-				file = new File("C:/Users/kimkn/git/backup/group_project2/src/kr/co/sist/img/" + fileName);
-				fis = new FileInputStream(file); // 선택한 파일을 스트림으로 연결
-				
-				readData= new byte[512];
-				while ((len = fis.read(readData)) > 0) {
-					size++;// 읽어들인 배열의 갯수
-				} // end while
-					// 보낼 파일의 배열 수 (총 갯수)를 얻었다면 연결을 끊는다.
-					// 파일의 끝으로 이동한 포인터는 다시 파일의 처음으로 돌아가지 않는다.
-				fis.close();
+			while (true) { // 반복을 시켜 client가 접속할때까지 기다린다(언제 접속할지 모름)
+				System.out.println("접속대기");
+				client = server.accept(); // 종이컵 전화기 같은 존재
 
-				fis = new FileInputStream(file);// 보내기위해 새로 연결한다.
-				dos = new DataOutputStream(socket.getOutputStream());
-				dos.writeInt(size);
-				
-				System.out.println(file.exists());
-				
-				while (size > 0) {// 전송할 파일의 갯수가 (byte[]) 존재한다면
-					len = fis.read(readData);
-					dos.write(readData, 0, len);// 데이터와 파일의 크기까지를 기록
-					dos.flush();
-					size--;// 파일의 내용을 한번 보낼때 마다 크기를 줄인다.
-				} // end while
-				
-				if (fis != null) {fis.close();}
-				if (dos != null) {dos.close();}
-				
-			}//end while
-			
+				System.out.println("접속자 : [" + client.getRemoteSocketAddress() + "]");
+
+				dis = new DataInputStream(client.getInputStream());
+				dos = new DataOutputStream(client.getOutputStream());
+				// data Stream(network : client와 통신하기위한 stream)
+				String clientMsg = dis.readUTF(); // 클라이언트가 가장 먼저 해야 하는 일은 서버에 일을 처리할 msg를 보내는 일
+
+				// client에서 보내온 문자열 6가지에 따라 서버에서 하는 일이 달라진다.
+				switch (clientMsg) {
+				case RESTAURANT_IMAGE_UPLOAD:// 레스토랑이미지를 서버에 업로드한다.
+					restaurantImgUpload();
+					break;
+//				case RESTAURANT_IMAGE_DOWNLOAD:
+//					restaurantImgDownload();
+//					break;
+//				case REVIEW_IMAGE_UPLOAD:
+//					reviewImgUpload();
+//					break;
+//				case REVIEW_IMAGE_DOWNLOAD:
+//					reviewImgDownload();
+//					break;
+//				case MENU_IMAGE_UPLOAD:
+//					menuImgUpload();
+//					break;
+//				case MENU_IMAGE_DOWNLOAD:
+//					menuImgDownload();
+//					break;
+				default:
+					//아무런 응답이 없으면 default로 가서 다시 while문을 탄다.
+				}
+			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+
 	}
-	public void uploadProcess(File file)throws IOException {
-		//1.소켓 열고
-		System.out.println("파일업로드 서버 동작\n");
-		Socket socket = null; //접속자가 보내온 소켓을 담음.
 
-		//2.업로드 할 파일의 정보 얻기
-		int size=0; //보내는 byte배열의 총 갯수
-		int len=0; //읽어들인 실제크기
-		String fileName="";
-		//HDD가 한번 읽어 들일때의 크기만큼 저장하기위한 배열
-		byte[] readData=new byte[512]; 
-
-		FileInputStream fis=null;
-		DataOutputStream dos=null;
-
-		DataInputStream dis=null;
-		FileOutputStream fos=null;
+	private void restaurantImgDownload() { // 클라이언트가 레스토랑 이미지를 서버에서 다운로드 해간다.
+		// TODO Auto-generated method stub
 		
-		try {	
-			
-			socket = server.accept();
-			fis=new FileInputStream(file); //선택한 파일을 스트림으로 연결
-			
+	}
 
-			dos=new DataOutputStream(socket.getOutputStream());
-
-			//파일명을 보내고
-			dos.writeUTF(file.getName());
-			dos.flush();
-			
-			dis=new DataInputStream(socket.getInputStream());
-			//서버에서 보내오는 파일크기(byte[512]의 갯수) 받는다.
-			size=dis.readInt();
-			readData=new byte[512];
-			//3.서버의 HDD에 File로 쓴다
-			//3-1. 파일 스트림 연결
-			file=new File("C:/Users/kimkn/git/backup/lunch_prj/src/kr/co/sist/img/"+file.getName());
-			fos=new FileOutputStream(file); //파일 명 생성
-
-			while(size >0) {
-				len=dis.read(readData);
-				fos.write(readData, 0, len);
-				fos.flush();
-				size--;
-			}//end while
-			fos.close();
-
+	private void restaurantImgUpload() throws IOException {// 레스토랑이미지를 서버에 업로드한다.
+		
+		int size = 0; // 보내는 byte배열의 총 갯수
+		int len = 0; // 읽어들인 실제크기
+		try {
+		String fileName = dis.readUTF(); // client가 보내야할 두번째 String = imgFile의 명을 보낸다
+		System.out.println("-----------"+fileName);
+		
+		byte[] readData = new byte[512];// HDD가 한번 읽어 들일때의 크기만큼 저장하기위한 배열
+		
+		fos = null;
+		// file Stream (서버의 하드디스크에 해당하는 Stream)
+		size=dis.readInt();//client가 보내야할 세번째 int=file의 size
+		readData=new byte[512];
+		
+		File file=new File("C:/Users/kimkn/git/backup/group_project2/src/kr/co/sist/img/rs_"+fileName);
+		fos=new FileOutputStream(file); //빈파일을 생성한다.
+		
+		while(size >0) {
+			len=dis.read(readData);
+			fos.write(readData, 0, len);
+			fos.flush();
+			size--;
+		}//end while
 		}finally {
+		if(dis!=null) {dis.close();}
+		if(fos!=null) {fos.close();}
+		}
+		
+		
+	}
 
-			if(dos !=null) {dos.close();} //end if
-			if(dis !=null) {dis.close();} //end if
-			if(socket !=null) {socket.close();} //end if
-		}//end finally
-	}//uploadProcess
+	public ServerSocket getServer() {
+		return server;
+	}
 
 	public static void main(String[] args) {
 		new FileServer().start();

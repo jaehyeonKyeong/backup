@@ -156,6 +156,7 @@ public class RestaurantUpdateViewEvt implements ActionListener {
 		if (ae.getSource() == ruv.getBtnOk()) {
 			switch (JOptionPane.showConfirmDialog(ruv, "이대로 등록 하시겠습니까?")) {
 			case JOptionPane.OK_OPTION:
+				ruv.dispose();
 			}
 		} // end if
 

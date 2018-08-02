@@ -1,5 +1,8 @@
 package kr.co.sist.user.view;
 
+import java.awt.Color;
+
+import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -17,10 +20,11 @@ public class SignUp extends JFrame {
 	private JLabel lblID,lblName, lblPassword, lblRePassword;
 	private JButton btnSignUp, btnCancle;
 	private JPanel pUser;
-
+	private JPanel jpLogin;
 
 
 	public SignUp() {
+		super("회원가입");
 		tfID=new JTextField();
 		tfName=new JTextField();
 		tfPassword=new JTextField();
@@ -35,7 +39,7 @@ public class SignUp extends JFrame {
 		lblName=new JLabel("Name");
 		lblPassword=new JLabel("Password");
 		lblRePassword=new JLabel("Confirm Password");
-		
+		jpLogin = new JPanel();
 		btnSignUp=new JButton("회원가입");
 		btnCancle=new JButton("취소");
 		
@@ -43,6 +47,12 @@ public class SignUp extends JFrame {
 		bgGroup.add(rbBuisnessman);
 		pUser.add(rbUser);
 		pUser.add(rbBuisnessman);
+		
+//		tfName.setBorder(BorderFactory.createEmptyBorder());
+		rbBuisnessman.setBackground(new Color(255, 255, 255));
+		rbUser.setBackground(new Color(255, 255, 255));
+		jpLogin.setBackground(new Color(255, 255, 255));
+		pUser.setBackground(new Color(255, 255, 255));
 		setLayout(null);
 		lblID.setBounds(28, 40, 30, 30);
 		lblPassword.setBounds(25, 75, 70, 30);
@@ -55,6 +65,7 @@ public class SignUp extends JFrame {
 		pUser.setBounds(110, 190, 150, 30);
 		btnSignUp.setBounds(80, 240, 90, 22);
 		btnCancle.setBounds(190, 240, 90, 22);
+		jpLogin.setBounds(0,0,490,480);
 		
 		SignUpEvt su= new SignUpEvt(this);
 		rbBuisnessman.addActionListener(su);
@@ -80,6 +91,7 @@ public class SignUp extends JFrame {
 		add(lblRePassword);
 		add(btnSignUp);
 		add(btnCancle);
+		add(jpLogin);
 		
 		setBounds(100,100,390,350);
 		setVisible(true);

@@ -20,7 +20,7 @@ public class Login extends JFrame {
 	private JButton btnLogin, btnSignUp;
 	private JTextField tfId;
 	private JPasswordField pfPassword;
-	private JLabel lblId, lblPassword, imgBox1, imgBox2;
+	private JLabel lblId, lblPassword, imgBox1;
 	private JRadioButton rbUser, rbManager;
 	private ButtonGroup bgGroup;
 	private JPanel pUser, w_panel, g_panel;
@@ -29,9 +29,7 @@ public class Login extends JFrame {
 	public Login() {
 		super();
 		ImageIcon logoFile1 = new ImageIcon(
-				"C:/dev/workspace/group_project2/src/kr/co/sist/user/images/logo1.JPG");
-		ImageIcon logoFile2 = new ImageIcon(
-				"C:/dev/workspace/group_project2/src/kr/co/sist/user/images/logo2.JPG");
+				"C:\\Users\\kimkn\\git\\backup\\group_project2\\src\\kr\\co\\sist\\img\\logo1.JPG");
 		
 		btnLogin = new JButton("로그인");
 		btnSignUp = new JButton("회원 가입");
@@ -39,7 +37,6 @@ public class Login extends JFrame {
 		lblPassword = new JLabel("Password");
 		lblId = new JLabel("ID");
 		imgBox1 = new JLabel(logoFile1);
-		imgBox2 = new JLabel(logoFile2);
 		pfPassword = new JPasswordField();
 
 		pUser = new JPanel();
@@ -53,24 +50,24 @@ public class Login extends JFrame {
 		pUser.add(rbUser);
 		pUser.add(rbManager);
 		setLayout(null);
-		w_panel.setBounds(0, 0, 350, 400);
-		g_panel.setBounds(20,110,300,100);
-		btnLogin.setBounds(40, 270, 120, 30);
-		btnSignUp.setBounds(170, 270, 120, 30);
-		lblId.setBounds(50, 105, 30, 60);
-		lblPassword.setBounds(30, 155, 70, 60);
-		tfId.setBounds(105, 120, 200, 30);
-		pfPassword.setBounds(105, 165, 200, 30);
-		pUser.setBounds(50, 220, 220, 40);
-		imgBox1.setBounds(140, 40, 80, 60);
-		imgBox2.setBounds(20,10,100,40);
+		w_panel.setBounds(0, 0, 350, 500);
+//		g_panel.setBounds(20,140,300,100);
+		btnLogin.setBounds(40, 330, 120, 30);
+		btnSignUp.setBounds(170, 330, 120, 30);
+		lblId.setBounds(50, 165, 30, 60);
+		lblPassword.setBounds(30, 215, 70, 60);
+		tfId.setBounds(105, 180, 200, 30);
+		pfPassword.setBounds(105, 225, 200, 30);
+		pUser.setBounds(50, 280, 220, 40);
+		imgBox1.setBounds(140, 60, 80, 60);
+//		imgBox2.setBounds(20,10,100,40);
 		
 		LoginEvt le = new LoginEvt(this);
 		btnSignUp.addActionListener(le);
 		btnLogin.addActionListener(le);
 
 		add(imgBox1);
-		add(imgBox2);
+//		add(imgBox2);
 		add(pUser);
 		add(lblId);
 		add(lblPassword);
@@ -80,7 +77,7 @@ public class Login extends JFrame {
 		add(btnSignUp);
 		add(g_panel);
 		add(w_panel);
-		setBounds(100, 100, 350, 400);
+		setBounds(100, 100, 350, 470);
 		setVisible(true);
 		setTitle(":::로그인:::");
 

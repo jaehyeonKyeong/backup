@@ -1,7 +1,10 @@
 package kr.co.sist.user.view;
 
+import java.awt.Color;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.SwingConstants;
@@ -10,9 +13,6 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 
 import kr.co.sist.user.controller.UserGiftCardInfoEvt;
-import kr.co.sist.user.controller.UserShopEvt;
-import kr.co.sist.user.dao.UserGiftCardInfoDAO;
-import kr.co.sist.user.vo.UserGiftCardInfoVO;
 
 @SuppressWarnings("serial")
 public class UserGiftCardInfo extends JFrame {
@@ -21,7 +21,7 @@ public class UserGiftCardInfo extends JFrame {
 	private JScrollPane spScroll;
 	private JButton btnClose;
 	private String id;
-	
+	private JPanel jpLogin;
 
 
 	public UserGiftCardInfo(String id,String name) {
@@ -36,6 +36,7 @@ public class UserGiftCardInfo extends JFrame {
 		tGiftCard=new JTable(dtmGiftCard); //테이블에 모델추가
 		spScroll=new JScrollPane(tGiftCard);//테이블에 스크롤추가
 		btnClose=new JButton("닫기");
+		jpLogin = new JPanel();
 		tGiftCard.getTableHeader().setReorderingAllowed(false);
 		
 		// DefaultTableCellHeaderRenderer 생성 (가운데 정렬을 위한)
@@ -52,10 +53,12 @@ public class UserGiftCardInfo extends JFrame {
 //		tGiftCard.getColumnModel().getColumn(0).setMaxWidth(100); 
 //		tGiftCard.getColumnModel().getColumn(0).setMinWidth(100); 
 		tGiftCard.getColumnModel().getColumn(0).setWidth(200); 
-		
+
+		jpLogin.setBackground(new Color(255, 255, 255));
 		setLayout(null);
+		jpLogin.setBounds(0,0,400,400);
 		spScroll.setBounds(20, 20, 350, 250);
-		btnClose.setBounds(125, 290, 60, 30);
+		btnClose.setBounds(150, 290, 80, 30);
 		setBounds(100,100,400,400);
 		
 		UserGiftCardInfoEvt ugie=new UserGiftCardInfoEvt(this);
@@ -64,7 +67,7 @@ public class UserGiftCardInfo extends JFrame {
 		
 		add(btnClose);
 		add(spScroll);
-		
+		add(jpLogin);
 		setVisible(true);
 //		ugci_dao.selectLogin(ugci_vo);
 	}

@@ -88,7 +88,7 @@ public class RestaurantSearchViewEvt extends MouseAdapter implements ActionListe
 			for (int i = 0; i < list.size(); i++) {
 				rv = list.get(i);
 				rowData = new Object[2];
-				rowData[0] = rv.getrImg();
+				rowData[0] = new ImageIcon(file.getAbsolutePath());
 				rowData[1] = rv.getrName();
 				rNum=rv.getrNum();
 				
@@ -118,7 +118,7 @@ public class RestaurantSearchViewEvt extends MouseAdapter implements ActionListe
 			for (int i = 0; i < list.size(); i++) {
 				rv = list.get(i);
 				rowData = new Object[2];
-				rowData[0] = rv.getrImg();
+				rowData[0] = new ImageIcon(file.getAbsolutePath());
 				rowData[1] = rv.getrName();
 				rNum=rv.getrNum();
 				
@@ -148,7 +148,7 @@ public class RestaurantSearchViewEvt extends MouseAdapter implements ActionListe
 			for (int i = 0; i < list.size(); i++) {
 				rv = list.get(i);
 				rowData = new Object[2];
-				rowData[0] = rv.getrImg();
+				rowData[0] = new ImageIcon(file.getAbsolutePath());
 				rowData[1] = rv.getrName();
 				rNum=rv.getrNum();
 				
@@ -178,7 +178,7 @@ public class RestaurantSearchViewEvt extends MouseAdapter implements ActionListe
 			for (int i = 0; i < list.size(); i++) {
 				rv = list.get(i);
 				rowData = new Object[2];
-				rowData[0] = rv.getrImg();
+				rowData[0] = new ImageIcon(file.getAbsolutePath());
 				rowData[1] = rv.getrName();
 				rNum=rv.getrNum();
 				
@@ -215,14 +215,14 @@ public class RestaurantSearchViewEvt extends MouseAdapter implements ActionListe
 				file=new File("C:/Users/kimkn/git/backup/lunch_prj/src/kr/co/sist/img/"+rv.getrImg());
 				if(!file.exists()) {
 					FileClient fc=new FileClient();
-					try {
-						fc.uploadProcess(file);//서버에서 제공하는 파일 받기
-
-					}catch(IOException e) {
-						e.printStackTrace();
-						//서버에서 파일을 읽어들이지 못하는 상황이면 기본 이미지를 보여준다.
-						file=new File("C:/Users/kimkn/git/backup/lunch_prj/src/kr/co/sist/img/"+rv.getrImg());
-					}//end catch
+//					try {
+//						fc.uploadProcess(file);//서버에서 제공하는 파일 받기
+//TODO
+//					}catch(IOException e) {
+//						e.printStackTrace();
+//						//서버에서 파일을 읽어들이지 못하는 상황이면 기본 이미지를 보여준다.
+//						file=new File("C:/Users/kimkn/git/backup/lunch_prj/src/kr/co/sist/img/"+rv.getrImg());
+//					}//end catch
 
 					//해당 파일이 없다면 서버에서 받아온다.
 					//작은 이미지로부터 큰 이미지를 생성

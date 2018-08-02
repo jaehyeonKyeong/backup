@@ -46,7 +46,7 @@ public class ReviewRegiViewEvt implements ActionListener {
 		File imgFile=new File(dir+file);
 		rrv.getLblReviewImg().setIcon(new ImageIcon(dir+file));
 		FileClient fc=new FileClient();
-		fc.downloadProcess(imgFile);
+		//TODO
 	}
 
 	private void addReview() {
@@ -55,21 +55,27 @@ public class ReviewRegiViewEvt implements ActionListener {
 		String reviewTitle = rrv.getTfReviewTitle().getText();
 		String reviewCont = rrv.getTaReviewContent().getText();
 		int grade = rrv.getcGradeBox().getSelectedIndex();
-
 		switch (JOptionPane.showConfirmDialog(rrv, "한번등록하면 두번은 등록이 안되는데\n 정말 등록하시겠어요?", "리뷰등록",
 				JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE)) {
 		case JOptionPane.OK_OPTION:
 			ReviewDAO r_dao = ReviewDAO.getInstance();
 			try {
-				r_dao.regiReview(id, rNum, dir + file, reviewTitle, reviewCont, grade);
+				System.out.println("Evt-"+id+" "+rNum);
+				int cnt=r_dao.searchReview(id,rNum);
+				System.out.println("----"+cnt);
+				if(cnt==0) {
+					r_dao.regiReview(id, rNum, dir + file, reviewTitle, reviewCont, grade);
+					r_dao.regiReviewLike(id, rNum);
+					JOptionPane.showMessageDialog(rrv, "등록이 완료되었어요", "등록완료", JOptionPane.INFORMATION_MESSAGE);
+				}else {
+					JOptionPane.showMessageDialog(rrv, "죄송해요 ㅠㅠ 리뷰는 한번밖에 등록이 되지 않아요.\n리뷰를 삭제하고 다시등록해주세요", "죄송합니다 ㅠㅠ",
+							JOptionPane.INFORMATION_MESSAGE);
+				}
 			} catch (SQLException e) {
-				JOptionPane.showMessageDialog(rrv, "죄송해요 ㅠㅠ 리뷰는 한번밖에 등록이 되지 않아요.\n리뷰를 삭제하고 다시등록해주세요", "죄송합니다 ㅠㅠ",
-						JOptionPane.INFORMATION_MESSAGE);
 				e.printStackTrace();
 				return;
 			}
 		}
-		JOptionPane.showMessageDialog(rrv, "등록이 완료되었어요", "등록완료", JOptionPane.INFORMATION_MESSAGE);
 		rrv.dispose();
 	}
 }

@@ -152,13 +152,16 @@ public class ReviewListView extends JFrame {
 		panel.setBackground(Color.WHITE);
 		btnAddReview.setBackground(b_Color);
 		btnViewReview.setBackground(b_Color);
+		btnNewReview.setBackground(b_Color);
 		btnClose.setBackground(b_Color);
 		
 		btnAddReview.setFont(new Font("SanSerif",Font.BOLD,15));
 		btnViewReview.setFont(new Font("SanSerif",Font.BOLD,15));
+		btnNewReview.setFont(new Font("SanSerif",Font.BOLD,15));
 		btnClose.setFont(new Font("SanSerif",Font.BOLD,15));
 		btnAddReview.setForeground(Color.WHITE);
 		btnViewReview.setForeground(Color.WHITE);
+		btnNewReview.setForeground(Color.WHITE);
 		btnClose.setForeground(Color.WHITE);
 		
 		btnAddReview.setBorderPainted(false);

@@ -56,7 +56,6 @@ public class MenuChangeViewEvt implements ActionListener {
 					String price=mcv.getJtfPrice().getText();
 					String intro=mcv.getTaIntroduction().getText();
 					menuChange(mName,price,intro,DirName+FileName,oriMName,rNum);
-					JOptionPane.showMessageDialog(mcv, "수정에 성공하였어요", "수정 성공!", JOptionPane.INFORMATION_MESSAGE);
 					mcv.dispose();
 			}//end 
 		}//end if
@@ -75,8 +74,9 @@ public class MenuChangeViewEvt implements ActionListener {
 			mu_dao.menuUpdate(mName,price,intro,imgFile,orimName,rNum);
 		} catch (SQLException e) {
 			JOptionPane.showMessageDialog(mcv, "price는 숫자만 입력할수 있습니다.", "중요한 정보", JOptionPane.WARNING_MESSAGE);
-			e.printStackTrace();
+			return;
 		}
+		JOptionPane.showMessageDialog(mcv, "수정에 성공하였어요", "수정 성공!", JOptionPane.INFORMATION_MESSAGE);
 		
 	}
 

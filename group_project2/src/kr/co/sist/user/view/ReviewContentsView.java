@@ -54,7 +54,7 @@ public class ReviewContentsView extends JFrame {
 		this.riNum=riNum;
 		reviewImg = new ImageIcon("C:/dev/workspace/group_project2/src/kr/co/sist/user/view/images/review1.jpg");
 		reviewerIcon = new ImageIcon("C:/dev/workspace/group_project2/src/kr/co/sist/user/view/images/profile.png");
-		ImageIcon thumbsUp=new ImageIcon("C:/dev/workspace/group_project2/src/kr/co/sist/user/images/thumbsUp.PNG");
+		ImageIcon thumbsUp=new ImageIcon("C:/Users/kimkn/git/backup/group_project2/src/kr/co/sist/user/images/thumbsUp.PNG");
 		JLabel lblReviewerIcon = new JLabel();
 		JLabel lblReviewImg=new JLabel();
 		taReviewContent = new JTextArea();
@@ -119,13 +119,14 @@ public class ReviewContentsView extends JFrame {
 		
 		ReviewContentsViewEvt rcve=new ReviewContentsViewEvt(this);
 		btnThumbsUp.addActionListener(rcve);
+		btnSubmit.addActionListener(rcve);
+		btnReport.addActionListener(rcve);
 		
 
 		setLayout(null);
 		setBounds(500, 100, 600, 500);
 		setResizable(false);
 		setVisible(true);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 
 

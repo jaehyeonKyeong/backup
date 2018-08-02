@@ -48,6 +48,8 @@ public class LoginEvt implements ActionListener {
 					if(uiv!=null) {
 						new Category(uiv);
 						lg.dispose();
+					}else {
+						JOptionPane.showMessageDialog(lg, "로그인 실패 아이디와 패스워드를 확인해주세요!!", "로그인 실패! :(", JOptionPane.WARNING_MESSAGE);
 					}
 				} catch (SQLException e) {
 					e.printStackTrace();
@@ -61,12 +63,14 @@ public class LoginEvt implements ActionListener {
 					if(name !=null) {
 						new RestaurantManagementView(name);
 						lg.dispose();
+					}else {
+						JOptionPane.showMessageDialog(lg, "로그인 실패 아이디와 패스워드를 확인해주세요!!", "로그인 실패! :(", JOptionPane.WARNING_MESSAGE);
 					}
 				} catch (SQLException e) {
 					e.printStackTrace();
 				}
 			}else {
-				System.out.println("선택안됨");
+				JOptionPane.showMessageDialog(lg, "로그인 실패 아이디와 패스워드를 확인해주세요!!", "로그인 실패! :(", JOptionPane.WARNING_MESSAGE);
 			}
 		}
 	}

@@ -154,7 +154,6 @@ public class RestaurantSearchView extends JFrame {
 		
 		setBounds(500,100,800,800);
 		setVisible(true);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		RestaurantSearchViewEvt rsve=new RestaurantSearchViewEvt(this);
 		tfSearch.addActionListener(rsve);

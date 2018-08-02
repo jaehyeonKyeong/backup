@@ -1,20 +1,22 @@
 package kr.co.sist.user.view;
 
 import java.awt.Color;
+import java.awt.Font;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import kr.co.sist.user.controller.CategoryEvt;
-import kr.co.sist.user.vo.SignUpVO;
 import kr.co.sist.user.vo.UserInfoVO;
 
 @SuppressWarnings("serial")
 public class Category extends JFrame implements Runnable {
 	private JButton btnRestaurant,btnReview,btnShop,btnID;
 	private JLabel lblUserPoint;
+	private JPanel jpLogin;
 	private int userPoint;
 	private CategoryEvt ce;
 	private String id,name;
@@ -30,19 +32,31 @@ public class Category extends JFrame implements Runnable {
 		name=uiv.getName();
 //		System.out.println(userPoint);
 //		String sPoint="POINT : "+Integer.toString(uiv.getPoint());
-		btnRestaurant=new JButton("¿À´Ã ¹¹ ¸ÔÁö");
-		btnReview=new JButton("¸®ºä");
-		btnShop=new JButton("Æ÷ÀÎÆ® »óÁ¡");
+		ImageIcon iiRestaurant = new ImageIcon("C:\\Users\\kimkn\\git\\backup\\group_project2\\src\\kr\\co\\sist\\user\\images\\asd2.png");
+		ImageIcon iiReview = new ImageIcon("C:\\Users\\kimkn\\git\\backup\\group_project2\\src\\kr\\co\\sist\\user\\images\\asd.png");
+		ImageIcon iiPointShop = new ImageIcon("C:\\Users\\kimkn\\git\\backup\\group_project2\\src\\kr\\co\\sist\\user\\images\\pointShop.png");
+		btnRestaurant=new JButton(iiRestaurant);
+		btnReview=new JButton(iiReview);
+		btnShop=new JButton(iiPointShop);
 		btnID=new JButton(id);
-		lblUserPoint=new JLabel();
+		lblUserPoint=new JLabel();  
+		jpLogin = new JPanel();
+		btnRestaurant.setText("¿À´Ã ¹¹¸ÔÁö");
+//		setTitle(title);
 		
 		
+		
+		jpLogin.setBackground(new Color(255, 255, 255));
+		btnID.setBackground(new Color(255, 255, 255));
+		btnID.setFont(new Font("SanSerif",Font.PLAIN , 12));
+//		btnID.setBorderPainted(false);
 		setLayout(null);
-		btnRestaurant.setBounds(50, 140, 200, 250);
-		btnReview.setBounds(290,140,200,250);
-		btnShop.setBounds(50,420,440,70);
-		btnID.setBounds(260, 50, 120, 30);
-		lblUserPoint.setBounds(390, 50, 120, 30);
+		jpLogin.setBounds(0,0,490,480);
+		btnRestaurant.setBounds(15, 90, 220, 250);
+		btnReview.setBounds(236,90,220,250);
+		btnShop.setBounds(15,341,440,80);
+		btnID.setBounds(260, 40, 120, 30);
+		lblUserPoint.setBounds(390, 40, 120, 30);
 		
 		ce= new CategoryEvt(this);
 		btnRestaurant.addActionListener(ce);
@@ -56,8 +70,10 @@ public class Category extends JFrame implements Runnable {
 		add(btnShop);
 		add(btnID);
 		add(lblUserPoint);
+		add(jpLogin);
 		setVisible(true);
-		setBounds(100,100,600,600);
+//		setUndecorated(true);
+		setBounds(100,100,490,480);
 		Thread th=new Thread(this);
 		th.start();
 	
@@ -95,6 +111,9 @@ public class Category extends JFrame implements Runnable {
 				e.printStackTrace();
 			}
 		}
+	}
+	public CategoryEvt getCe() {
+		return ce;
 	}
 	
 
