@@ -52,9 +52,9 @@ public class FileServer extends Thread {
 				case RESTAURANT_IMAGE_UPLOAD:// 레스토랑이미지를 서버에 업로드한다.
 					restaurantImgUpload();
 					break;
-//				case RESTAURANT_IMAGE_DOWNLOAD:
-//					restaurantImgDownload();
-//					break;
+				case RESTAURANT_IMAGE_DOWNLOAD:
+					restaurantImgDownload();
+					break;
 //				case REVIEW_IMAGE_UPLOAD:
 //					reviewImgUpload();
 //					break;
@@ -78,7 +78,6 @@ public class FileServer extends Thread {
 	}
 
 	private void restaurantImgDownload() { // 클라이언트가 레스토랑 이미지를 서버에서 다운로드 해간다.
-		// TODO Auto-generated method stub
 		
 	}
 

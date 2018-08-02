@@ -10,7 +10,7 @@ import java.net.Socket;
 
 public class FileClient {
 
-	public void uploadProcess(File file)throws IOException {
+	public void uploadProcess(File file)throws IOException {//이미지를 파일서버에 올리는 역할
 		//1.소켓 열고
 		Socket client=new Socket("211.63.89.140", 13880);
 
@@ -57,17 +57,19 @@ public class FileClient {
 			//파일크기를 보내고
 			dos.writeInt(size);
 
-
 			while(size>0) { //전송할 파일의 갯수가(byte[] 바이트 배열의 세트) 존재한다면
 				len=fis.read(readData); //읽어들인 파일의 크기만큼 크기를 얻어
 				dos.write(readData,0,len); //데이터와 파일의 크기까지를 기록
 				dos.flush(); //보내기
 				size--; //파일의 내용을 한번 보낼 때 마다 크기를 줄인다.
 			}//end while
+			
 		}finally {
 			if(fis !=null) {fis.close();} //end if
 			if(dos !=null) {dos.close();} //end if
 		}
 	}//uploadProcess
-
+	public void downloadProcess()throws IOException{
+		
+	}
 }// class
