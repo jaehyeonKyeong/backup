@@ -37,7 +37,7 @@ public class MenuRegistrationView extends JFrame {
 		this.rNum=rNum;
 		this.rrv=rrv;
 		
-		imgURL="C:\\Users\\owner\\Pictures\\sist.jpg";
+		imgURL="C:/Users/owner/Pictures/sist.jpg";
 		ImageIcon iiRestaurantImg=new ImageIcon(imgURL);
 		lblImg =new JLabel(iiRestaurantImg);
 		
@@ -131,7 +131,7 @@ public class MenuRegistrationView extends JFrame {
 		this.rNum=rNum2;
 		this.ruv=ruv;
 		
-		imgURL="C:\\Users\\owner\\Pictures\\sist.jpg";
+		imgURL="C:/Users/owner/Pictures/sist.jpg";
 		ImageIcon iiRestaurantImg=new ImageIcon(imgURL);
 		lblImg =new JLabel(iiRestaurantImg);
 		
@@ -174,13 +174,14 @@ public class MenuRegistrationView extends JFrame {
 		taIntroduction.setBounds(150, 110, 150, 80);
 		lblName.setBounds(150, -5, 40, 50);
 		lblPrice.setBounds(150, 45, 40, 50);
+		panel.setBounds(0,0,330, 280);
 		
 		
 		lblName.setFont(new Font("SanSerif", Font.BOLD, 14));
 		lblPrice.setFont(new Font("SanSerif", Font.BOLD, 14));
-		btnAdd.setFont(new Font("SanSerif", Font.BOLD, 17));
-		btnCancle.setFont(new Font("SanSerif", Font.BOLD, 17));
-		btnRegistration.setFont(new Font("SanSerif", Font.BOLD, 17));
+		btnAdd.setFont(new Font("SanSerif", Font.BOLD, 12));
+		btnCancle.setFont(new Font("SanSerif", Font.BOLD, 12));
+		btnRegistration.setFont(new Font("SanSerif", Font.BOLD, 12));
 		
 		panel.setBackground(Color.white);
 		btnAdd.setBackground(b_Color);

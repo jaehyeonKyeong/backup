@@ -57,7 +57,7 @@ public class FileClient{
 			fos.close();
 
 		}finally {
-
+			if(fis!=null) {fis.close();}
 			if(dos !=null) {dos.close();} //end if
 			if(dis !=null) {dis.close();} //end if
 			if(client !=null) {client.close();} //end if

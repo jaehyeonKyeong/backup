@@ -1,15 +1,26 @@
 package kr.co.sist.user.view;
 
+import java.io.IOException;
+
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
+import kr.co.sist.licensee.controller.FileClient;
+
 public class RestaurantMapView extends JFrame{
 	ImageIcon restaurantMap;
 	
-	public RestaurantMapView() {
+	public RestaurantMapView(String rNum) {
 		super("식당 위치");
-		restaurantMap=new ImageIcon("C:/dev/workspace/group_project2/src/kr/co/sist/user/view/images/rest_map.PNG");
+		FileClient fc=new FileClient();
+		try {
+			String imgpath=fc.mapDownloadProcess(rNum);
+			restaurantMap=new ImageIcon(imgpath);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		JLabel map=new JLabel(restaurantMap);
 		
 		add(map);
@@ -20,9 +31,5 @@ public class RestaurantMapView extends JFrame{
 		
 	}//constructor
 
-	public static void main(String[] args) {
-		new RestaurantMapView();
-
-	}
 
 }

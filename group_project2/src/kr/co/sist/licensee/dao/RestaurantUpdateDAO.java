@@ -31,7 +31,7 @@ public class RestaurantUpdateDAO {
 	//레스토랑 정보 가져오기
 	public RestaurantSelectVO selectRestaurant(String rNumber) throws SQLException{
 		List<MenuVO> menuList=new ArrayList<>();
-		MenuVO mnuVO=null;
+		MenuVO mnuVO=new MenuVO();
 		RestaurantSelectVO ruvo=null;
 		
 
@@ -51,20 +51,23 @@ public class RestaurantUpdateDAO {
 			pstmt.setString(1, rNumber.trim());
 			
 		//5.
+			
 			rs=pstmt.executeQuery();
+			ruvo=new RestaurantSelectVO();
 			while(rs.next()) {
 				//조회결과를 VO에 설정
-				ruvo=new RestaurantSelectVO(rs.getString("restaurant_image"),
-						rs.getString("map_image"),
-						rs.getString("restaurant_name"),
-						rs.getString("corporate_number"),
-						rs.getString("ceo_name"),
-						rs.getString("restaurant_addr"),
-						rs.getString("customer_transaction"),
-						rs.getString("phone_number"),
-						rs.getString("restaurant_intro"), 
-						rs.getInt("restaurant_category")-1);
-				mnuVO=new MenuVO(rs.getString("menu_name"), rs.getInt("Price"));
+				ruvo.setrImg(rs.getString("restaurant_image"));
+				ruvo.setMapImg(rs.getString("map_image"));
+				ruvo.setrName(rs.getString("restaurant_name"));
+				ruvo.setbNumber(rs.getString("corporate_number"));
+				ruvo.setcName(rs.getString("ceo_name"));
+				ruvo.setrAddr( rs.getString("restaurant_addr"));
+				ruvo.setcPrice(rs.getString("customer_transaction"));
+				ruvo.setrTel(rs.getString("phone_number"));
+				ruvo.setrIntro(rs.getString("restaurant_intro")); 
+				ruvo.setFoodCategory(rs.getInt("restaurant_category")-1);
+				mnuVO.setMenuName(rs.getString("menu_name"));
+				mnuVO.setMenuPrice(rs.getInt("Price"));
 				menuList.add(mnuVO);
 				
 			}//end if

@@ -24,11 +24,20 @@ import kr.co.sist.licensee.vo.RestaurantRegistrationVO;
 public class RestaurantRegistrationViewEvt implements ActionListener {
 	private RestaurantRegistrationView rrv;
 	String imgPath;
-	String mapPath;
+	String mapFileName;
+	String imgFileName;
 	String rNum;
+	RestaurantRegistrationDAO rr_dao;
 
 	public RestaurantRegistrationViewEvt(RestaurantRegistrationView rrv) {
 		this.rrv = rrv;
+		rr_dao=RestaurantRegistrationDAO.getInstance();
+		try {
+			rNum = rr_dao.restaurantNumGet();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}// RestaurantRegistrationViewEvt
 
 	@Override
@@ -57,8 +66,16 @@ public class RestaurantRegistrationViewEvt implements ActionListener {
 			r_img.setVisible(true);
 
 			String DirName = r_img.getDirectory(); // 폴더명
-			String FileName = r_img.getFile(); // 파일명
-			imgPath = DirName + FileName;
+			imgFileName = r_img.getFile(); // 파일명
+			imgPath = DirName + imgFileName;
+			File file=new File(imgPath);
+			FileClient fc=new FileClient();
+			try {
+				fc.restaurantUploadProcess(file);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			rrv.getLblImg1().setIcon(new ImageIcon(imgPath));
 
 			System.out.println(imgPath);
@@ -71,8 +88,15 @@ public class RestaurantRegistrationViewEvt implements ActionListener {
 			m_img.setVisible(true);
 
 			String DirName = m_img.getDirectory();
-			String FileName = m_img.getFile();
-			mapPath = DirName + FileName;
+			mapFileName = m_img.getFile();
+			String mapPath = DirName + mapFileName;
+			File file=new File(mapPath);
+			FileClient fc=new FileClient();
+			try {
+				fc.mapUploadProcess(rNum, file);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 			rrv.getLblImg2().setIcon(new ImageIcon(mapPath));
 
 			System.out.println(mapPath);
@@ -116,8 +140,8 @@ public class RestaurantRegistrationViewEvt implements ActionListener {
 	// 식당등록
 	public void addRest() {
 		String l_id = rrv.getId();
-		String r_Img = imgPath;
-		String r_Map = mapPath;
+		String r_Img = imgFileName;
+		String r_Map = mapFileName;
 		String r_Name = rrv.getTfName().getText().trim();
 		String b_Number = rrv.getTfbNumber().getText().trim();
 		String c_Name = rrv.getTfCeo().getText().trim();
@@ -130,13 +154,12 @@ public class RestaurantRegistrationViewEvt implements ActionListener {
 		RestaurantRegistrationVO rrvo = new RestaurantRegistrationVO(r_Img, r_Map, r_Name, b_Number, c_Name, r_Addr,
 				c_Price, r_Tel, r_Intro, l_id, f_Category);
 
-		RestaurantRegistrationDAO rr_dao = RestaurantRegistrationDAO.getInstance();
 
 		switch (JOptionPane.showConfirmDialog(rrv, "등록하시겠습니까?", "확인", JOptionPane.YES_NO_OPTION,
 				JOptionPane.QUESTION_MESSAGE)) {
 		case JOptionPane.OK_OPTION:
 			try {
-				rNum = rr_dao.restaurantNumGet();
+				
 				rr_dao.insertRestaurant(rrvo, rNum);
 				JOptionPane.showMessageDialog(rrv, "등록이 성공적으로 완료되었어요!\n새로고침버튼을 눌러주세요");
 			} catch (SQLException se) {

@@ -3,13 +3,16 @@ package kr.co.sist.user.controller;
 import java.awt.Menu;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.text.html.ListView;
 
+import kr.co.sist.licensee.controller.FileClient;
 import kr.co.sist.user.dao.RestaurantDetailDAO;
 import kr.co.sist.user.view.RestaurantMapView;
 import kr.co.sist.user.view.RestaurantViewInfo;
@@ -49,6 +52,15 @@ public class RestaurantViewInfoEvt implements ActionListener {
 				
 				dtm.addRow(rowData);
 			}
+			FileClient fc=new FileClient();
+			String img;
+			try {
+				img = fc.restaurantDownloadProcess(rdVO.getrNum());
+				rvi.getLblRestaurantimg().setIcon(new ImageIcon(img));
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			rvi.getLblRestaurantName().setText(rdVO.getrName());
 			rvi.getTaRestaurantInfo().setText(rdVO.getrInfo());
 			rvi.setVisible(true);
@@ -66,7 +78,7 @@ public class RestaurantViewInfoEvt implements ActionListener {
 			reportCenter(rvi.getRNum());
 		}
 		if (e.getSource() == rvi.getBtnMapView()) {
-			restaurantMapView();
+			restaurantMapView(rvi.getrNum());
 		}
 		if (e.getSource() == rvi.getBtnReviewListView()) {
 			reviewView();
@@ -121,8 +133,8 @@ public class RestaurantViewInfoEvt implements ActionListener {
 	}
 	
 
-	public void restaurantMapView() {
-		new RestaurantMapView();
+	public void restaurantMapView(String rNum) {
+		new RestaurantMapView(rNum);
 	}
 
 	public void reviewView() {

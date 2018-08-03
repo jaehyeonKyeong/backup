@@ -2,8 +2,10 @@ package kr.co.sist.user.controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.sql.SQLException;
 
+import kr.co.sist.licensee.controller.FileClient;
 import kr.co.sist.user.dao.MemberDAO;
 import kr.co.sist.user.view.UserDetailReview;
 import kr.co.sist.user.vo.UserDetailReviewVO;
@@ -19,7 +21,14 @@ public class UserDetailReviewEvt implements ActionListener {
 		try {
 			udrv=m_dao.selectDetailReview(udr.getId(), udr.getrNum());
 			System.out.println(udrv.getReview_contents()+"/"+udrv.getGrade()+"/"+udrv.getReview_image());
-			reviewImg=udrv.getReview_image();
+			FileClient fc=new FileClient();
+			try {
+				
+				reviewImg=fc.reviewDownloadProcess(udr.getId(), udr.getrNum());
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			grade=udrv.getGrade();//º°°¹¼ö
 			udr.getTaReview().setText(udrv.getReview_contents());
 		} catch (SQLException e) {

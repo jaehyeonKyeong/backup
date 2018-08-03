@@ -3,6 +3,8 @@ package kr.co.sist.licensee.controller;
 import java.awt.FileDialog;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
 import java.sql.SQLException;
 
 import javax.swing.ImageIcon;
@@ -30,35 +32,23 @@ public class MenuRegistrationViewEvt implements ActionListener {
 		}//end if
 		
 		//버튼
-		if(ae.getSource()==mrv.getBtnAdd()) {
+		if(ae.getSource()==mrv.getBtnAdd()) { // 이미지 버튼
 			//TODO
 			FileDialog fd=new FileDialog(mrv, "이미지선택",FileDialog.LOAD);
 			fd.setVisible(true);
 
 			path=fd.getDirectory();
 			name=fd.getFile();
+			File file=new File(path+name);
+			FileClient fc=new FileClient();
+			try {
+				fc.menuUploadProcess(file, mrv.getrNum());
+				mrv.getLblImg().setIcon(new ImageIcon(path+name));
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 
-			if(name !=null) {
-				//이미지 파일만 등록하도록 설정
-				String ext=name.substring(name.lastIndexOf(".")+1).toLowerCase();
-				//사용가능한 확장자일 때만 처리
-				//jpg,gif,png,bmp 등
-				if("jpg".equals(ext)||"gif".equals(ext)||
-						"png".equals(ext)||"bmp".equals(ext)) {
-
-					JLabel lblImg=mrv.getLblImg();
-					//선택한 이미지를 보여준다.
-					ImageIcon ii=new ImageIcon(path+name);
-					lblImg.setIcon(ii);
-
-				}else {//사용가능한 확장자가 아님
-					JOptionPane.showMessageDialog(mrv, 
-							name+"은 사용가능한 이미지가 아닙니다.");
-
-				}//end else
-
-
-			}//end if
 			
 		}//end if
 		if(ae.getSource()==mrv.getBtnRegistration()) {

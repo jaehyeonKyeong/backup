@@ -85,7 +85,7 @@ public class ReviewDAO {
 		ResultSet rs = null;
 		try {
 			con = getConnection();
-			String selectSql = "select distinct r.review_number,r.review_contents, r.ID, r.REVIEW_TITLE, l.LIKE_NUMBER,r.restaurant_number from review r,review_like l where r.restaurant_number=l.restaurant_number and trim(r.restaurant_number)=? and to_char(input_date,'yyyy-mm-dd')=to_char(sysdate,'yyyy-mm-dd') order by r.input_date desc";
+			String selectSql = "select distinct r.review_number,r.review_contents, r.ID, r.REVIEW_TITLE, l.LIKE_NUMBER,r.restaurant_number,r.input_date from review r,review_like l where r.restaurant_number=l.restaurant_number and trim(r.restaurant_number)=? and to_char(input_date,'yyyy-mm-dd')=to_char(sysdate,'yyyy-mm-dd') order by r.input_date desc";
 			pstmt = con.prepareStatement(selectSql);
 			pstmt.setString(1, rNum.trim());
 			rs = pstmt.executeQuery();
@@ -295,7 +295,7 @@ public class ReviewDAO {
 		PreparedStatement pstmt = null;
 		try {
 			con = getConnection();
-			String updateSql = "update review set report=1 where trim(restaurant_number)=? and trim(review_Number)=?";
+			String updateSql = "update review set report=1,reported_date=sysdate where trim(restaurant_number)=? and trim(review_Number)=?";
 			pstmt = con.prepareStatement(updateSql);
 			pstmt.setString(1, rNum.trim());
 			pstmt.setString(2, riNum.trim());

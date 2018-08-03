@@ -3,6 +3,8 @@ package kr.co.sist.licensee.controller;
 import java.awt.FileDialog;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -53,6 +55,19 @@ public class RestaurantUpdateViewEvt implements ActionListener {
 
 				dtm.addRow(rowData);
 			}
+			if(rNum!=null) {
+				System.out.println("짠:"+rNum);
+				try {
+					FileClient fc=new FileClient();
+					String imgpath=fc.restaurantDownloadProcess(rNum);
+					String mappath=fc.mapDownloadProcess(rNum);
+					ruv.getLblImg1().setIcon(new ImageIcon(imgpath));
+					ruv.getLblImg2().setIcon(new ImageIcon(mappath));
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
 			ruv.getTfName().setText(rsvo.getrName());
 			ruv.getTfbNumber().setText(rsvo.getbNumber());
 			ruv.getTfCeo().setText(rsvo.getcName());
@@ -92,9 +107,16 @@ public class RestaurantUpdateViewEvt implements ActionListener {
 
 			imgDirName = r_img.getDirectory();
 			imgFileName = r_img.getFile();
-			ruv.getLblImg1().setIcon(new ImageIcon(imgDirName + imgFileName));
-
-			System.out.println(imgDirName + imgFileName);
+			File file=new File(imgDirName+imgFileName);
+			FileClient fc=new FileClient();
+			try {
+				String imgPath=imgDirName+imgFileName;
+				fc.restaurantUploadProcess(file);
+				ruv.getLblImg2().setIcon(new ImageIcon(imgPath));
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 
 		} // end if
 
@@ -106,6 +128,14 @@ public class RestaurantUpdateViewEvt implements ActionListener {
 			mapDirName = m_img.getDirectory();
 			mapFileName = m_img.getFile();
 			ruv.getLblImg2().setIcon(new ImageIcon(mapDirName + mapFileName));
+			FileClient fc=new FileClient();
+			File file = new File(mapDirName+mapFileName);
+			try {
+				fc.mapUploadProcess(rNum, file);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			System.out.println(mapDirName + mapFileName);
 
 		} // end if
@@ -115,7 +145,7 @@ public class RestaurantUpdateViewEvt implements ActionListener {
 			RestaurantUpdateVO ruvo = null;
 			switch (JOptionPane.showConfirmDialog(ruv, "식당을 수정 하시겠습니까?")) {
 			case JOptionPane.OK_OPTION:
-				ruvo = new RestaurantUpdateVO(imgDirName + imgFileName, mapDirName + mapFileName,
+				ruvo = new RestaurantUpdateVO( imgFileName,  mapFileName,
 						ruv.getTfName().getText(), ruv.getTfbNumber().getText(), ruv.getTfCeo().getText(),
 						ruv.getTfAddr().getText(), ruv.getTfCustomerTransaction().getText(), ruv.getTfTel().getText(),
 						ruv.getTaIntro().getText(), ruv.getCbFoodCategory().getSelectedIndex()+1);

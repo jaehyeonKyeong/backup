@@ -3,6 +3,7 @@ package kr.co.sist.licensee.controller;
 import java.awt.FileDialog;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.sql.SQLException;
 
 import javax.swing.ImageIcon;
@@ -89,6 +90,14 @@ public class MenuChangeViewEvt implements ActionListener {
 			MenuUpdateVO muvo=new MenuUpdateVO();
 			muvo=mu_dao.settingMenuInfo(rName,mName);
 			System.out.println(muvo);
+			FileClient fc=new FileClient();
+			try {
+				String imgPath=fc.menuDownloadProcess(mName, rName);
+				mcv.getLblImg().setIcon(new ImageIcon(imgPath));
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			mcv.getJtfName().setText(muvo.getMenuName());
 			mcv.getJtfPrice().setText(Integer.toString(muvo.getMenuPrice()));
 			mcv.getTaIntroduction().setText(muvo.getMenuIntro());

@@ -7,6 +7,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -27,8 +28,14 @@ public class RestaurantViewInfo extends JFrame{
 	private JPanel panel;
 	private Color b_Color=new Color(0,100,121);
 	private Color t_Color = new Color(245, 247, 249);
+	JLabel lblRestaurantimg;
 	
 	
+	public JLabel getLblRestaurantimg() {
+		return lblRestaurantimg;
+	}
+
+
 	public String getrNum() {
 		return rNum;
 	}
@@ -99,7 +106,7 @@ public class RestaurantViewInfo extends JFrame{
 		lblLogo.setIcon(imgLogo);
 		tableMenuView=new JTable();
 		restaurantImg=new ImageIcon("C:/dev/workspace/group_project2/src/kr/co/sist/user/view/images/restaurant.jpg");
-		JLabel lblRestaurantimg=new JLabel(restaurantImg);
+		lblRestaurantimg=new JLabel(restaurantImg);
 		
 		//tableMenuView.getTableHeader().setFont(new Font("SanSerif",Font.BOLD,13));
 		//tableMenuView.getTableHeader().setBackground(t_Color);

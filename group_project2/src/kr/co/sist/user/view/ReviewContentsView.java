@@ -23,7 +23,7 @@ public class ReviewContentsView extends JFrame {
 	JTextField tfReviewerID;
 	JButton btnSubmit, btnReport,btnThumbsUp;
 	int Thumbsdata;
-	JLabel lblReviewGrade,lblGrade;
+	JLabel lblReviewGrade,lblGrade,lblReviewImg;
 	String rNum,riNum;
 	
 	public ImageIcon getThumbsUp() {
@@ -48,6 +48,10 @@ public class ReviewContentsView extends JFrame {
 	
 	
 
+	public JLabel getLblReviewImg() {
+		return lblReviewImg;
+	}
+
 	public ReviewContentsView(String rNum,String riNum) {
 		super(":::¸®ºä:::");
 		this.rNum=rNum;
@@ -56,7 +60,7 @@ public class ReviewContentsView extends JFrame {
 		reviewerIcon = new ImageIcon("C:/dev/workspace/group_project2/src/kr/co/sist/user/view/images/profile.png");
 		ImageIcon thumbsUp=new ImageIcon("C:/Users/kimkn/git/backup/group_project2/src/kr/co/sist/user/images/thumbsUp.PNG");
 		JLabel lblReviewerIcon = new JLabel();
-		JLabel lblReviewImg=new JLabel();
+		lblReviewImg=new JLabel();
 		taReviewContent = new JTextArea();
 		tfReviewerID = new JTextField("HonneyBro");
 		JScrollPane scroll = new JScrollPane(taReviewContent);

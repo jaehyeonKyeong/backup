@@ -2,10 +2,13 @@ package kr.co.sist.user.controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.sql.SQLException;
 
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
+import kr.co.sist.licensee.controller.FileClient;
 import kr.co.sist.user.dao.ReviewDAO;
 import kr.co.sist.user.view.ReviewContentsView;
 import kr.co.sist.user.vo.ReviewContentVO;
@@ -62,6 +65,15 @@ public class ReviewContentsViewEvt implements ActionListener{
 			gradeStar.append("∆Ú¡° ");
 			for(int i=0;i<rcvo.getGrade();i++) {
 			gradeStar.append("°⁄");
+			}
+			FileClient fc=new FileClient();
+			String imgfile;
+			try {
+				imgfile = fc.reviewDownloadProcess(rcvo.getId(), riNum);
+				rcv.getLblReviewImg().setIcon(new ImageIcon(imgfile));
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
 			rcv.getLblGrade().setText(gradeStar.toString());
 			rcv.getLblReviewGrade().setText(Integer.toString(rcvo.getLike_number()));

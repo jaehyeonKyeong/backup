@@ -52,7 +52,7 @@ public class RestaurantSearchDAO {
 		try {
 
 			con = getConnection();
-			String selectSql = "select restaurant_number, restaurant_image, restaurant_name, restaurant_category from restaurant where activity='0'";
+			String selectSql = "select restaurant_number, restaurant_image, restaurant_name, restaurant_category from restaurant where activity='1'";
 			pstmt = con.prepareStatement(selectSql);
 			rs = pstmt.executeQuery();
 			RestaurantSearchVO rv = null;
@@ -86,7 +86,7 @@ public class RestaurantSearchDAO {
 		try {
 			con = getConnection();
 			String selectSql = "select restaurant_number, restaurant_image, restaurant_name, restaurant_category from restaurant where restaurant_name like '%"
-					+ rName + "%'";
+					+ rName + "%' and activity='1'";
 			pstmt = con.prepareStatement(selectSql);
 			rs = pstmt.executeQuery();
 			RestaurantSearchVO rv = null;
@@ -123,9 +123,9 @@ public class RestaurantSearchDAO {
 			con = getConnection();
 			String orderbySql = "";
 			if (cBoxGrade == 0) {
-				orderbySql = "select restaurant_number, restaurant_image, restaurant_name, restaurant_category from restaurant order by avg_grades desc";
+				orderbySql = "select restaurant_number, restaurant_image, restaurant_name, restaurant_category from restaurant where activity='1' order by avg_grades desc";
 			} else {
-				orderbySql = "select restaurant_number, restaurant_image, restaurant_name, restaurant_category from restaurant order by restaurant_name";
+				orderbySql = "select restaurant_number, restaurant_image, restaurant_name, restaurant_category from restaurant where activity='1' order by restaurant_name";
 			}
 			pstmt = con.prepareStatement(orderbySql);
 			rs = pstmt.executeQuery();
@@ -162,9 +162,9 @@ public class RestaurantSearchDAO {
 			con = getConnection();
 			String orderbySql = "";
 			if (cBoxGrade == 0) {
-				orderbySql = "select restaurant_number, restaurant_image, restaurant_name, restaurant_category from restaurant where restaurant_category="+category+"  order by avg_grades desc";
+				orderbySql = "select restaurant_number, restaurant_image, restaurant_name, restaurant_category from restaurant where restaurant_category="+category+" and activity='1'  order by avg_grades desc";
 			} else {
-				orderbySql = "select restaurant_number, restaurant_image, restaurant_name, restaurant_category from restaurant where restaurant_category="+category+" order by restaurant_name";
+				orderbySql = "select restaurant_number, restaurant_image, restaurant_name, restaurant_category from restaurant where restaurant_category="+category+" and activity='1' order by restaurant_name";
 			}
 			pstmt = con.prepareStatement(orderbySql);
 			rs = pstmt.executeQuery();
@@ -198,7 +198,7 @@ public class RestaurantSearchDAO {
 		ResultSet rs = null;
 		try {
 			con = getConnection();
-			String selectSql = "select restaurant_number, restaurant_image, restaurant_name, restaurant_category from restaurant where restaurant_category="+category;
+			String selectSql = "select restaurant_number, restaurant_image, restaurant_name, restaurant_category from restaurant where restaurant_category="+category+" and activity='1'";
 			pstmt = con.prepareStatement(selectSql);
 			rs = pstmt.executeQuery();
 			RestaurantSearchVO rv = null;
@@ -209,15 +209,9 @@ public class RestaurantSearchDAO {
 			}
 
 		} finally {
-			if (rs != null) {
-				rs.close();
-			}
-			if (pstmt != null) {
-				pstmt.close();
-			}
-			if (con != null) {
-				con.close();
-			}
+			if (rs != null) {rs.close();}
+			if (pstmt != null) {pstmt.close();}
+			if (con != null) {con.close();}
 		}
 
 		return rsList;

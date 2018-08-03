@@ -14,8 +14,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
+import kr.co.sist.licensee.controller.FileClient;
 import kr.co.sist.user.dao.RestaurantSearchDAO;
-import kr.co.sist.user.controller.FileClient;
 import kr.co.sist.user.view.RestaurantSearchView;
 import kr.co.sist.user.view.RestaurantViewInfo;
 import kr.co.sist.user.vo.RestaurantSearchVO;
@@ -212,23 +212,14 @@ public class RestaurantSearchViewEvt extends MouseAdapter implements ActionListe
 			for (int i = 0; i < list.size(); i++) {
 				rv = list.get(i);
 				//TODO
-				file=new File("C:/Users/kimkn/git/backup/lunch_prj/src/kr/co/sist/img/"+rv.getrImg());
-				if(!file.exists()) {
-					FileClient fc=new FileClient();
-//					try {
-//						fc.uploadProcess(file);//서버에서 제공하는 파일 받기
-//TODO
-//					}catch(IOException e) {
-//						e.printStackTrace();
-//						//서버에서 파일을 읽어들이지 못하는 상황이면 기본 이미지를 보여준다.
-//						file=new File("C:/Users/kimkn/git/backup/lunch_prj/src/kr/co/sist/img/"+rv.getrImg());
-//					}//end catch
-
-					//해당 파일이 없다면 서버에서 받아온다.
-					//작은 이미지로부터 큰 이미지를 생성
-//					file=new File("C:/dev/workspace/lunch_prj/src/kr/co/sist/user/img/s_default.jpg");
-
-				}//end if
+				FileClient fc=new FileClient();
+				System.out.println("searchevt+++++"+rv.getrNum());
+				try {
+					String img=fc.restaurantDownloadProcess(rv.getrNum());
+					file=new File(img);
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
 				rowData = new Object[2];
 				rowData[0] = new ImageIcon(file.getAbsolutePath());
 				rowData[1] = rv.getrName();

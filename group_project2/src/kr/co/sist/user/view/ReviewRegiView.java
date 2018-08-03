@@ -89,11 +89,12 @@ public class ReviewRegiView extends JFrame {
 		lblReviewerIcon.setIcon(reviewerIcon);
 		lblReviewImg.setIcon(reviewImg);
 		
-		cGradeBox.addItem("¡Ú¡Ú¡Ú¡Ú¡Ú");
-		cGradeBox.addItem("¡Ú¡Ú¡Ú¡Ú");
-		cGradeBox.addItem("¡Ú¡Ú¡Ú");
-		cGradeBox.addItem("¡Ú¡Ú");
 		cGradeBox.addItem("¡Ú");
+		cGradeBox.addItem("¡Ú¡Ú");
+		cGradeBox.addItem("¡Ú¡Ú¡Ú");
+		cGradeBox.addItem("¡Ú¡Ú¡Ú¡Ú");
+		cGradeBox.addItem("¡Ú¡Ú¡Ú¡Ú¡Ú");
+		
 		
 		tfReviewTitle.setBounds(370,100,200,20);
 		lblReviewTitle.setBounds(270,100,80,20);
