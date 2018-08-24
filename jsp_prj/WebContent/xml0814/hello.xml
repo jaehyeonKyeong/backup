@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<!-- 선언부 : 무조건 xml의 가장 첫번째줄에 나와야한다. -->
+<msgs><!-- 최상위 부모(root:근,뿌리) 노드 : 한개만 서술할 수 있다.(두개이상 error) -->
+	<msg>>반장 최주오</msg>
+	<msg>부반장 송재원</msg>
+	<msg>총무 경제현</msg>
+	<msg>서기 꿀형</msg>
+	<msg>오락반장 뚜딘</msg>
+	<addr>경기도 수원시 권선구 서둔동</addr>
+</msgs>

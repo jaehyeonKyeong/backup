@@ -79,6 +79,7 @@ public class RestaurantSearchViewEvt extends MouseAdapter implements ActionListe
 			Object[] rowData = null;
 			RestaurantSearchVO rv = null;
 
+			
 			// 주문현황을 보여줄 DefaultTableModel을 얻기
 			DefaultTableModel dtm = rsv.getDtm();
 			// dtm 초기화
@@ -214,14 +215,19 @@ public class RestaurantSearchViewEvt extends MouseAdapter implements ActionListe
 				//TODO
 				FileClient fc=new FileClient();
 				System.out.println("searchevt+++++"+rv.getrNum());
+				String img="";
 				try {
-					String img=fc.restaurantDownloadProcess(rv.getrNum());
-					file=new File(img);
+					img=fc.restaurantDownloadProcess(rv.getrNum());
+					if(img!=null) {
+						file=new File(img);
+					}
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
 				rowData = new Object[2];
+				if(file!=null) {
 				rowData[0] = new ImageIcon(file.getAbsolutePath());
+				}
 				rowData[1] = rv.getrName();
 				rNum=rv.getrNum();
 				

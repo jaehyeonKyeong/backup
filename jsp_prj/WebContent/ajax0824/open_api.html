@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="http://localhost:8080/jsp_prj/common/css/main.css"/>
+<!--  CDN -->
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<!-- SmartMenus core CSS (required) -->
+ <link href="../common/js/smart/css/sm-core-css.css" rel="stylesheet" type="text/css" />
+<link href="../common/js/smart/css/sm-simple/sm-simple.css" rel="stylesheet" type="text/css" />
+<!-- SmartMenus jQuery plugin -->
+<script type="text/javascript" src="../common/js/smart/jquery.smartmenus.min.js"></script>
+<script type="text/javascript">
+$(function() {
+	$('#main-menu').smartmenus({
+		subMenusSubOffsetX: 1,
+		subMenusSubOffsetY: -8
+	});
+	
+	var lost_cnt=document.getElementById("lost_cnt");
+	
+	for(var i=1;i<101;i++){
+		lost_cnt.options[i]=new Option(i+"개",i);
+	}
+	$("#bus").click(function() {
+		
+		useOpenAPI("b1");
+		
+	});
+	$("#subway").click(function() {
+		
+		useOpenAPI("s1");
+		
+	});
+	$("#taxi").click(function() {
+		
+		useOpenAPI("t1");
+		
+	});
+	
+});//ready
+function useOpenAPI(type){
+	var cnt=$("#lost_cnt").val();
+	if(cnt=="none"){
+		cnt=10;//분실물의 갯수를 선택하지 않으면 10건을 기본으로 보여준다
+	}
+	var url="http://openapi.seoul.go.kr:8088/4c4c454d53727572353857474e5056/json/ListLostArticleService/1/"+cnt+"/"+type;
+	
+	$.ajax({
+		url:url,
+		type:"get",
+		dataType:"json",
+		error:function(xhr){
+			alert("서버와 통신이 원활하지 못합니다.");
+			console.log("error-code : "+xhr.status+" :: "+xhr.statusText);
+		},
+		success:function(json){
+			var result=json.ListLostArticleService.RESULT.CODE;
+			if(result !="INFO-000"){
+				alert("서비스가 원활하지 못합니다");
+				console.log("code : "+result+" :: 도시교통본부 교통기획관 버스정책과. 김OO 02-2133-22xx로 문의하세요");
+				return;
+			}
+			if(result=="INFO-000"){
+				$(".lost_row").remove();
+				var img="";
+				$.each(json.ListLostArticleService.row,function(i,json){
+					img=json.IMAGE_URL;
+					if( img=="" || img=="aaa.jpg"){
+						img="../common/images/get.png";
+					}
+					$("#lost_tab").append("<tr class='lost_row'><td><img src='"+img+"' style='width:100px;height:100px'/></td><td>"
+					+json.GET_NAME+"</td><td>"+json.GET_DATE+"</td><td>"+json.TAKE_PLACE+"</td><td>"+json.GET_POSITION+"</td><td>"
+					+json.GET_THING+"</td><td>"+json.STATUS+"</td></tr>");
+				});
+			}
+		}
+		
+	}); 
+}
+</script>
+<style type="text/css">
+#wrap { width: 1024px; height: 1000px; margin: 0px auto }
+#header{ height: 150px }
+#headerTop{ height: 75px; font-family:고딕; font-size:30px; text-align:center;
+					font-weight:bold; padding-top:25px;
+			background: #FFF url(../common/images/header_bg.png)}
+#navi{ height: 500px}
+#container{ min-height:750px }
+#footer{ height:60px;background: #FFF url(../common/images/footer_bg.png) ;
+			font-size: 16px; font-weight: bold; text-align: right; 
+			padding-right: 30px; padding-top:40px;
+			width: 994px;}
+#lost_title{font-family:맑음고딕,돋움,dotum;font-size:25px;font-weight:bold}
+#bus{cursor:pointer}
+#subway{cursor:pointer}
+#taxi{cursor:pointer}
+.lost_header{ height:30px;font-weight:bold;font-family:맑은 고딕;font-size:18px}
+#lost_tab{border-spacing:0px;border-top:2px solid #333}
+th,td{border-bottom: 1px solid #333; text-align:center}
+td{height:25px;}
+</style>
+</head>
+<body>
+	<div id="wrap">
+		<div id="header">
+			<div id="headerTop">
+				Web 연습 
+			</div>
+			<div id="navi">
+			    <nav id="main-nav">
+      <!-- Sample menu definition -->
+     <!--  <ul id="main-menu" class="sm sm-blue"> -->
+      <ul id="main-menu" class="sm sm-simple">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">파라메터연습</a>
+          <ul>
+            <li><a href="parameter.html">이름이 유일할 때</a></li>
+            <li><a href="parameter_values.html">이름이 중복될 때</a></li>
+            </li>
+            <li><a href="#" class="disabled">사용불가</a></li>
+          </ul>
+        </li>
+        <li><a href="#">불법다운로드</a></li>
+        <li><a href="#">지원</a>
+          <ul>
+            <li><a href="">빛동희</a></li>
+            <li><a href="">갓대현</a></li>
+          </ul>
+        </li>
+        
+        <li><a href="#">4강의장에 대해서</a>
+          <ul class="mega-menu">
+            <li>
+              <!-- The mega drop down contents -->
+              <div style="width:400px;max-width:100%;">
+                <div style="padding:5px 24px;">
+                <p>Servlet과 JSP를 만드는 목적 : 동적으로 HTML을 생성하기위해서</p>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+			</div>
+		</div>
+		<div id="container">
+			<div>
+				<div id="lost_title">분실물 보기</div><br>
+				<div id="lost_species">
+					<img src="images/bus.png" id="bus"/>
+					<img src="images/subway.png" id="subway"/>
+					<img src="images/taxi.png" id="taxi"/><br>
+					<div>
+						<select id="lost_cnt">
+							<option value="none">-----분실건수보기------</option>
+						</select>					
+					</div>
+				</div><br>
+				<div id="lost_content">
+					<table id="lost_tab">
+						<tr>
+							<th class="lost_header" style="width:100px">이믜즤</th>
+							<th class="lost_header" style="width:150px">씁뜩물</th>
+							<th class="lost_header" style="width:120px">씁뜩일짜</th>
+							<th class="lost_header" style="width:200px">보강장서</th>
+							<th class="lost_header" style="width:200px">씁뜩장서</th>
+							<th class="lost_header" style="width:800px">알륌메시즤</th>
+							<th class="lost_header" style="width:150px">상퉤</th>
+						</tr>
+						<tr class="lost_row">
+							<td colspan="7">분실물을 분실한 장소와 보고싶은 분실물의 건수를 선택해주세요.</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</div>
+		<div id="footer">
+			Copyright&copy; class4 All Right Reserved.
+		</div>
+	</div>
+</body>
+</html>
+
+
+
+

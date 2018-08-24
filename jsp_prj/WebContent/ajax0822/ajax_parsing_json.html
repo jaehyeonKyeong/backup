@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css"
+	href="http://localhost:8080/servlet_prj/common/css/main.css" />
+<!--  CDN -->
+<script type="text/javascript"
+	src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<!-- SmartMenus core CSS (required) -->
+<link href="../common/js/smart/css/sm-core-css.css" rel="stylesheet"
+	type="text/css" />
+<link href="../common/js/smart/css/sm-simple/sm-simple.css"
+	rel="stylesheet" type="text/css" />
+<!-- SmartMenus jQuery plugin -->
+<script type="text/javascript"
+	src="../common/js/smart/jquery.smartmenus.min.js"></script>
+<script type="text/javascript">
+	$(function() {
+		$('#main-menu').smartmenus({
+			subMenusSubOffsetX : 1,
+			subMenusSubOffsetY : -8
+		});
+		$("#jo").click(function() {
+			$.ajax({
+				url:"json_obj.json",
+				type:"get",
+				dataType:"json",
+				error:function(xhr){
+					console.log("error-code : "+xhr.status+" :: "+xhr.statusText);
+				},
+				success:function(json_obj){
+					$("#name").val(json_obj.name);
+					$("#age").val(json_obj.age);
+					$("#addr").val(json_obj.addr);
+					console.log("name :"+typeof(json_obj.name));
+					console.log("age :"+typeof(json_obj.age));
+					console.log("addr :"+typeof(json_obj.addr));
+					console.log("eye :"+typeof(json_obj.eye));
+					console.log("think :"+typeof(json_obj.think));
+				}
+			
+			});//ajax
+		});//click
+		
+
+		$("#ja").click(function() {
+			$.ajax({
+				url:"json_arr.json",
+				type:"get",
+				dataType:"json",
+				error:function(xhr){
+					console.log("error-code : "+xhr.status+" :: "+xhr.statusText);
+				},
+				success:function(json_arr){
+					//alert(json_arr.length);
+					var output="<table border='1'>";
+					output+="<tr>";
+					output+="<th width='120'>이름</th>";
+					output+="<th width='100'>점수</th>";
+					output+="<th width='200'>과목명</th>";
+					output+="</tr>";
+					var flag=false;
+					var total=0;
+					$.each(json_arr, function(i, json) {
+						//alert(json.name);
+						output+="<tr>";
+						output+="<td width='120'>"+json.name+"</td>";
+						output+="<td width='100'>"+json.score+"</td>";
+						output+="<td width='200'>"+json.subject+"</td>";
+						output+="</tr>";
+						total+=json.score;
+						flag=true;
+					});
+					if(!flag){
+						output+="<tr><td colspan='3'>데이터가 없음 </td></tr>";
+					}else{
+						output+="<tr><td colspan='3'>총점 : "+total+" / 평균 :"+(total / json_arr.length)+"</td></tr>";
+					}
+					output+="</table>";
+					
+					$("#json_arr_result").html(output);
+					
+				}
+			
+			});//ajax
+		});//click
+		$("#comp").click(function(){
+			$.ajax({
+				url:"json_obj_arr.json",
+				type:"get",
+				dataType:"json",
+				error:function(xhr){
+					console.log("error-code : "+xhr.status+" :: "+xhr.statusText);
+				},
+				success:function(json){
+					var name=json.name;
+					var age=json.age;
+					var flag=json.flag;
+					$("#id1").val(name);
+					$("#age1").val(age);
+					var sel=document.getElementById("addr1");
+					sel.length=1;
+					if(flag){
+						$.each(json.addrs,function(i,addr){
+							//select에 옵션을 동적으로 생성할 때 사용하는 
+							sel.options[i+1]=new Option(this.addr,this.addr);
+						});
+					}else{
+						alert("X");
+					}
+				
+				}
+			});//ajax
+			
+		});//click
+	});
+</script>
+<style type="text/css">
+#wrap {
+	width: 1024px;
+	height: 1000px;
+	margin: 0px auto
+}
+
+#header {
+	height: 150px
+}
+
+#headerTop {
+	height: 75px;
+	font-family: 고딕;
+	font-size: 30px;
+	text-align: center;
+	font-weight: bold;
+	padding-top: 25px;
+	background: #FFF url(../common/images/header_bg.png)
+}
+
+#navi {
+	height: 500px
+}
+
+#container {
+	height: 750px
+}
+
+#footer {
+	height: 60px;
+	background: #FFF url(../common/images/footer_bg.png);
+	font-size: 16px;
+	font-weight: bold;
+	text-align: right;
+	padding-right: 30px;
+	padding-top: 40px;
+	width: 994px;
+}
+</style>
+</head>
+<body>
+	<div id="wrap">
+		<div id="header">
+			<div id="headerTop">Web 연습 s('. ^)v</div>
+			<div id="navi">
+				<nav id="main-nav">
+					<!-- Sample menu definition -->
+					<!--  <ul id="main-menu" class="sm sm-blue"> -->
+					<ul id="main-menu" class="sm sm-simple">
+						<li><a href="#">Home</a></li>
+						<li><a href="#">parameter 연습</a>
+							<ul>
+								<li><a href="parameter.html">이름 유일 시</a></li>
+								<li><a href="parameter_values.html">이름 중복 시</a></li>
+
+								<li><a href="#" class="disabled">사용불가</a></li>
+							</ul></li>
+						<li><a href="#">불법다운로드</a></li>
+						<li><a href="#">지원</a>
+							<ul>
+								<li><a href="">빛동희</a></li>
+								<li><a href="">갓대현</a></li>
+							</ul></li>
+
+						<li><a href="#">4강의장에 대해서</a>
+							<ul class="mega-menu">
+								<li>
+									<!-- The mega drop down contents -->
+									<div style="width: 400px; max-width: 100%;">
+										<div style="padding: 5px 24px;">
+											<p>Servlet과 JSP를 만드는 목적 : 동적으로 HTML을 생성하기위해서</p>
+										</div>
+									</div>
+								</li>
+							</ul></li>
+					</ul>
+				</nav>
+			</div>
+		</div>
+		<div id="container">
+			<div>
+
+
+				<input type="button" value="JSONObject" id="jo" class="btn" /> <input
+					type="button" value="JSONArray" id="ja" class="btn" /> <input
+					type="button" value="끔찍한 혼종" id="comp" class="btn" />
+
+			</div>
+			<div id="result">
+				<label>이름</label> <input type="text" name="name" id="name"
+					class="inputBox" /><br> <label>나이</label> <input type="text"
+					name="age" id="age" class="inputBox" /><br> <label>주소</label>
+				<input type="text" name="addr" id="addr" class="inputBox" /><br>
+				<br>
+				<div id="json_arr_result"></div>
+				<br>
+				<div id="json_arr_result1">
+					<label>이름</label>
+					<input type="text" name="name" id="id1" class="inputBox"/><br>
+					<label>나이</label>
+					<input type="text" name="age" id="age1" class="inputBox"/><br>
+					<select id="addr">
+						<option value="none">---------거주지 선택---------</option>
+					</select>
+					
+					
+				</div>
+			</div>
+		</div>
+		<div id="footer">Copyright&copy; class4 All Right Reserved.</div>
+	</div>
+</body>
+</html>
+
+
+

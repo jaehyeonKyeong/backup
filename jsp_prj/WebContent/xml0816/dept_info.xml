@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- DTD정의 없이 생성하는 well-formed문서
+	well-formed : xml작성 규칙만 지켜서 만드는 문서
+ -->
+ <depts>
+ 	<detp>
+ 		<deptno>10</deptno>
+ 		<dname>개발부</dname>
+ 		<loc>서울</loc>
+ 	</detp>
+ 	<detp>
+ 		<deptno>20</deptno>
+ 		<dname>유지보수</dname>
+ 		<loc>나주</loc>
+ 	</detp>
+ 	<detp>
+ 		<deptno>30</deptno>
+ 		<dname>QA</dname>
+ 		<loc>서울</loc>
+ 	</detp>
+ </depts>

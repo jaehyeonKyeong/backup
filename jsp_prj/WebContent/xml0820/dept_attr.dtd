@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!ELEMENT depts (dept*)>
+<!ELEMENT dept (deptno?,dname+,loc+)>
+<!ELEMENT deptno (#PCDATA)>
+<!ELEMENT dname (#PCDATA)>
+<!ELEMENT loc (#PCDATA)>
+
+<!-- IMPLIED - 속성의 값은 없으며 생략가능한 속성 -->
+<!ATTLIST dname dept_info CDATA #IMPLIED >
+<!-- DEFAULT - 속성을 정의하지 않으면 #DEFAULT이고 노드정의시 속성을 생략하면 설정된 값이 기본값으로 들어간다 -->
+<!ATTLIST loc location CDATA "서울">
+<!-- FIXED - 속성을 사용하면 정해진 값만 설정할 때 노드 정의시 속성을 생략할 수 있고, 속성이 정의 된다면 정해진 값(SIST)만 사용할 수 있다. -->
+<!ATTLIST deptno company CDATA #FIXED "SIST">
+<!-- 
+REQUIRED - 속성을 반드시 정의해야 할 때 (속성의 값은 없음)
+-->
+<!ATTLIST dname dept_nick CDATA #REQUIRED>
+

@@ -149,7 +149,17 @@
              Note: The pattern used is equivalent to using pattern="common" -->
         <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs" pattern="%h %l %u %t &quot;%r&quot; %s %b" prefix="localhost_access_log" suffix=".txt"/>
 
-      <Context docBase="servlet_prj" path="/servlet_prj" reloadable="true" source="org.eclipse.jst.jee.server:servlet_prj"/></Host>
+       <Context docBase="servlet_prj" path="/servlet_prj" reloadable="true" source="org.eclipse.jst.jee.server:servlet_prj">
+      <Resource auth="Container" driverClassName="oracle.jdbc.OracleDriver" maxIdle="10" maxTotal="20" maxWaitMillis="-1" name="jdbc/test_dbcp" password="tiger" type="javax.sql.DataSource" url="jdbc:oracle:thin:@211.63.89.140:1521:orcl" username="scott"/>
+      </Context>
+    
+       
+      <Context docBase="jsp_prj" path="/jsp_prj" reloadable="true" source="org.eclipse.jst.jee.server:jsp_prj">
+      <Resource auth="Container" driverClassName="oracle.jdbc.OracleDriver" maxIdle="10" maxTotal="20" maxWaitMillis="-1" name="jdbc/dbcp" password="1111" type="javax.sql.DataSource" url="jdbc:oracle:thin:@211.63.89.140:1521:orcl" username="scott"/>
+      </Context>
+      
+  <Context docBase="html_prj" path="/html_prj" reloadable="true" source="org.eclipse.jst.jee.server:html_prj"/></Host>
+    	 
     </Engine>
   </Service>
 </Server>

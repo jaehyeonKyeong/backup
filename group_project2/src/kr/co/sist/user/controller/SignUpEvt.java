@@ -3,6 +3,7 @@ package kr.co.sist.user.controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
+import java.sql.SQLIntegrityConstraintViolationException;
 
 import javax.swing.JOptionPane;
 
@@ -78,14 +79,26 @@ public class SignUpEvt implements ActionListener {
 					System.out.println("pass : "+pass);
 					suvUser=new SignUpVO(id,pass,name,USER_TABLE);//사용자는 true
 					lUser=new LoginVO(id,pass,USER_TABLE);
+					System.out.println("아이디 몇자니 "+id.length()+"비밀번호 몇자니 "+pass.length());
 					try {
 						l_dao.insertMember(suvUser);
-					} catch (SQLException e) {
-						// TODO Auto-generated catch block
+						JOptionPane.showMessageDialog(su, "사용자 계정이 생성되었습니다.!", "회원가입 성공! :(", JOptionPane.WARNING_MESSAGE);
+						su.dispose();
+					}catch (SQLIntegrityConstraintViolationException e) {
+						JOptionPane.showMessageDialog(su, "해당아이디는 존재합니다.!!", "회원가입 실패 :(", JOptionPane.WARNING_MESSAGE);
+						e.printStackTrace();
+					}catch (SQLException e) {
+						if(id.length()>15) {
+						JOptionPane.showMessageDialog(su, "아이디  는 15자까지만 가능합니다!", "회원가입 실패 :(", JOptionPane.WARNING_MESSAGE);
+						}
+						if(pass.length()>20) {
+							JOptionPane.showMessageDialog(su, "비밀번호  는 20자까지만 가능합니다!", "회원가입 실패 :(", JOptionPane.WARNING_MESSAGE);
+						}
+						if(name.length()>30) {
+							JOptionPane.showMessageDialog(su, "이름은 10자까지만 가능합니다! 죄송합니다 ㅠ.ㅠ", "회원가입 실패 :(", JOptionPane.WARNING_MESSAGE);
+						}
 						e.printStackTrace();
 					}
-					JOptionPane.showMessageDialog(su, "사용자 계정이 생성되었습니다.!", "회원가입 성공! :(", JOptionPane.WARNING_MESSAGE);
-					su.dispose();
 				}//end if
 				}else {
 					JOptionPane.showMessageDialog(su, "비밀번호를 확인해주세요!.", "회원가입 실패! :(", JOptionPane.WARNING_MESSAGE);

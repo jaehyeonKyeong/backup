@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persons>
+	<person>
+		<name>최주오</name>
+		<age>26</age>
+		<address>경기도 수원시 권선구</address>
+	</person>
+	<person>
+		<name>이상훈</name>
+		<age>28</age>
+		<address>경기도 광주시 역동</address>
+	</person>
+	<person>
+		<name>경제현</name>
+		<address>경기도 구리시 인창동</address> <!-- 작성 규칙이 정해져있지 않은 wellFormed문서여서 순서는 상관없지만 parsing할때 문제가 생길수 있어 권장하지는 않는다. -->
+		<age>25</age>
+	</person>
+	<person>
+		<address>서울시 광진구 구의동</address>
+		<age>27</age>
+		<name>이종민</name>
+	</person>
+</persons>

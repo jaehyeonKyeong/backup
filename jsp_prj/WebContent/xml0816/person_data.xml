@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='UTF-8'?>
+	<persons>
+		<title>class4 닝겐들</title>
+		<pubDate>2018-08-16 10:43</pubDate>
+		<recCount>4</recCount>
+		<person>
+			<name>최주오</name>
+			<birthYear>1993</birthYear>
+			<addr>경기도 수원시 권선구</addr>
+		</person>
+		<person>
+			<name>송재원</name>
+			<birthYear>1994</birthYear>
+			<addr>경기도 성남시 수정구</addr>
+		</person>
+		<person>
+			<name>경제현</name>
+			<birthYear>1995</birthYear>
+			<addr>경기도 구리시 인창동</addr>
+		</person>
+		<person>
+			<name>김동희</name>
+			<birthYear>1990</birthYear>
+			<addr>서울시 중구 신당동</addr>
+		</person>
+	</persons>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- rootNode-->
+<!ELEMENT rss (channel?)>
+
+<!--channelNode-->
+<!ELEMENT channel (title?,link?,description?,language?,copyright?,category?,pubdate?,item*)>
+<!ELEMENT title (#PCDATA)>
+<!ELEMENT link (#PCDATA)>
+<!ELEMENT description (#PCDATA)>
+<!ELEMENT language (#PCDATA)>
+<!ELEMENT copyright (#PCDATA)>
+<!ELEMENT category (#PCDATA)>
+<!ELEMENT pubdate (#PCDATA)>
+
+<!-- item -->
+<!ELEMENT item (sTitle,sLink,sDescription,sPubDate)?>
+<!ELEMENT sTitle (#PCDATA)>
+<!ELEMENT sLink (#PCDATA)>
+<!ELEMENT sDescription (#PCDATA)>
+<!ELEMENT sPubDate (#PCDATA)>
+
+<!-- Attribute-->
+<!ATTLIST rss version CDATA #FIXED "2.0">

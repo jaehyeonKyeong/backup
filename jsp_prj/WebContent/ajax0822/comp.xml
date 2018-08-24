@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data>
+
+	<title>복잡한 XML</title>
+	<pubDate>2018-08-22</pubDate>
+	<writer>g오</writer>
+	<resultFlag>true</resultFlag>
+	<items>
+		<item>
+			<name>얼굴</name>
+			<info>수원시 대표 얼굴</info>
+
+		</item>
+
+		<item>
+			<name>언행</name>
+			<info>G의 의지로 헛소리 작렬</info>
+
+		</item>
+
+		<item>
+			<name>패션</name>
+			<info>센스 후후</info>
+		</item>
+	</items>
+</data>

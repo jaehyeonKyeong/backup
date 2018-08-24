@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE rss SYSTEM "work.dtd">
+<rss version="2.0">
+	<channel>
+		<title>JTBC News</title>
+		<link>http://fs.jtbc.joins.com/RSS/newsflash.xml</link>
+		<description>속보 RSS</description>
+		<language>ko</language>
+		<copyright>Copyright(C) JTBC Contents Hub. All rights reserved.</copyright>
+		<category>속보</category>
+		<pubdate>2018년 8월 20일 월요일 오후 5:05:00</pubdate>
+		<item>
+			<sTitle>남북 이산가족 첫 상봉 시작…문 대통령, '정례화' 주문</sTitle>
+			<sLink>http://news.jtbc.joins.com/article/article.aspx?news_id=NB11683476</sLink>
+			<sDescription>[앵커]어제(19일) 강원도 속초에서 이제 하룻 밤을 보내고, 오늘 아침 금강산으로 이동해서, 저희가 말씀드린 것처럼 조금 전 3시부터 단체 상봉시간을 갖고 있는 이산가족들. 만남은 순조롭게 잘 이뤄지고 있다는</sDescription>
+			<sPubDate>2018.08.20</sPubDate>
+		</item>
+		<item>
+			<sTitle>[사회현장] 피해자답지 않았다? '안희정 무죄' 판결문 논란</sTitle>
+			<sLink>http://news.jtbc.joins.com/article/article.aspx?news_id=NB11683405</sLink>
+			<sDescription><![CDATA[[앵커]<사회현장 > 으로 들어가보겠습니다. 안희정 전 지사의 1심 무죄 선고 판결문 전문이 공개됐는데, 이에 대해서 피해자인 김지은씨 측에서 강력히 반발하고 있다면서요, 왜 그런 것입니까? ▶ 재판부 "김지은]]></sDescription>
+			<sPubDate>2018.08.20</sPubDate>
+		</item>
+		<item>
+			<sTitle>[김앵커 한마디] '믿고 기다리라는데…'</sTitle>
+			<sLink>http://news.jtbc.joins.com/article/article.aspx?news_id=NB11683404</sLink>
+			<sDescription>오늘(20일)의 한마디는 '믿고 기다리라는데...'입니다.일요일인 어제 고용상황 당정청 긴급회의가 열렸습니다. 참석자들 표정은 너나없이 심각했습니다. 그럴 만 합니다. 지난달 취업자수 증가는 8년 6개월만</sDescription>
+			<sPubDate>2018.08.20</sPubDate>
+		</item>
+	</channel>
+</rss>

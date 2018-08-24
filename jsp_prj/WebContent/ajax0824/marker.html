@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css"
+	href="http://localhost:8080/jsp_prj/common/css/main.css" />
+<!--  CDN -->
+<script type="text/javascript"
+	src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<!-- SmartMenus core CSS (required) -->
+<link href="../common/js/smart/css/sm-core-css.css" rel="stylesheet"
+	type="text/css" />
+<link href="../common/js/smart/css/sm-simple/sm-simple.css"
+	rel="stylesheet" type="text/css" />
+<!-- SmartMenus jQuery plugin -->
+<script type="text/javascript"
+	src="../common/js/smart/jquery.smartmenus.min.js"></script>
+<script type="text/javascript">
+	$(function() {
+		$('#main-menu').smartmenus({
+			subMenusSubOffsetX : 1,
+			subMenusSubOffsetY : -8
+		});
+	});
+</script>
+<script type="text/javascript"
+	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=42d23ea395bfc73cd8ec45333631bb84"></script>
+<script>
+window.onload=function(){
+	// 마커를 표시할 위치와 title 객체 배열입니다
+	/*async:false  === 비 동기로 동작하지 않을때
+	 서버로 요청을 보내고 응답이 완료되념ㄴ success를 호출하겠습니다.
+	 async: true  == 비동기로 동작할때 서버로동작할때
+	 
+	 */
+	var positions=[];
+	var init_lat="",init_lng="";
+	$.ajax({
+		url:"ajax_map.jsp",
+		data:"loc=1",
+		dataType:"json",
+		type:"get",
+		async:false,
+		error:function(xhr){
+			console.log("error-code : "+xhr.status+" :: "+xhr.statusText);
+		},
+		success:function(json_arr){
+			$.each(json_arr,function(i,json){
+				if(i==0){
+					init_lat=json.lat;
+					init_lng=json.lng
+				}
+				positions.push(eval("({title:'"+json.title+"',latlng:new daum.maps.LatLng("+json.lat+","+json.lng+")})"));
+			});
+		}
+		
+	});
+	var mapContainer = document.getElementById('map'), // 지도를 표시할 div  
+    mapOption = { 
+        //center: new daum.maps.LatLng(37.4992940, 127.0331880), // 지도의 중심좌표
+        center: new daum.maps.LatLng(init_lat, init_lng), // 지도의 중심좌표
+        level: 3 // 지도의 확대 레벨
+    };
+
+var map = new daum.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+ 
+
+
+/*
+var positions = [
+	{
+        title: '쌍용교육센터', 
+        latlng: new daum.maps.LatLng(37.4992940, 127.0331880)
+    },
+    {
+        title: '탄', 
+        latlng: new daum.maps.LatLng(37.4988730, 127.0346042)
+    },
+    {
+        title: '한식뷔페', 
+        latlng: new daum.maps.LatLng(37.5007580, 127.0346165)
+    },
+    {
+        title: '가조쿠', 
+        latlng: new daum.maps.LatLng(37.5011635, 127.0357361)
+    },
+    {
+        title: '미스터피자 두조각',
+        latlng: new daum.maps.LatLng(37.5013563, 127.0350460)
+    }
+];
+*/
+
+// 마커 이미지의 이미지 주소입니다
+var imageSrc = "http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png"; 
+//var imageSrc = "http://localhost:8080/jsp_prj/common/images/maker.png"; 
+    
+for (var i = 0; i < positions.length; i ++) {
+    
+    // 마커 이미지의 이미지 크기 입니다
+    var imageSize = new daum.maps.Size(24, 35); 
+    
+    // 마커 이미지를 생성합니다    
+    var markerImage = new daum.maps.MarkerImage(imageSrc, imageSize); 
+    
+    // 마커를 생성합니다
+    var marker = new daum.maps.Marker({
+        map: map, // 마커를 표시할 지도
+        position: positions[i].latlng, // 마커를 표시할 위치
+        title : positions[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
+        image : markerImage // 마커 이미지 
+    });
+}
+}
+</script>
+
+
+
+
+<style type="text/css">
+#wrap {
+	width: 1024px;
+	height: 1000px;
+	margin: 0px auto
+}
+
+#header {
+	height: 150px
+}
+
+#headerTop {
+	height: 75px;
+	font-family: 고딕;
+	font-size: 30px;
+	text-align: center;
+	font-weight: bold;
+	padding-top: 25px;
+	background: #FFF url(../common/images/header_bg.png)
+}
+
+#navi {
+	height: 500px
+}
+
+#container {
+	height: 750px
+}
+
+#footer {
+	height: 60px;
+	background: #FFF url(../common/images/footer_bg.png);
+	font-size: 16px;
+	font-weight: bold;
+	text-align: right;
+	padding-right: 30px;
+	padding-top: 40px;
+	width: 994px;
+}
+</style>
+</head>
+<body>
+	<div id="wrap">
+		<div id="header">
+			<div id="headerTop">Web 연습</div>
+			<div id="navi">
+				<nav id="main-nav">
+					<!-- Sample menu definition -->
+					<!--  <ul id="main-menu" class="sm sm-blue"> -->
+					<ul id="main-menu" class="sm sm-simple">
+						<li><a href="#">Home</a></li>
+						<li><a href="#">파라메터연습</a>
+							<ul>
+								<li><a href="parameter.html">이름이 유일할 때</a></li>
+								<li><a href="parameter_values.html">이름이 중복될 때</a></li></li>
+						<li><a href="#" class="disabled">사용불가</a></li>
+					</ul>
+					</li>
+					<li><a href="#">불법다운로드</a></li>
+					<li><a href="#">지원</a>
+						<ul>
+							<li><a href="">빛동희</a></li>
+							<li><a href="">갓대현</a></li>
+						</ul></li>
+
+					<li><a href="#">4강의장에 대해서</a>
+						<ul class="mega-menu">
+							<li>
+								<!-- The mega drop down contents -->
+								<div style="width: 400px; max-width: 100%;">
+									<div style="padding: 5px 24px;">
+										<p>Servlet과 JSP를 만드는 목적 : 동적으로 HTML을 생성하기위해서</p>
+									</div>
+								</div>
+							</li>
+						</ul></li>
+					</ul>
+				</nav>
+			</div>
+		</div>
+		<div id="container">
+			<div id="map" style="width: 700px; height: 350px;"></div>
+			<div id="view"></div>
+		</div>
+		<div id="footer">Copyright&copy; class4 All Right Reserved.</div>
+	</div>
+</body>
+</html>
+
+
+

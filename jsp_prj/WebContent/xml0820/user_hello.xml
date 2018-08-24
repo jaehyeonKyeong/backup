@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE persons SYSTEM "hello.dtd">
+<persons>
+	<person>
+		<name>최주오</name>
+		<name>G의 의지</name>
+		<age>26</age>
+		<gender>남자</gender>
+		<addr>경기도 수원시 권선구 서둔동</addr>
+		<addr>전라남도 나주시 나주리</addr>
+		<addr>경상북도 경주시 불국사</addr>
+		<test>
+			<success>81점</success>
+		</test>
+	</person>
+	<!-- person은 name이 하나 이상 나와야한다. (DTD에서 +로 정의 하였기때문) -->
+<!--<person>
+		<age>26</age>
+		<gender>남자</gender>
+		<addr>경기도 수원시</addr>
+	</person> -->
+	<!-- age나 gender는 0 또는 1개만 작성할 수 있다. (DTD에서 ?로 정의하였기 때문)-->
+	<person>
+		<name>송재원</name>
+		<age>25</age>
+		<!-- <age>26</age> -->
+		<gender>남자</gender>
+		<!-- <gender>여자</gender> -->
+		<test>
+			<success>63</success>
+		</test>
+	</person>
+	<person>
+		<name>김우현</name>
+		<test>
+			<fail>59</fail>
+		</test>
+	</person>
+	<!-- DTD에 정의되어 있지 않은 노드를 사용하면  ERROR -->
+	<!-- <p></p> -->
+	<!-- DTD에 정의된 순서로만 작성 가능 -->
+<!-- <person>
+		<name></name>
+		<addr></addr>
+		<age></age>
+		<test>
+			<success></success>
+		</test>
+	</person> -->
+</persons>

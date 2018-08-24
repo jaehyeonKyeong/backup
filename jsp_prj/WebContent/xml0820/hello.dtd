@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- DTD의 정의 -->
+<!ELEMENT persons (person*)>
+<!ELEMENT person (name+,age?,gender?,addr*,test*)>
+<!ELEMENT name (#PCDATA)>
+<!ELEMENT age (#PCDATA)>
+<!ELEMENT gender (#PCDATA)>
+<!ELEMENT addr (#PCDATA)>
+<!ELEMENT test (success?|fail?)>
+<!ELEMENT success (#PCDATA)>
+<!ELEMENT fail (#PCDATA)>

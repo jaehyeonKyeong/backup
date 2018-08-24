@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE depts SYSTEM "dept_attr.dtd">
+<depts>
+	<dept>
+		<deptno company="SIST">10</deptno>
+		<dname dept_nick="생산하는 일" dept_info="스킬업">SI</dname>
+		<loc location="서울">서울</loc>
+	</dept>
+	<!-- fixed : company는 SIST만 가능하다 -->
+	<dept>
+		<deptno company="SIST">20</deptno>
+		<!--ERROR <deptno company="JUONET">20</deptno> -->
+		<dname dept_nick="upsert 하는 일" dept_info="정시퇴근 가능">SM</dname>
+		<loc location="서울">서울</loc>
+	</dept>
+	<!-- required : dept_nick속성은 반드시 정의해야한다. 
+		Default: location은 기본값이 들어가나 다른 값으로 변경할수 있다
+		implied : 생략가능하고 자유롭게 값을 넣을 수 있다.
+		-->
+	<dept>
+		<deptno company="SIST">30</deptno>
+		<dname dept_nick="upsert 하는 일" dept_info="정시퇴근 가능">Solution</dname>
+		<!-- ERROR <dname dept_info="정시퇴근 가능">Solution</dname> -->
+		<loc location="파프리카">파주</loc>
+	</dept>
+</depts>

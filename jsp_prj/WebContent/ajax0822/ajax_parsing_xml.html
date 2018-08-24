@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css"
+	href="http://localhost:8080/servlet_prj/common/css/main.css" />
+<!--  CDN -->
+<script type="text/javascript"
+	src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<!-- SmartMenus core CSS (required) -->
+<link href="../common/js/smart/css/sm-core-css.css" rel="stylesheet"
+	type="text/css" />
+<link href="../common/js/smart/css/sm-simple/sm-simple.css"
+	rel="stylesheet" type="text/css" />
+<!-- SmartMenus jQuery plugin -->
+<script type="text/javascript"
+	src="../common/js/smart/jquery.smartmenus.min.js"></script>
+<script type="text/javascript">
+	$(function() {
+		$('#main-menu').smartmenus({
+			subMenusSubOffsetX : 1,
+			subMenusSubOffsetY : -8
+		});
+
+		$("#uni").click(function() {
+			$.ajax({
+				url : "uni.xml",
+				type : "get",
+				dataType : "xml",
+				error : function(xhr) {
+					alert("Error Code : " + xhr.status + " , reason : " + xhr.statusText);
+				},
+				success : function(xml) {
+					var name = $(xml).find("name").text();
+					var age = $(xml).find("age").text();
+					$("#result").html("<strong>" + name + "님</strong> " + age + "세")
+				}
+			});
+		});
+		$("#dup").click(function() {
+			$.ajax({
+				url : "dup.xml",
+				async : true,
+				type : "get",
+				dataType : "xml",
+				error : function(xhr) {
+					console.log("error-code " + xhr.status + " :: " + xhr.statusText);
+				}, //개발자인 내가 호출하지 않는 (서버에서 응답이 오면 자동으로 호출되는 함수) call-back함수
+				success : function(xml) {
+					var cnt = 0;
+					var output = "<ul>";
+					$(xml).find("name").each(function(i, nameNode) {
+						output += "<li>" + $(nameNode).text() + "</li>";
+						flag = true;
+					}); //each(반복)
+					if (!flag) {
+						output += "<li>파싱된 데이터가 존재하지 않습니다.</li>";
+					}
+					output += "</ul>";
+					$("#result").html(output);
+				}
+			});
+		});
+		$("#comp").click(function() {
+			$.ajax({
+				url : "comp.xml",
+				type : "get",
+				dataType : "xml",
+				error : function(xhr) {
+					console.log("error-code : " + xhr.status + " :: " + xhr.statusText);
+				},
+				success : function(xml) {
+					var title = $(xml).find("title").text();
+					var pubDate = $(xml).find("pubDate").text();
+					var writer = $(xml).find("writer").text();
+					var resultFlag = $(xml).find("resultFlag").text();
+
+					var output = "<div>";
+					output += "<table>";
+					output += "<tr>";
+					output += "<th colspan='4'>" + title + "</th>";
+					output += "</tr>";
+					output += "<tr>";
+					output += "<td style='width:80'>작성일</td>";
+					output += "<td style='width:180'>" + pubDate + "</td>";
+					output += "<td style='width:80'>작성자</td>";
+					output += "<td style='width:180'>" + writer + "</td>";
+					output += "</tr>";
+					output += "</table>";
+					//alert(typeof resultFlag); 
+					//typeof를 쓰면 xml에서 parsing한 데이터형을 알 수 있다.
+					//xml은 boolean형이더라도 String으로 바뀐다.
+					output += "</div>";
+					if(resultFlag=="false"){
+						output+="<span style='color:#ff0000;font-weight:bold'>item이 존재하지 않습니다.</span>"
+					}else{
+						//resultFlag가 true이므로 items > item노드를 얻어와서 반복시킨다.
+						var itemNode=$(xml).find("item");
+						itemNode.each(function(i, element) {
+							//반복하여 순회중인 노드는 element로 접근할 수 있지만 현재 순회중인 객체를 this로 변경하여 사용할 수 있다.
+							output+="<div style='border:1px solid #333;width:400px;height:80px;overflow:auto'>";
+							output+="아이템 명 : "+$(this).find("name").text()+"<br>";
+							output+="아이템 정보 : "+$(this).find("info").text()+"<br>";
+							output+="</div>"
+							
+						});//each
+					}
+					$("#result").html(output);
+				}
+			});
+		});
+
+	});
+</script>
+<style type="text/css">
+#wrap {
+	width: 1024px;
+	height: 1000px;
+	margin: 0px auto
+}
+
+#header {
+	height: 150px
+}
+
+#headerTop {
+	height: 75px;
+	font-family: 고딕;
+	font-size: 30px;
+	text-align: center;
+	font-weight: bold;
+	padding-top: 25px;
+	background: #FFF url(../common/images/header_bg.png)
+}
+
+#navi {
+	height: 500px
+}
+
+#container {
+	height: 750px
+}
+
+#footer {
+	height: 60px;
+	background: #FFF url(../common/images/footer_bg.png);
+	font-size: 16px;
+	font-weight: bold;
+	text-align: right;
+	padding-right: 30px;
+	padding-top: 40px;
+	width: 994px;
+}
+</style>
+</head>
+<body>
+	<div id="wrap">
+		<div id="header">
+			<div id="headerTop">Web 연습 s('. ^)v</div>
+			<div id="navi">
+				<nav id="main-nav">
+					<!-- Sample menu definition -->
+					<!--  <ul id="main-menu" class="sm sm-blue"> -->
+					<ul id="main-menu" class="sm sm-simple">
+						<li><a href="#">Home</a></li>
+						<li><a href="#">parameter 연습</a>
+							<ul>
+								<li><a href="parameter.html">이름 유일 시</a></li>
+								<li><a href="parameter_values.html">이름 중복 시</a></li>
+
+								<li><a href="#" class="disabled">사용불가</a></li>
+							</ul></li>
+						<li><a href="#">불법다운로드</a></li>
+						<li><a href="#">지원</a>
+							<ul>
+								<li><a href="">빛동희</a></li>
+								<li><a href="">갓대현</a></li>
+							</ul></li>
+
+						<li><a href="#">4강의장에 대해서</a>
+							<ul class="mega-menu">
+								<li>
+									<!-- The mega drop down contents -->
+									<div style="width: 400px; max-width: 100%;">
+										<div style="padding: 5px 24px;">
+											<p>Servlet과 JSP를 만드는 목적 : 동적으로 HTML을 생성하기위해서</p>
+										</div>
+									</div>
+								</li>
+							</ul></li>
+					</ul>
+				</nav>
+			</div>
+		</div>
+		<div id="container">
+			<div>
+
+
+				<input type="button" value="노드명 유일" id="uni" class="btn" /> <input
+					type="button" value="노드명 중복" id="dup" class="btn" /> <input
+					type="button" value="복잡한 노드" id="comp" class="btn" />
+
+			</div>
+			<div id="result"></div>
+		</div>
+		<div id="footer">Copyright&copy; class4 All Right Reserved.</div>
+	</div>
+</body>
+</html>
+
+
+

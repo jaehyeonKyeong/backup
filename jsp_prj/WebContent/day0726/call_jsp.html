@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css"
+	href="http://211.63.89.140:8080/servlet_prj/common/css/main.css" />
+<script type="text/javascript"
+	src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script type="text/javascript">
+function sendGet(){
+	//location.href="call.jsp";//페이지만 이동
+	document.getFrm.submit();//폼컨트롤의 값이 같이 전달된다.
+}
+function sendPost(){
+	//location.href="call.jsp";//로케이션으로는 post를 보낼수 없다 
+	document.postFrm.submit();//폼컨트롤의 값이 같이 전달된다.
+}
+window.onload=function(){
+	document.getElementById("jsGet").addEventListener("click",sendGet);
+	document.getElementById("jsPost").addEventListener("click",sendPost);
+}
+$(function(){
+	$("#jQueryGet").click(function() {
+		$("[name='getFrm']").submit();
+	});
+	$("#jQueryPost").click(function() {
+		$("[name='postFrm']").submit();
+	});
+});
+</script>
+<style>
+#get {
+	border: 1px solid #333;
+	width: 300px;
+	height: 150px;
+}
+
+#post {
+	border: 1px solid #333;
+	width: 300px;
+	height: 150px;
+}
+</style>
+</head>
+<body>
+	<div id="get">
+		<strong>GET방식으로 JSP 요청</strong><br> 링크:<a href="call.jsp">요청</a><br>
+		<form action="call.jsp" method="get" name="getFrm">
+			<input type="submit" value="get요청" class="btn"> 
+			<input	type="button" value="GET요청-javascript" class="btn" id="jsGet">
+			<input type="button" value="GET요청-jquery" class="btn" id="jQueryGet">
+		</form>
+	</div>
+	<div id="post">
+		<!--
+			링크를 클릭했을때 post방식으로 요청하고자 한다면 javaScript함수를 호출한다.-->
+		 <a href="#" onclick="sendPost()">Post방식 이동</a> 
+		<form action="call.jsp" method="post" name="postFrm">
+			<input type="submit" value="post요청" class="btn"> 
+			<input 	type="button" value="POST요청-javascript" class="btn" id="jsPost">
+			<input type="button" value="POST요청-jquery" class="btn"	id="jQueryPost">
+		</form>
+	</div>
+</body>
+</html>

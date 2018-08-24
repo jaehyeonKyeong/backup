@@ -80,7 +80,6 @@ public class FileClient {
 			if(fis!=null) {fis.close();}
 			if(dos !=null) {dos.close();} //end if
 			if(dis !=null) {dis.close();} //end if
-			if(client !=null) {client.close();} //end if
 		}//end finally
 		
 		return imgPath;
@@ -356,7 +355,6 @@ public class FileClient {
 			if(fis!=null) {fis.close();}
 			if(dos !=null) {dos.close();} //end if
 			if(dis !=null) {dis.close();} //end if
-			if(client !=null) {client.close();} //end if
 		}//end finally
 		
 		return imgPath;
@@ -534,7 +532,6 @@ public class FileClient {
 			dos.writeUTF(fileName);//2. fileNameº¸³»±â
 			dos.flush();
 			if("".equals(fileName)) {return imgPath;}
-			System.out.println(size);
 			size=dis.readInt();
 			readData = new byte[512];
 			
@@ -551,7 +548,6 @@ public class FileClient {
 			fos.close();
 			
 			imgPath=file.getAbsolutePath();
-			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally {
@@ -559,7 +555,6 @@ public class FileClient {
 			if(fis!=null) {fis.close();}
 			if(dos !=null) {dos.close();} //end if
 			if(dis !=null) {dis.close();} //end if
-			if(client !=null) {client.close();} //end if
 		}//end finally
 		
 		return imgPath;

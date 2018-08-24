@@ -149,8 +149,6 @@ public class LoginDAO {
 				pstmt.setString(2,suv.getPassword());
 				pstmt.setString(3,suv.getName());
 				pstmt.executeUpdate();
-		} catch (SQLException e) {
-			e.printStackTrace();
 		}finally {
 			if(pstmt!=null) {pstmt.close();}
 			if(con!=null) {con.close();}

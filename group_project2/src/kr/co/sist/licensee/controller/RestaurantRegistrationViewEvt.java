@@ -23,15 +23,12 @@ import kr.co.sist.licensee.vo.RestaurantRegistrationVO;
 
 public class RestaurantRegistrationViewEvt implements ActionListener {
 	private RestaurantRegistrationView rrv;
-	String imgPath;
-	String mapFileName;
-	String imgFileName;
-	String rNum;
+	String imgPath, mapPath, mapFileName, imgFileName, rNum;
 	RestaurantRegistrationDAO rr_dao;
 
 	public RestaurantRegistrationViewEvt(RestaurantRegistrationView rrv) {
 		this.rrv = rrv;
-		rr_dao=RestaurantRegistrationDAO.getInstance();
+		rr_dao = RestaurantRegistrationDAO.getInstance();
 		try {
 			rNum = rr_dao.restaurantNumGet();
 		} catch (SQLException e) {
@@ -68,15 +65,20 @@ public class RestaurantRegistrationViewEvt implements ActionListener {
 			String DirName = r_img.getDirectory(); // 폴더명
 			imgFileName = r_img.getFile(); // 파일명
 			imgPath = DirName + imgFileName;
-			File file=new File(imgPath);
-			FileClient fc=new FileClient();
-			try {
-				fc.restaurantUploadProcess(file);
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+			if (imgFileName != null) {
+				// 이미지 파일만 등록하도록 설정
+				String ext = imgFileName.substring(imgFileName.lastIndexOf(".") + 1).toLowerCase();
+				// 사용가능한 확장자일 때만 처리
+				// jpg,gif,png,bmp 등
+				if ("jpg".equals(ext) || "gif".equals(ext) || "png".equals(ext) || "bmp".equals(ext)) {
+
+					rrv.getLblImg1().setIcon(new ImageIcon(imgPath));
+
+				} else {// 사용가능한 확장자가 아님
+					JOptionPane.showMessageDialog(rrv, imgFileName + "은 사용가능한 이미지가 아닙니다.");
+
+				} // end else
 			}
-			rrv.getLblImg1().setIcon(new ImageIcon(imgPath));
 
 			System.out.println(imgPath);
 
@@ -89,24 +91,29 @@ public class RestaurantRegistrationViewEvt implements ActionListener {
 
 			String DirName = m_img.getDirectory();
 			mapFileName = m_img.getFile();
-			String mapPath = DirName + mapFileName;
-			File file=new File(mapPath);
-			FileClient fc=new FileClient();
-			try {
-				fc.mapUploadProcess(rNum, file);
-			} catch (IOException e) {
-				e.printStackTrace();
+			mapPath = DirName + mapFileName;
+			if (mapFileName != null) {
+				// 이미지 파일만 등록하도록 설정
+				String ext = imgFileName.substring(mapFileName.lastIndexOf(".") + 1).toLowerCase();
+				// 사용가능한 확장자일 때만 처리
+				// jpg,gif,png,bmp 등
+				if ("jpg".equals(ext) || "gif".equals(ext) || "png".equals(ext) || "bmp".equals(ext)) {
+
+					rrv.getLblImg2().setIcon(new ImageIcon(mapPath));
+				} else {// 사용가능한 확장자가 아님
+					JOptionPane.showMessageDialog(rrv, mapFileName + "은 사용가능한 이미지가 아닙니다.");
+
+				} // end else
 			}
-			rrv.getLblImg2().setIcon(new ImageIcon(mapPath));
 
 			System.out.println(mapPath);
 		} // end if
 
 		// 식당등록버튼
 		if (ae.getSource() == rrv.getBtnRegistration()) {
-			if(!"".equals(rrv.getTfName().getText().trim())) {
-			addRest();
-			}else {
+			if (!"".equals(rrv.getTfName().getText().trim())) {
+				addRest();
+			} else {
 				JOptionPane.showMessageDialog(rrv, "식당명은 필수로 입력해주세요!", "식당명입력해주세요ㅠㅠ", JOptionPane.INFORMATION_MESSAGE);
 				rrv.getTfName().requestFocus();
 			}
@@ -114,7 +121,7 @@ public class RestaurantRegistrationViewEvt implements ActionListener {
 
 		// 식당 메뉴등록
 		if (ae.getSource() == rrv.getBtnMenuegistration()) {
-			new MenuRegistrationView(rNum,rrv);
+			new MenuRegistrationView(rNum, rrv);
 		} // end if
 
 		// 확인버튼
@@ -130,8 +137,8 @@ public class RestaurantRegistrationViewEvt implements ActionListener {
 		if (ae.getSource() == rrv.getBtnCc()) {
 			rrv.dispose();
 		} // end if
-		//새로고침버튼
-		if(ae.getSource()==rrv.getBtnNewMenu()) {
+			// 새로고침버튼
+		if (ae.getSource() == rrv.getBtnNewMenu()) {
 			searchMenu(rNum);
 		}
 
@@ -154,12 +161,26 @@ public class RestaurantRegistrationViewEvt implements ActionListener {
 		RestaurantRegistrationVO rrvo = new RestaurantRegistrationVO(r_Img, r_Map, r_Name, b_Number, c_Name, r_Addr,
 				c_Price, r_Tel, r_Intro, l_id, f_Category);
 
-
 		switch (JOptionPane.showConfirmDialog(rrv, "등록하시겠습니까?", "확인", JOptionPane.YES_NO_OPTION,
 				JOptionPane.QUESTION_MESSAGE)) {
 		case JOptionPane.OK_OPTION:
+			File imgfile = new File(imgPath);
+			FileClient imgfc = new FileClient();
 			try {
-				
+				imgfc.restaurantUploadProcess(imgfile);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			File mapfile = new File(mapPath);
+			FileClient mapfc = new FileClient();
+			try {
+				mapfc.mapUploadProcess(rNum, mapfile);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			try {
+
 				rr_dao.insertRestaurant(rrvo, rNum);
 				JOptionPane.showMessageDialog(rrv, "등록이 성공적으로 완료되었어요!\n새로고침버튼을 눌러주세요");
 			} catch (SQLException se) {
@@ -182,7 +203,7 @@ public class RestaurantRegistrationViewEvt implements ActionListener {
 			DefaultTableModel dtm = rrv.getDtmMenu();
 			// dtm초기화
 			dtm.setRowCount(0);
-			MenuVO mvo=null;
+			MenuVO mvo = null;
 			for (int i = 0; i < menuList.size(); i++) {
 				mvo = menuList.get(i);
 				System.out.println(rNum);
