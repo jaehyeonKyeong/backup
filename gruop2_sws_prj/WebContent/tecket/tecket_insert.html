@@ -1,0 +1,142 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>tecket</title>
+<link rel="stylesheet" type="text/css"
+	href="http://localhost:8080/servlet_prj/common/css/main.css" />
+<!--  CDN -->
+<script type="text/javascript"
+	src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<!-- SmartMenus core CSS (required) -->
+<link href="../common/js/smart/css/sm-core-css.css" rel="stylesheet"
+	type="text/css" />
+<link href="../common/js/smart/css/sm-simple/sm-simple.css"
+	rel="stylesheet" type="text/css" />
+<!-- SmartMenus jQuery plugin -->
+<script type="text/javascript"
+	src="../common/js/smart/jquery.smartmenus.min.js"></script>
+<script type="text/javascript">
+
+</script>
+<!-- nav css -->
+<link href="http://localhost:8080/gruop2_sws_prj/common/css/nav_frm.css" rel="stylesheet"
+	type="text/css" />
+<!--  -->
+<style type="text/css">
+table{
+border-top:1px solid #333;
+margin:35px auto;
+border-bottom:1px solid #333;
+}
+tr{
+	height:38px;
+}
+th{
+border-bottom: 1px solid #333;
+width:150px;
+}
+td{
+padding-left:15px;
+border-bottom: 1px solid #333;
+}
+#v_name{
+	width:250px;
+}
+#v_price{
+	width:150px;
+}
+#v_info{
+	width:500px;
+	height:300px;
+}
+.btn{
+width:65px;
+height:30px;
+margin-right:10px;
+}
+
+#btn_wrap{
+	text-align:center;
+	margin-top:10px;
+	margin-right:45px;
+}
+</style>
+</head>
+<body>
+	<div id="wrap">
+
+		<div id="header">
+
+			<div class="menubar">
+
+				<ul>
+					<a href="../main.html"><li id="logo"><span class=logo>BILRIM:빌림</span></li></a>
+					<li style="float: right"><a href="#" id="current" onmouseover="this.style.color='#ffffff'"onmouseout="this.style.color='#000000'" >송재원 대표님 ▼</a>
+						<ul>
+							<li id="log_out"><a href="#"onmouseover="document.getElementById('current').style.color='#ffffff'"onmouseout="document.getElementById('current').style.color='#000000'">로그아웃</a></li>
+						</ul></li>
+				</ul>
+			</div>
+		</div>
+		<!-- contents -->
+		<div id="contents">
+			<!-- nav -->
+			<div id="nav">
+				<ul>
+					<li><a href="#">회원 관리</a></li>
+					<li><a href="#">문의 관리</a></li>
+					<li><a href="#">상품 관리</a></li>
+					<li><a href="#">대여 관리</a></li>
+					<li><a href="#">이용권 관리</a></li>
+					<li><a href="#">관리자 관리</a></li>
+					<li><a href="#">공지 사항</a></li>
+				</ul>
+			</div>
+			<!-- content -->
+			<div id="content">
+			<div id="content_title"><strong>이용권 관리</strong></div>
+				<div id="tecket_info_wrap">
+					<table>
+						<tr>
+							<th>이용권 명</th>
+							<td><input type="text" id="v_name"name="v_name"class="inputBox"></td>
+						</tr>
+						<tr>
+							<th>구분</th>
+							<td><select id="v_category">
+								<option value="none">=======종류선택======</option>
+								<option value="v_shot">단기 이용권</option>
+								<option value="v_long">장기 이용권</option>
+							</select></td>
+						</tr>
+						<tr>
+							<th>이미지</th>
+							<td><input type="file" id="v_img"name="v_img"></td>
+						</tr>
+						<tr>
+							<th>이용권 가격</th>
+							<td><input type="text" id="v_price"name="v_price"class="inputBox">원</td>
+						</tr>
+						<tr>
+							<th>이용권 설명</th>
+							<td><textarea id="v_info">이곳에 이용권의 설명을 적어주세요</textarea></td>
+						</tr>
+					</table>
+					<div id="btn_wrap">
+					<input type="button" id="btn_submit" value="확인" class="btn">
+					<input type="button" id="btn_cancle" value="취소" class="btn">
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="footer">
+		&copy;2018 BILRIM Designed by GroupTwo
+		</div>
+	</div>
+</body>
+</html>
+
+
+

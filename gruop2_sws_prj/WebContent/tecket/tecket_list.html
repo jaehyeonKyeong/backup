@@ -1,0 +1,161 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>tecket</title>
+<link rel="stylesheet" type="text/css"
+	href="http://localhost:8080/servlet_prj/common/css/main.css" />
+<!--  CDN -->
+<script type="text/javascript"
+	src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<!-- SmartMenus core CSS (required) -->
+<link href="../common/js/smart/css/sm-core-css.css" rel="stylesheet"
+	type="text/css" />
+<link href="../common/js/smart/css/sm-simple/sm-simple.css"
+	rel="stylesheet" type="text/css" />
+<!-- SmartMenus jQuery plugin -->
+<script type="text/javascript"
+	src="../common/js/smart/jquery.smartmenus.min.js"></script>
+<script type="text/javascript">
+
+</script>
+<!-- nav css -->
+<link href="http://localhost:8080/gruop2_sws_prj/common/css/nav_frm.css" rel="stylesheet"
+	type="text/css" />
+<!--  -->
+<style type="text/css">
+table{
+border-top:1px solid #333;
+margin-top:35px;
+margin-left:40px;
+border-bottom:1px solid #333;
+}
+tr{
+	height:38px;
+}
+th{border-bottom: 1px solid #333;}
+td{
+text-align:center;
+}
+#v_num{
+width:100px;
+}
+#v_name{
+width:350px;
+}
+#v_category{
+width:220px;
+}
+#v_price{
+width:200px;
+}
+#add,#upd,#del{
+width:65px;
+height:30px;
+float:right;
+margin-right:10px;
+}
+
+#btn_wrap{
+	margin-top:10px;
+	margin-right:45px;
+}
+#list_page_wrap{
+	text-align: center;
+	}
+</style>
+</head>
+<body>
+	<div id="wrap">
+
+		<div id="header">
+
+			<div class="menubar">
+
+				<ul>
+					<a href="main.html"><li id="logo"><span class=logo>BILRIM:빌림</span></li></a>
+					<li style="float: right"><a href="#" id="current" onmouseover="this.style.color='#ffffff'"onmouseout="this.style.color='#000000'" >송재원 대표님 ▼</a>
+						<ul>
+							<li id="log_out"><a href="#"onmouseover="document.getElementById('current').style.color='#ffffff'"onmouseout="document.getElementById('current').style.color='#000000'">로그아웃</a></li>
+						</ul></li>
+				</ul>
+			</div>
+		</div>
+		<!-- contents -->
+		<div id="contents">
+			<!-- nav -->
+			<div id="nav">
+				<ul>
+					<li><a href="#">회원 관리</a></li>
+					<li><a href="#">문의 관리</a></li>
+					<li><a href="#">상품 관리</a></li>
+					<li><a href="#">대여 관리</a></li>
+					<li><a href="#">이용권 관리</a></li>
+					<li><a href="#">관리자 관리</a></li>
+					<li><a href="#">공지 사항</a></li>
+				</ul>
+			</div>
+			<!-- content -->
+			<div id="content">
+			<div id="content_title"><strong>이용권 관리</strong></div>
+				<div id="tecket_list_wrap">
+					<table id="tecket_surface_table">
+						<tr>
+							<th id="v_num">순번</th>
+							<th id="v_name">이름</th>
+							<th id="v_category">구분</th>
+							<th id="v_price">가격</th>
+						</tr>
+						<tr>
+							<td>1</td>
+							<td><a href="#">3개월 월 5회 이용권</a></td>
+							<td>월단위 이용권</td>
+							<td>\189,500</td>
+						</tr>
+						<tr>
+							<td>2</td>
+							<td><a href="#">5개월 월 6회 이용권</a></td>
+							<td>월단위 이용권</td>
+							<td>\380,000</td>
+						</tr>
+						<tr>
+							<td>3</td>
+							<td><a href="#">7개월 월 7회 이용권</a></td>
+							<td>월단위 이용권</td>
+							<td>\528,000</td>
+						</tr>
+						<tr>
+							<td>4</td>
+							<td><a href="#">12개월 월 10회 이용권</a></td>
+							<td>월단위 이용권</td>
+							<td>\985,950</td>
+						</tr>
+						<tr>
+							<td>5</td>
+							<td><a href="#">24개월 월 12회 이용권</a></td>
+							<td>월단위 이용권</td>
+							<td>\1,883,890</td>
+						</tr>
+					</table>
+					<div id="list_page_wrap">
+					<a href="#">&lt;</a><strong><a href="#">1</a></strong> <a href="#">2</a> <a href="#">3</a> <a href="#">></a>
+					</div>
+					<div id="btn_wrap">
+					<input type="button" value="추가" name="add" id="add"/>
+					</div>
+					
+					
+				</div>
+			</div>
+		</div>
+		<div id="footer">
+		&copy;2018 BILRIM Designed by GroupTwo
+		</div>
+	</div>
+	
+</body>
+</html>
+
+
+

@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>기본 틀</title>
+<link rel="stylesheet" type="text/css"
+	href="http://localhost:8080/servlet_prj/common/css/main.css" />
+<!--  CDN -->
+<script type="text/javascript"
+	src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<!-- SmartMenus core CSS (required) -->
+<link href="../common/js/smart/css/sm-core-css.css" rel="stylesheet"
+	type="text/css" />
+<link href="../common/js/smart/css/sm-simple/sm-simple.css"
+	rel="stylesheet" type="text/css" />
+<!-- SmartMenus jQuery plugin -->
+<script type="text/javascript"
+	src="../common/js/smart/jquery.smartmenus.min.js"></script>
+<script type="text/javascript">
+
+</script>
+<style type="text/css">
+#wrap {
+	margin: 0px auto;
+	width: 1200px;
+}
+a{
+text-decoration: none;
+color:#000000
+}
+a:hover{
+text-decoration: none;
+color:#3f0085;
+}
+
+.logo {
+	font-family: 'Lucida', serif;
+	font-size: 30px;
+	color: #2f2f2f;
+	margin-left:35px;
+}
+#logo{
+	margin-top:8px;
+}
+
+#nav {
+	margin-top: 60px;
+	border-right: 1px solid #e3e3e3;
+	width: 200px;
+	float: left;
+	height:650px;
+}
+
+#nav li {
+	list-style: none;
+	font-size: 22px;
+	padding: 10px;
+}
+
+.menubar {
+	border: none;
+	border: 0px;
+	margin: 0px;
+	padding: 0px;
+	font: 67.5% "Lucida Sans Unicode", "Bitstream Vera Sans",
+		"Trebuchet Unicode MS", "Lucida Grande", Verdana, Helvetica,
+		sans-serif;
+	font-size: 14px;
+	font-weight: bold;
+}
+
+.menubar ul {
+	background: #E0E0E0;
+	height: 50px;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.menubar li {
+	float: left;
+	padding: 0px;
+}
+
+.menubar li a {
+	background: E0E0E0;
+	color: #cccccc;
+	display: block;
+	font-weight: normal;
+	line-height: 50px;
+	margin: 0px;
+	padding: 0px 25px;
+	text-decoration: none;
+}
+#log_out{
+	width:154px;
+}
+.menubar li a:hover, .menubar ul li:hover a {
+	background: rgb(71, 71, 71);
+	color: #000000;
+	text-decoration: none;
+}
+
+.menubar li ul {
+	background: E0E0E0;
+	display: none; /* 평상시에는 드랍메뉴가 안보이게 하기 */
+	height: auto;
+	padding: 0px;
+	margin: 0px;
+	border: 0px;
+	position: absolute;
+	width:154px;
+	color:#ffffff;
+	z-index: 200;
+	text-align: center;
+	/*top:1em;
+/*left:0;*/
+}
+
+.menubar li:hover ul {
+	display: block; /* 마우스 커서 올리면 드랍메뉴 보이게 하기 */
+}
+
+.menubar li li {
+	background: E0E0E0;
+	display: block;
+	float: none;
+	margin: 0px;
+	padding: 0px;
+	width: 200px;
+	display: block;
+
+}
+
+.menubar li:hover li a {
+	background: none;
+	
+}
+
+.menubar li ul a {
+	display: block;
+	height: 50px;
+	font-size: 12px;
+	font-style: normal;
+	margin: 0px;
+	padding: 0px 10px 0px 15px;
+	text-align: center;
+	margin: 0px;
+}
+
+.menubar li ul a:hover, .menubar li ul li:hover a {
+	background: rgb(71, 71, 71);
+	border: 0px;
+	text-decoration: none;
+	color:#ffffff;
+}
+
+#hello {
+	width: 100%;
+	height: 90px;
+}
+
+#hr {
+	wdith: 100%;
+}
+
+#title {
+	float: right;
+	wdith: 200px;
+}
+
+#current {
+	color: #000000;
+}
+#current:hover{
+	color: #ffffff;
+}
+#contents{
+	min-height:1000px;
+		
+}
+#content{
+	padding-top: 150px;
+}
+#footer{
+	border-top:1px solid #e0e0e0;
+	height:150px;
+	text-align:center;
+	padding-top: 35px;
+	padding-left: 15px;
+}
+</style>
+</head>
+<body>
+	<div id="wrap">
+
+		<div id="header">
+
+			<div class="menubar">
+
+				<ul>
+					<a href="main.html"><li id="logo"><span class=logo>BILRIM:빌림</span></li></a>
+					<li style="float: right"><a href="#" id="current" onmouseover="this.style.color='#ffffff'"onmouseout="this.style.color='#000000'" >송재원 대표님 ▼</a>
+						<ul>
+							<li id="log_out"><a href="#"onmouseover="document.getElementById('current').style.color='#ffffff'"onmouseout="document.getElementById('current').style.color='#000000'">로그아웃</a></li>
+						</ul></li>
+				</ul>
+			</div>
+		</div>
+		<div id="contents">
+			<div id="nav">
+				<ul>
+					<li><a href="#">회원 관리</a></li>
+					<li><a href="#">문의 관리</a></li>
+					<li><a href="#">상품 관리</a></li>
+					<li><a href="#">대여 관리</a></li>
+					<li><a href="#">이용권 관리</a></li>
+					<li><a href="#">관리자 관리</a></li>
+					<li><a href="#">공지 사항</a></li>
+				</ul>
+			</div>
+			<div id="content">
+			
+			
+			
+			
+			</div>
+		</div>
+		<div id="footer">
+		&copy;2018 BILRIM Designed by GroupTwo
+		</div>
+	</div>
+	
+</body>
+</html>
+
+
+

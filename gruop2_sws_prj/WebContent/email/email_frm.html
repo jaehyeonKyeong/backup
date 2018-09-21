@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>E-Mail</title>
+<link rel="stylesheet" type="text/css"
+	href="http://localhost:8080/servlet_prj/common/css/main.css" />
+<!--  CDN -->
+<script type="text/javascript"
+	src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<!-- SmartMenus core CSS (required) -->
+<link href="../common/js/smart/css/sm-core-css.css" rel="stylesheet"
+	type="text/css" />
+<link href="../common/js/smart/css/sm-simple/sm-simple.css"
+	rel="stylesheet" type="text/css" />
+<!-- SmartMenus jQuery plugin -->
+<script type="text/javascript"
+	src="../common/js/smart/jquery.smartmenus.min.js"></script>
+<script type="text/javascript">
+
+</script>
+<!-- nav css -->
+<link href="http://localhost:8080/gruop2_sws_prj/common/css/nav_frm.css" rel="stylesheet"
+	type="text/css" />
+<!--  -->
+<style type="text/css">
+table{
+border-top:1px solid #333;
+border-bottom:1px solid #333;
+margin-top:35px;
+}
+tr{
+	height:38px;
+}
+table tr .tab_title{
+width:100px;
+}
+td{
+text-align:left;
+}
+
+
+#email_content{
+margin:3px;
+width:800px;
+height:400px;
+}
+#button_td{
+	border:0px;
+	text-align: right;
+}
+</style>
+</head>
+<body>
+	<div id="wrap">
+
+		<div id="header">
+
+			<div class="menubar">
+
+				<ul>
+					<a href="main.html"><li id="logo"><span class=logo>BILRIM:빌림</span></li></a>
+					<li style="float: right"><a href="#" id="current" onmouseover="this.style.color='#ffffff'"onmouseout="this.style.color='#000000'" >송재원 대표님 ▼</a>
+						<ul>
+							<li id="log_out"><a href="#"onmouseover="document.getElementById('current').style.color='#ffffff'"onmouseout="document.getElementById('current').style.color='#000000'">로그아웃</a></li>
+						</ul></li>
+				</ul>
+			</div>
+		</div>
+		<!-- contents -->
+		<div id="contents">
+			<!-- nav -->
+			<div id="nav">
+				<ul>
+					<li><a href="#">회원 관리</a></li>
+					<li><a href="#">문의 관리</a></li>
+					<li><a href="#">상품 관리</a></li>
+					<li><a href="#">대여 관리</a></li>
+					<li><a href="#">이용권 관리</a></li>
+					<li><a href="#">관리자 관리</a></li>
+					<li><a href="#">공지 사항</a></li>
+				</ul>
+			</div>
+			<div id="content">
+			<div id="content_title"><strong>이메일 보내기</strong></div>
+				<div id="email_wrap">
+					<table id="email_surface_table">
+						<tr>
+						<td class="tab_title">제목</th>
+						<td><input type="text" id="title_inputBox" value="제목을 입력해주세요" class="inputBox" style="width:500px;"/></td>
+						</tr>
+						<tr>
+						<td class="tab_title">작성자</th>
+						<td><input type="text" id="title_inputBox" value="송재원" class="inputBox" readonly="readonly" style="width:500px;"/></td>
+						</tr>
+						<tr class="tab_title">
+						<td>받는 사람</th>
+						<td><input type="text" id="title_inputBox" value="kyeong(MEM0000001)" class="inputBox" readonly="readonly" style="width:500px;"/></td>
+						</tr>
+						<tr>
+						<td colspan="2" ><textarea id="email_content">내용을 입력해주세요</textarea></td>
+						</tr>
+						<tr>
+						<td colspan="2" id="button_td"><input type="submit" value="보내기"/><input type="button" value="취소"/></td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</div>
+		<div id="footer">
+		&copy;2018 BILRIM Designed by GroupTwo
+		</div>
+	</div>
+	
+</body>
+</html>
+
+
+

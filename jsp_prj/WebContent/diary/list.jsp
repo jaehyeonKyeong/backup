@@ -188,7 +188,53 @@ tr:hover{ background-color:  #EAE9F7 ; }
 	</div>
 </body>
 </html>
+<%!
+public String indexList(int current_page, int total_page, String list_url) {
+	  
+int pagenumber=3;  
+int startpage=0; 
+int endpage=0; 
+int curpage=0; 
+StringBuilder strList=new StringBuilder();
 
+startpage = ((current_page - 1) / pagenumber) * pagenumber + 1;
+
+endpage = (((startpage - 1) + pagenumber) / pagenumber) * pagenumber;
+
+if (total_page <= endpage){
+	endpage = total_page;
+}//end if
+
+if ( current_page > pagenumber) {
+	curpage = startpage - 1; 
+	strList.append("[<a href='list.jsp?current_page=").append(curpage).append("'>&lt;&lt;</a>]");
+}else{
+	strList.append("[&lt;&lt;]");
+}//end else 
+strList.append(" ... ");
+
+curpage = startpage;
+
+while (curpage <= endpage){
+
+	if (curpage == current_page) {
+		strList.append("[ <a href='").append(list_url).append("?current_page=").append(current_page).append("'>").append(current_page).append("</a> ]");
+	} else {
+		strList.append("[ <a href='").append(list_url).append("?current_page=").append(curpage).append("'>").append(curpage).append("</a> ]");
+	}//end else
+	curpage++;
+}//end while
+strList.append(" ... ");
+
+if ( total_page > endpage) {
+	curpage = endpage + 1;
+	strList.append("[ <a href='list.jsp?current_page=").append(curpage).append("'>&gt;&gt;</a>]");
+}else{
+	strList.append("[&gt;&gt;]");
+}//end else 
+
+	return strList.toString();
+}//indexList %>
 
 
     
