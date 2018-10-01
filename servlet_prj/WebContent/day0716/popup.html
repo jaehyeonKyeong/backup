@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>점심뭐먹지?</title>
+<link rel="stylesheet" type="text/css" href="http://211.63.89.140:8080/servlet_prj/common/css/main.css"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$("[name='closeFlag']").click(function(){
+			$("[ name='frm']").submit();
+		});//click
+		$("#close").click(function(){
+			self.close();
+		});//click
+	});//ready
+
+</script>
+</head>
+<body>
+<div style="width: 296px;height: 400px;margin: 0px auto">
+<img src="images/popup.png" title="점심은 송이 쏠것이다!!!! 텅장은 가벼움. 카드대환영"/>
+<br/>
+<form action="../popup_close" name="frm">
+	<input type="checkbox" name="closeFlag"/>오늘 하루 이창을 열지 않음.
+	<a href="#" id="close">닫기</a>
+</form>
+</div>
+</body>
+</html>

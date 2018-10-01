@@ -1,0 +1,110 @@
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="class4.selectMapper1">
+<!-- 조회하는 컬럼과 Domain의 setter method를 미리 매핑 시키는 것.  -->
+<!-- 사원테이블 매핑  -->
+<resultMap type="empDomain" id="empMap">
+	<result column="empno" property="empno"/>
+	<result column="ename" property="ename"/>
+	<result column="sal" property="sal"/>
+	<result column="hiredate" property="hiredate"/>
+</resultMap>
+
+<!-- 우편번호 매핑 -->
+<resultMap type="zipDomain" id="zipResult">
+	<result column="zipcode" property="zipcode"/>
+	<result column="sido" property="sido"/>
+	<result column="gugun" property="gugun"/>
+	<result column="dong" property="dong"/>
+	<result column="bunji" property="bunji"/>
+</resultMap>
+
+<!-- 중복 쿼리 정의 -->
+<sql id="emp">
+	select	empno, ename, sal, to_char(hiredate,'yyyy-mm-dd') as hiredate
+	from		emp
+</sql>
+
+<!-- 컬럼하나 행하나 조회 
+	선택한 부서번호에 따른 부서명 조회
+	
+	데이터형 변수명 = SqlSession.selectOne("id", 값);
+-->
+<select id="singleColumn" resultType="String" parameterType="int">
+	select 	dname
+	from		dept
+	where	deptno=#{ deptno }
+</select>
+<!-- 컬럼여러개 행하나 조회
+	resultType이나 parameterType에는 설정파일 ( mybatis_config.xml ) 에 정의한
+	typeAlias를 사용할 수 있다.
+	
+	도메인명 변수명= SqlSession.selectOne("id", 값);
+-->
+<select id="multiColumn" resultType="deptDomain" parameterType="int">
+	select	dname, loc
+	from		dept
+	where	deptno=#{ deptno }
+</select>
+<!-- 컬럼하나 여러행 조회
+	cp_emp 테이블의 모든 사원 조회
+	
+	List<String> list = SqlSession.selectList("id", 값);
+-->
+<select id="singleRow" resultType="String" >
+	select	ename
+	from		cp_emp
+	order by hiredate desc
+</select>
+<!-- 컬럼여러개 여러행 조회
+	emp 테이블에서 입력되는 부서번호에 해당하는 사원번호, 사원명,
+		입사일, 연봉 조회
+		
+		List<Emp> list = SqlSession.selectList("id", 값);
+-->
+<select id="multiRow" resultMap="empMap" parameterType="int">
+	<include refid="emp"/>
+	where	deptno = #{ deptno }
+</select>
+<!-- <의 조회 
+	사원 테이블에서 입력되는 연봉보다 작은 사원의 사원번호, 사원명, 입사일, 연봉을 조회
+	< : error 발생
+	&lt; 로 하거나
+	CDATA Section 사용	
+-->
+<select id="lessThan" resultMap="empMap" parameterType="int">
+	<include refid="emp"/>
+	<![CDATA[
+	where	sal < #{ sal }
+	]]>
+	order by sal
+</select>
+<!-- >의 조회
+	> : error를 발생하지 않는다.
+	&gt;로 하거나 CDATA Section 사용
+ -->
+<select id="greaterThan" resultMap="empMap" parameterType="int">
+<include refid="emp"/>
+<![CDATA[
+	where sal > #{ sal }
+	order by sal desc
+]]>
+</select> 
+<!-- like 의 조회
+	우편번호 검색
+ -->
+<select id="like" resultMap="zipResult" parameterType="String">
+	select zipcode, sido, gugun, dong, nvl(bunji,'') as bunji
+	from zipcode
+	where dong like #{dong} ||'%'
+</select>
+<!-- 동적인 테이블의 조회 ${ }-->
+<!-- subquery -->
+<!-- union -->
+<!-- join -->
+<!-- subquery + join -->
+<!-- dynamic query if -->
+<!-- dynamic query choose -->
+<!-- dynamic query foreach -->
+</mapper>

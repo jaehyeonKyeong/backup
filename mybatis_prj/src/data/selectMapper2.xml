@@ -1,0 +1,106 @@
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="class4.selectMapper2">
+<!-- subquery에서 사용하는 map -->
+<resultMap type="kr.co.sist.domain.CarModel" id="carModelResult">
+	<result column="model" property="model"/>
+	<result column="car_year" property="year"/>
+	<result column="price" property="price"/>
+	<result column="cc" property="cc"/>
+	<result column="car_img" property="img"/>
+</resultMap>
+
+<!-- join에서 사용하는 map  -->
+<resultMap type="kr.co.sist.domain.DeptEmpJoin" id="joinResult">
+<result column="empno" property="empno"/>
+<result column="ename" property="ename"/>
+<result column="sal" property="sal"/>
+<result column="job" property="job"/>
+<result column="hiredate" property="hiredate"/>
+<result column="deptno" property="deptno"/>
+<result column="dname" property="dname"/>
+<result column="loc" property="loc"/>
+</resultMap>
+
+<!-- join_subquery -->
+<resultMap type="kr.co.sist.domain.JoinSubquery" id="jsResult">
+<result column="country" property="country"/>
+<result column="maker" property="maker"/>
+<result column="model" property="model"/>
+<result column="car_year" property="car_year"/>
+<result column="price" property="price"/>
+<result column="car_img" property="car_img"/>
+</resultMap>
+
+<!-- 동적인 테이블의 조회 ${ }
+	${	}는 VO만 가능
+	입력되는 테이블에 모든 사원번호, 사원명, 입사일, 연봉을 조회
+-->
+<select id="dynamic_tab" resultType="empDomain" parameterType="kr.co.sist.vo.DynamicVO">
+	select 	empno, ename, sal, to_char(hiredate, 'yyyy-mm-dd') as hiredate
+	from		${ tableName }
+</select>
+<!-- subquery
+	배기량의 내림차순으로 조회했을 때 11~20번째 레코드에 해당하는
+	차량의 모델명, 년식, 가격, 배기량, 이미지 조회
+	setter와 column명이 다른 경우,
+	
+	resultType을 사용한 경우에 Domain과 column명이 다르다면
+	column 명에 alias를 부여하여 Domain의 setter명과 일치시켜준다.  
+ -->
+<select id="subquery" resultMap="carModelResult" parameterType="kr.co.sist.vo.SubQueryVO">
+	select model, car_year, price, cc, car_img
+	from (select rownum as rnum, model, car_year, price, cc, car_img
+			from (select model, car_year, price, cc, car_img
+					from CAR_MODEl
+					order by cc desc))
+	where rnum between #{startNum} and #{endNum}
+</select>
+<!-- union 
+	emp와 cp_emp 테이블의 사원번호, 사원명, 연봉, 입사일 조회
+-->
+<select id="union" resultType="empDomain">
+	select 	empno, ename, sal, to_char(hiredate,'yyyy-mm-dd') as hiredate
+	from		emp
+	where	deptno = 20
+	union all
+	select 	empno, ename, sal, to_char(hiredate,'yyyy-mm-dd') as hiredate
+	from		cp_emp	
+</select>
+<!-- join
+	매니저번호를 입력받아 매니저가 관리하는 사원의 사원번호, 사원명,
+	연봉,직무,입사일,부서번호,부서명,위치 조회
+ -->
+ <select id="mgrSelect" resultType="int">
+ 	select distinct mgr
+ 	from emp
+ 	where mgr is not null
+ </select>
+ 
+<select id="join" resultMap="joinResult" parameterType="Integer">
+     select e.empno, e.ename, e.sal, e.job, to_char(e.hiredate,'yyyy-mm-dd') as hiredate, d.deptno, d.dname, d.loc
+     from dept d, emp e
+     where e.deptno = d.deptno
+     and	mgr=#{mgr}
+</select>
+<!-- subquery + join
+	제조사를 입력받아 제조국, 제조사, 모델명, 연식, 가격, 이미지를 조회하여
+	가격의 내림차순으로 정렬했을 때 2~6번째 레코드만 조회
+ -->
+ <select id="join_subquery" resultMap="jsResult" parameterType="String">
+ 	select country, maker, model, car_year, price, car_img
+ 	from	(select rownum as rnum, country, maker, model, car_year, price, car_img
+ 			from	(select	cc.country, cc.maker, cm.model, cmo.car_year, cmo.price, cmo.car_img
+ 					from		car_country cc, car_maker cm, car_model cmo
+ 					where	(cm.maker=cc.maker and cmo.model(+)=cm.model ) 
+ 					and 		cc.maker=#{maker}
+ 					order by cmo.price desc))
+	where rnum between 2 and 6 					
+ </select>	
+<!-- dynamic query if -->
+
+<!-- dynamic query choose -->
+<!-- dynamic query foreach -->
+</mapper>

@@ -1,0 +1,185 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>rental</title>
+<link rel="stylesheet" type="text/css"
+	href="http://localhost:8080/servlet_prj/common/css/main.css" />
+<!--  CDN -->
+<script type="text/javascript"
+	src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<!-- SmartMenus core CSS (required) -->
+<link href="../common/js/smart/css/sm-core-css.css" rel="stylesheet"
+	type="text/css" />
+<link href="../common/js/smart/css/sm-simple/sm-simple.css"
+	rel="stylesheet" type="text/css" />
+<!-- SmartMenus jQuery plugin -->
+<script type="text/javascript"
+	src="../common/js/smart/jquery.smartmenus.min.js"></script>
+<script type="text/javascript">
+
+</script>
+<!-- nav css -->
+<link href="http://localhost:8080/gruop2_sws_prj/common/css/nav_frm.css" rel="stylesheet"
+	type="text/css" />
+<!--  -->
+<style type="text/css">
+table{
+border-top:1px solid #333;
+margin-top:35px;
+margin-left:70px;
+border-bottom:1px solid #333;
+}
+tr{
+	height:38px;
+}
+th{border-bottom: 1px solid #333;}
+td{
+text-align:center;
+}
+.title{
+text-align:left;
+}
+#search_wrap{
+margin-top:20px;
+text-align: center;
+}
+span{
+	vertical-align: top;
+}
+#srh_brand,#srh_product,#srh_status{
+	width:110px;
+	height:22px;
+	vertical-align: top;
+}
+.btn{
+	margin-left:2px;
+	height:22px;
+	vertical-align: top;
+}
+#brand_name{
+width:200px;
+}
+#product_name{
+width:300px;
+}
+#status{
+width:100px;
+}
+#rental_date{
+width:200px;
+}
+#add,#upd,#del{
+width:65px;
+height:30px;
+float:right;
+margin-right:10px;
+}
+
+#btn_wrap{
+	margin-top:10px;
+	margin-right:75px;
+}
+#list_page_wrap{
+	text-align: center;
+	}
+</style>
+</head>
+<body>
+	<div id="wrap">
+
+		<div id="header">
+
+			<div class="menubar">
+
+				<ul>
+					<a href="../main.html"><li id="logo"><span class=logo>BILRIM:빌림</span></li></a>
+					<li style="float: right"><a href="#" id="current" onmouseover="this.style.color='#ffffff'"onmouseout="this.style.color='#000000'" >송재원 대표님 ▼</a>
+						<ul>
+							<li id="log_out"><a href="#"onmouseover="document.getElementById('current').style.color='#ffffff'"onmouseout="document.getElementById('current').style.color='#000000'">로그아웃</a></li>
+						</ul></li>
+				</ul>
+			</div>
+		</div>
+		<!-- contents -->
+		<div id="contents">
+			<!-- nav -->
+			<div id="nav">
+				<ul>
+					<li><a href="#">회원 관리</a></li>
+					<li><a href="#">문의 관리</a></li>
+					<li><a href="#">상품 관리</a></li>
+					<li><a href="#">대여 관리</a></li>
+					<li><a href="#">이용권 관리</a></li>
+					<li><a href="#">관리자 관리</a></li>
+					<li><a href="#">공지 사항</a></li>
+				</ul>
+			</div>
+			<!-- content -->
+			<div id="content">
+			<div id="content_title"><strong>대여 관리</strong></div>
+			<div id="search_wrap">
+				<span id="brand">브랜드 명 <input type="search" id="srh_brand"/><input type="button" id="btn_brand" value="검색" class="btn"/></span>
+				<span id="product">상품 명 <input type="search" id="srh_product"/><input type="button" id="btn_product" value="검색" class="btn"/></span>
+				<span id="status">상태 <select id="srh_status">
+					<option value="standBy">대기 중</option>
+					<option value="rentaling">대여 중</option>
+					<option value="return">반납</option>
+				</select>
+				</span>
+			</div>
+				<div id="rental_list_wrap">
+					<table id="rental_surface_table">
+						<tr>
+							<th id="brand_name">브랜드 명</th>
+							<th id="product_name">상품명</th>
+							<th id="status">상태</th>
+							<th id="rental_date">대여기간</th>
+						</tr>
+						<tr>
+							<td>Rolex</td>
+							<td class="title"><a href="#">Rolex oyster perpetual DAY-DATE</a></td>
+							<td>대여 중</td>
+							<td>2018-08-28 ~ 2018-09-04</td>
+						</tr>
+						<tr>
+							<td>LOUIS VUITTON</td>
+							<td class="title"><a href="#">락미 II BB백(M54576)</a></td>
+							<td>대여 중</td>
+							<td>2018-07-03 ~ 2018-07-07</td>
+						</tr>
+						<tr>
+							<td>FENDI</td>
+							<td class="title"><a href="#">마이크로 피카부 백(8M0355)</a></td>
+							<td>대여 중</td>
+							<td>2018-07-07 ~ 2018-07-15</td>
+						</tr>
+						<tr>
+							<td>BALENCIAGA</td>
+							<td class="title"><a href="#">다크 그레이 클래식 시티 백</a></td>
+							<td>대기 중</td>
+							<td>배송 시작일 부터 7일</td>
+						</tr>
+						<tr>
+							<td>PRADA</td>
+							<td class="title"><a href="#">레드 사피아노 갤러리아 백(1BA896)</a></td>
+							<td>대여 중</td>
+							<td>2018-07-04 ~ 2018-07-07</td>
+						</tr>
+					</table>
+					<div id="list_page_wrap">
+					<a href="#">&lt;</a><strong><a href="#">1</a></strong> <a href="#">2</a> <a href="#">3</a> <a href="#">></a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="footer">
+		&copy;2018 BILRIM Designed by GroupTwo
+		</div>
+	</div>
+</body>
+</html>
+
+
+

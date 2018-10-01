@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.2.xsd">
+<!-- 으존성 주입할 bean설정 : 생성은 singleton
+	scope은 Spring Container가 객체를 어떤 방식으로 생성 할 것인지 설정 하는 속성
+	속성 : singleton(객체가 한개생성),prototype(객체가 여러개 생성),session,request
+	session,request <-WebApplicationContext인 경우만 사용가능 
+-->
+	<bean id="data" class="day0914.Data" scope="prototype">
+		<property name="name" value="신종성"/>
+		<property name="job" value="에러요정"/>
+	</bean>
+	
+		<!-- 으존성 주입바들 bean늘 설정 -->
+		<!-- 맥애변수 하나인 생성자를 사용하여 으존성 주입 -->
+	<bean id="in_single_param" class="day0914.Injection" scope="singleton">
+		<constructor-arg ref="data"/>
+	</bean>
+	
+		<!-- 맥애변수 여러개인 생성자를 사용하여 으존성 주입 -->
+	<bean id="in_multi_param" class="day0914.Injection" scope="singleton">
+		<!-- <constructor-arg ref="data"/>
+		<constructor-arg value="2018-09-14"/> -->
+		<constructor-arg>
+			<ref bean="data"/>
+		</constructor-arg>
+		<constructor-arg>
+			<value>2018-09-14</value>
+		</constructor-arg>
+	</bean>
+	
+	<!-- method 으존성 주입 : 기본생성자가 없으면 error-->
+	<bean id="in_method" class="day0914.Injection" scope="singleton">
+		<property name="data" ref="data"/>
+	</bean>
+
+
+</beans>

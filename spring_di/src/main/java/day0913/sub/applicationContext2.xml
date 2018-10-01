@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.2.xsd">
+<!-- JCF Injection -->
+<!-- List -->
+<bean id="ji_list" class="day0913.sub.JcfInjection">
+	<constructor-arg>
+		<list>
+			<value type="java.lang.String">송쓰</value>
+			<value>에러요정</value>
+			<value>에러요정</value>
+			<value>최주오</value>
+			<value>김우현</value>
+		</list>	
+	</constructor-arg>
+</bean>
+
+<!-- Set -->
+<bean id="ji_set" class="day0913.sub.JcfInjection">
+	<constructor-arg>
+		<set>
+			<value>송재원</value>
+			<value>송재원</value>
+			<value>강소예</value>
+			<value>강소예</value>
+			<value>강소예</value>
+			<value>경제현</value>
+		</set>
+	</constructor-arg>
+</bean>
+<!-- Map -->
+<bean id="ji_map" class="day0913.sub.JcfInjection">
+	<constructor-arg>
+		<map>
+			<entry>
+				<key><value>송쓰</value></key>
+				<value>음주를 매우좋아하며 간쏘를 하면 송쓰로 변신한다.</value>
+			</entry>
+			<entry>
+				<key><value>최주오</value></key>
+				<value>반장이 되면서 지의 의지를 확실하게 이어받았다</value>
+			</entry>
+			<entry>
+				<key><value>신종성</value></key>
+				<value>코딩시간이 되면 요정으로 변!신!</value>
+			</entry>
+			<entry>
+				<key><value>경제현</value></key>
+				<value>코딩시간이 되면 요정으로 변!신!</value>
+			</entry>
+			<entry>
+				<key><value>송쓰</value></key>
+				<value>술을 잘 마시고 싶어 양배추 환을 흡입하는 아이!</value>
+			</entry>
+		</map>
+	</constructor-arg>
+</bean>
+<!-- List에 VO Injection -->
+<!-- VO생성 -->
+<bean id="dv1" class="day0913.sub.DataVO"/>
+<bean id="dv2" class="day0913.sub.DataVO"/>
+<bean id="ji_data">
+	<constructor-arg>
+		<list>
+			<!-- <value type="dv1"/> -->
+			<ref bean="dv1"/>
+		</list>
+	</constructor-arg>
+	<constructor-arg>
+		<value type="int">13</value>
+	</constructor-arg>
+</bean>
+
+
+</beans>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.1.xsd">
+<!-- 기본형데이터형의 생성자 의존성주입 
+	<value>를 사용하며 type속성을 사용하지 않으면 String으로 처리된다.
+-->
+	<bean id="pi" class="day0913.sub.PrimitiveInjection"> 
+		<constructor-arg>
+			<!-- <value type="int">13</value> -->
+			<!-- <value type="long">13</value> -->
+			<value type="java.lang.String">에러요정</value>
+		</constructor-arg>
+	</bean>
+</beans>
+ 

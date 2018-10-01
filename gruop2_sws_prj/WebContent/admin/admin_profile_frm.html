@@ -301,12 +301,12 @@ a:hover {
 							<tr>
 								<td class="tg-0pky" colspan="2">권한</td>
 								<td class="tg-0pky" colspan="7">
-								<input type="checkbox" name="authority" value="회원관리"/><label>회원관리</label>
-								<input type="checkbox" name="authority" value="문의관리"/><label>문의관리</label>
-								<input type="checkbox" name="authority" value="상품관리"/><label>상품관리</label><br>
-								<input type="checkbox" name="authority" value="대여관리"/><label>대여관리</label>
-								<input type="checkbox" name="authority" value="이용권관리"/><label>이용권관리</label>
-								<input type="checkbox" name="authority" value="공지사항"/><label>공지사항</label> &nbsp;
+								<input type="radio" name="authority" value="회원관리" checked="checked"/><label>회원관리</label>
+								<input type="radio" name="authority" value="문의관리"/><label>문의관리</label>
+								<input type="radio" name="authority" value="상품관리"/><label>상품관리</label><br>
+								<input type="radio" name="authority" value="대여관리"/><label>대여관리</label>
+								<input type="radio" name="authority" value="이용권관리"/><label>이용권관리</label>
+								<input type="radio" name="authority" value="공지사항"/><label>공지사항</label> &nbsp;
 								<input type="button" id="authority_update" value="권한수정" class="btn">
 								</td>
 							</tr>
@@ -318,10 +318,8 @@ a:hover {
 
 
 			<div id="managebutton">
-			<input type="button" value="이메일 보내기">
-			<input type="button" value="전체 이용권 내역">
-			<input type="button" value="회원 정지">
-			<input type="button" value="목록으로">
+			<input type="button" value="관리자 삭제"/> 
+			<input type="button" value="목록으로"/>
 			</div>
 		</div>
 	</div>

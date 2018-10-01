@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+	dname을 SqlSession에서 사용하려면
+	SqlSession.selectOne("id")
+	SqlSession.selectOne("dn") // id만 사용
+	SqlSession.selectOne("class4.testMapper.dn") // namespace와 사용
+ -->
+<mapper namespace="class4.testMapper">
+	<select id="dn" resultType="String">
+		select dname from dept
+	</select>
+</mapper>

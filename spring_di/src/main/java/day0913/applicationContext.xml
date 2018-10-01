@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.1.xsd">
+
+	<!-- 의존성 주입할 객체 설정-->
+	<bean id="o_dao" class="day0913.OracleDAO"/>
+	<bean id="m_dao" class="day0913.MySqlDAO"/>
+	<!-- 의존성 주입받을 객체 설정후 의존성 주입 -->
+	<bean id="c4ms" class="day0913.Class4MemberService">
+		<constructor-arg ref="m_dao"/>
+	</bean>
+
+</beans>

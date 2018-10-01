@@ -10,18 +10,16 @@
 <script type="text/javascript">
 	$(function() {
 
-		$("#btn").click(function() {
 			var names = [ "후니다2", "킹우현", "빛동희", "송램지", "탈붓다", "꿀형" ];
-			var output = "<ul>";
+			var output = "<tr>";
 			//배열 반복
 			$.each(names, function(i, name) {
 
 				output += "<li>" + i + "번 " + name + "</li>";
 			});
-			output += "</ul>";
+			output += "</tr>";
 			//div출력
 			$("#output").html(output);
-		});
 		$("#even").click(function() {
 			$("li:even").css("color", "red");
 			$("li:odd").css("color", "black");

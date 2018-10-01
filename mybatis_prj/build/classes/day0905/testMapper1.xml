@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+	dname을 SqlSession에서 사용하려면
+	SqlSession.selectOne("id")
+	SqlSession.selectOne("dn") // id만 사용
+	SqlSession.selectOne("class4.testMapper.dn") // namespace와 사용
+ -->
+<mapper namespace="class4.testMapper1">
+<!-- CP_EMP 테이블에 추가 -->
+	<insert id="insert_cpemp">
+		insert into cp_emp(empno, ename, hiredate, sal, comm)
+		values(5555,'최주5',sysdate,5,5)
+	</insert>
+	<update id="update_cpemp">
+		update cp_emp
+		set ename = '최주6', sal = 6, comm = 6
+		where empno=5555
+	</update>
+	<delete id="delete_cpemp">
+		delete from cp_emp
+		where empno = 5555
+	</delete>
+
+</mapper>

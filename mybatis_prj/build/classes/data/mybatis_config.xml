@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+<properties resource="properties/database.properties"/>
+<typeAliases>
+	<typeAlias type="kr.co.sist.domain.Dept" alias="deptDomain"/>
+	<typeAlias type="kr.co.sist.domain.Emp" alias="empDomain"/>
+	<typeAlias type="kr.co.sist.domain.Zipcode" alias="zipDomain"/>
+</typeAliases>
+  <environments default="development">
+    <environment id="development">
+      <transactionManager type="JDBC"/>
+      <dataSource type="POOLED">
+        <property name="driver" value="${driver}"/>
+        <property name="url" value="${url}"/>
+        <property name="username" value="${id}"/>
+        <property name="password" value="${pass}"/>
+      </dataSource>
+    </environment>
+  </environments>
+  <mappers>
+  <!--   <mapper resource="data/examMapper.xml"/> -->
+    <mapper resource="data/selectMapper1.xml"/>
+    <mapper resource="data/selectMapper2.xml"/>
+    <mapper resource="data/selectMapper3.xml"/>
+  </mappers>
+</configuration>

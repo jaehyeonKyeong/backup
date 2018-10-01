@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+	dname을 SqlSession에서 사용하려면
+	SqlSession.selectOne("id")
+	SqlSession.selectOne("dn") // id만 사용
+	SqlSession.selectOne("class4.testMapper.dn") // namespace와 사용
+ -->
+<mapper namespace="class4.examMapper">
+<!-- CP_EMP 테이블에 사원명 추가
+		외부값  : #{ }
+ -->
+	<insert id="insert_cpemp_ename" parameterType="String">
+		insert into cp_emp(ename) values( #{ ename } )
+	</insert>
+	<insert id="insertCpempVo" parameterType="day0905.CpEmpVO">
+		insert into cp_emp(empno, ename, hiredate, sal, comm)
+		values( #{empno}, #{ename}, sysdate, #{sal}, #{comm} ) 
+	</insert>
+	<update id="updateCpEmp" parameterType="day0905.CpEmpVO">
+		update cp_emp
+		set	   ename = #{ename}, sal = #{sal}, comm = #{comm}
+		where  empno = #{empno}
+	</update>
+	
+	<!-- Wrapper class와 기본형 모두 사용 가능 -->
+	<!-- <delete id="deleteCpEmp" parameterType="int"> -->
+	<delete id="deleteCpEmp" parameterType="integer">
+		delete from cp_emp
+		where empno = #{empno}
+	</delete>
+		<!-- 컬럼 하나 조회할 때 -->
+	<select id="selectAllDeptno" resultType="int">
+		select deptno
+		from dept
+	</select>
+	<!-- 여러 컬럼을 조회할 때 : Domain 사용 
+		iBATIS : 컬럼명 as setter 명으로 domain의 setter를 매핑시켜야 했다
+		iBATIS에서는 외부 값을 입력할 때 : #값#, $값$
+		
+		MyBatis에서는 컬럼명과 setter의 이름이 같다면 자동 매핑된다.
+		컬럼명의 as는 alias를 부여할 때 사용
+	-->
+	<!-- 컬럼과 setter를 미리 매핑 시켜놓고 사용하는 resultMap 사용 -->
+	<resultMap type="day0905.DeptDomain" id="ddResult">
+		<result column="deptno" property="deptno"/>
+		<result column="dname" property="dname"/>
+		<result column="loc" property="loc"/>
+	</resultMap>
+	<!-- resultType을 사용한 경우  -->
+	<!-- <select id="selectAllDept" resultType="day0905.DeptDomain"> -->
+	<!-- resultMap을 사용한 경우 -->
+	<!-- resultType 속성과 resultMap 속성은 겹치는 속성이므로 에러가 발생하지 않지만
+		하나만 사용한다. -->
+	<select id="selectAllDept" resultMap="ddResult">
+	select deptno as deptno, dname, loc
+	from dept
+	</select>
+</mapper>

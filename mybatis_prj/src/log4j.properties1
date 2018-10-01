@@ -1,0 +1,17 @@
+#기존의 출력은 Java = System.out.println, JavaScript = alert, console.log
+#를 사용하여 시행중인 상태 error상태를 출력하여 정보를 얻었다.
+#(쉽게 사용할 수 있으나 속도에 대한 문제 발생하여 System.out.println은
+#코딩 작성시에는 들어있어도 상관없으나 서비스를 운용할 때에는 반드시
+#삭제되어야 하는 코드가 된다.)
+#로그는 한 곳에서 제어하기 때문에 편리하게 메세지를 출력할 수 있다.
+# Log Level : 로그가 동작하는 시점
+#TRACE < DEBUG < INFO < WARN < ERROR < FATAL
+#		실행시 정보 출력<-			->에러가 발생한 경우에만 정보를 출력
+# Global logging configuration
+log4j.rootLogger=TRACE, stdout
+# MyBatis logging configuration...
+log4j.logger.org.mybatis.example.BlogMapper=TRACE
+# Console output...
+log4j.appender.stdout=org.apache.log4j.ConsoleAppender
+log4j.appender.stdout.layout=org.apache.log4j.PatternLayout
+log4j.appender.stdout.layout.ConversionPattern=%5p [%t] - %m%n

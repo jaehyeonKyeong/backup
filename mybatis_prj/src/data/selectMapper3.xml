@@ -1,0 +1,115 @@
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="class4.selectMapper3">
+	<resultMap type="kr.co.sist.domain.DynamicIf"
+		id="dynaIfResult">
+		<result column="empno" property="empno" />
+		<result column="sal" property="sal" />
+		<result column="deptno" property="deptno" />
+		<result column="ename" property="ename" />
+		<result column="hiredate" property="hiredate" />
+	</resultMap>
+
+	<!-- dynamic query if 입력되는 부서번호가 10~19사이라면 10번부서의 사원정보를 조회하고, 20~29번 사이라면 
+		20번 부서의 사원 정보조회,30~39번 사이라면 30번 부서 사원정보를 조회 해당 번호가 아니라면 전체 사원 정보를 조회 하는 동적쿼리작성. 
+		<where>,<if> 사용 -->
+	<sql id="dupQuery">
+		select empno, ename, sal, to_char(hiredate,'yyyy-mm-dd') as
+		hiredate,deptno
+		from emp
+	</sql>
+	<select id="dynamicIf" resultMap="dynaIfResult"
+		parameterType="kr.co.sist.vo.DeptVO">
+		<include refid="dupQuery" />
+		<where>
+			<if test=" deptno &gt;= 10 and deptno &lt; 20">
+				deptno = 10
+			</if>
+			<if test=" deptno &gt;= 20 and deptno &lt; 30">
+				deptno = 20
+			</if>
+			<if test=" deptno &gt;= 30 and deptno &lt; 40">
+				deptno = 30
+			</if>
+		</where>
+	</select>
+
+
+	<!-- dynamic query choose -->
+
+	<!-- dynamic query if2 : 사원번호, 사원명, 연봉, 보너스를 입력받아 cp_emp테이블에서 사원번호에 해당하는 
+		사원의 사원명 연봉 보너스를 변경하세요. 단, 사원명은 null이 아닌 경우 변경하고, 연봉은 0이 아닌경우 변경한다. -->
+	<update id="dynamicSet"
+		parameterType="kr.co.sist.vo.DynamicSetVO">
+		update cp_emp
+		<set>
+			<if test="ename != null">
+				<trim suffix="," suffixOverrides=",">
+					ename=#{ ename }
+				</trim>
+			</if>
+			<if test="sal > 0">
+				<trim suffix="," suffixOverrides=",">
+					sal=#{ sal }
+				</trim>
+			</if>
+			<!-- <trim prefix="," prefixOverrides=","> -->
+			comm=#{ comm }
+			<!-- </trim> -->
+		</set>
+		where empno=#{ empno }
+	</update>
+	<!-- dynamic choose 입력되는 부서번호가 10~19사이라면 10번부서의 사원정보를 조회하고, 20~29번 사이라면 
+		20번 부서의 사원 정보조회,해당번호가 아니라면 30번 부서 사원정보를 조회 하는 동적쿼리작성. <where>,<if> 사용 -->
+	<select id="dynamicChoose" resultMap="dynaIfResult"
+		parameterType="kr.co.sist.vo.DeptVO">
+		<include refid="dupQuery" />
+		<where>
+			<choose>
+				<when test="deptno &gt;=10 and deptno &lt;20">
+					deptno=10
+				</when>
+				<when test="deptno &gt;=20 and deptno &lt;30">
+					deptno=20
+				</when>
+				<otherwise>
+					deptno=30
+				</otherwise>
+			</choose>
+		</where>
+	</select>
+
+
+	<!-- dynamic query foreach 입력되는 모든 부서번호에 해당하는 사원번호,사원명,연봉,입사일,부서번호를 조회 empno,ename,sal,to_char(hiredate,'yyyy-mm-dd') 
+		hiredate, deptno <include refid="dupQuery"/> -->
+	<select id="dynamicForeach" resultMap="dynaIfResult"
+		parameterType="kr.co.sist.vo.DynamicForeachVO">
+		<include refid="dupQuery" />
+		where deptno in
+		<foreach collection="deptnoList" item="deptno" index="i"
+			open="(" close=")" separator=",">
+			#{deptno}
+		</foreach>
+
+	</select>
+	<!-- procedure의 사용 insert procedure cp_emp(empno in, ename in, sal in, comm 
+		in, result_msg out); -->
+	<select id="insertProc"
+		parameterType="kr.co.sist.vo.EmpInsertVO" statementType="CALLABLE">
+		{call insert_cp_emp(#{empno,mode=IN},#{ename,mode=IN},#{sal,mode=IN},
+		#{comm,mode=IN},#{resultMsg,mode=OUT,jdbcType=VARCHAR,javaType=String})}
+	</select>
+	
+	<resultMap type="kr.co.sist.domain.Emp" id="empResult">
+		<result column="empno" property="empno"/>
+		<result column="sal" property="sal"/>
+		<result column="ename" property="ename"/>
+		<result column="hiredate" property="hiredate"/>
+	</resultMap>
+	<select id="selectProc" parameterType="kr.co.sist.vo.SelectProcVO" statementType="CALLABLE">
+{ call select_emp(#{deptno,mode=IN}, #{emp,mode=OUT,jdbcType=CURSOR,javaType=ResultSet, resultMap=empResult}) }
+</select>
+
+
+</mapper>

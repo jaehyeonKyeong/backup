@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="http://211.63.89.140:8080/servlet_prj/common/css/main.css"/>
+<!-- CDN -->
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<!-- SmartMenus core CSS (required) -->
+	<link href="../common/js/smart/css/sm-core-css.css" rel="stylesheet" type="text/css" />
+	<link href="../common/js/smart/css/sm-simple/sm-simple.css" rel="stylesheet" type="text/css" />
+<!-- SmartMenus jQuery plugin -->
+    <script type="text/javascript" src="../common/js/smart/jquery.smartmenus.min.js"></script>
+
+<script type="text/javascript">
+function chkNull(){
+	if($("#id").val()==""){
+		$("#id").focus();
+		return;
+	}//end if
+	
+	if($("#passwd").val()==""){
+		$("#passwd").focus();
+		return;
+	}//end if
+	$("[name='frm']").submit(); 
+	
+}//chkNull
+
+	$(function() {
+		$('#main-menu').smartmenus({
+			subMenusSubOffsetX: 1,
+			subMenusSubOffsetY: -8
+		});//smartmenus
+		
+		$("#id").keydown(function(evt) {
+			if(evt.which==13){
+				chkNull();
+			}//end if
+		});//keydown
+		
+		$("#passwd").keydown(function(evt) {
+			if(evt.which==13){
+				chkNull();
+			}//end if
+		});//keydown
+		$(".btn").click(function(){
+			chkNull();
+		})
+		
+		
+		
+		
+	});//ready
+
+
+</script>
+<style type="text/css">
+	#wrap{width: 1024px;height: 1000px;margin: 0px auto;}
+	#header{height: 150px;}
+	#headerTop{height: 75px; font-family:고딕; font-size:30px; text-align:center;
+			font-weight:bold; padding-top:25px; 
+			background: #fff url(../common/images/header_bg.png)}
+	#navi{height: 500px}
+	#container{height:750px }
+	#footer{height:60px;background: #fff url(../common/images/footer_bg.png);
+			font-size: 16px; font-weight: bold;text-align: right;
+			padding-right: 30px; width: 994px; padding-top: 40px;}
+</style>
+</head>
+<body>
+	<div id="wrap">
+		<div id="header">
+			<div id="headerTop">
+			Web 연 습 (^o^)/
+			
+			</div>
+			<div id="navi">
+			 <nav id="main-nav">
+      <!-- Sample menu definition -->
+      <!-- <ul id="main-menu" class="sm sm-blue"> -->
+      <!-- <ul id="main-menu" class="sm sm-mint"> -->
+      <!-- <ul id="main-menu" class="sm sm-clean"> -->
+      <ul id="main-menu" class="sm sm-simple">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">파라메터연습</a>
+        
+          <ul>
+            <li><a href="parameter.html">이름이 유일할 때</a></li>
+            <li><a href="parameter_values.html">이름이 중복될 때</a></li>
+             <li><a href="#" class="disabled">사용불가</a></li>
+            </ul>
+            </li>
+        <li><a href="why_session_a.html">세션이 필요한 이유</a></li>
+        <li><a href="#">지원</a>
+          <ul>
+            <li><a href="#">빛동희</a></li>
+            <li><a href="#">갓대현</a></li>
+          </ul>
+        </li>
+       
+        <li><a href="#">4강의장에 대해서</a>
+          <ul class="mega-menu">
+            <li>
+              <!-- The mega drop down contents -->
+              <div style="width:400px;max-width:100%;">
+                <div style="padding:5px 24px;">
+                <p>Servlet과 JSP를 만드는 목적 : 동적으로 HTML을 생성하기 위해서.</p>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+			</div>
+		</div>
+		<div id="container">
+		<div style="position: relative;">
+			<img src="images/temp_bg1.png" style="position: absolute;top:0px; left:0px;"/>
+			<div style="position: absolute;top: 30px;left: 700px;">
+			<form action="../use_session_b" method="post" name="frm">
+			<table>
+			<tr>
+			<td >
+			<input type="text" name="id" class="inputBox" 
+			placeholder="아이디" id="id" style="width:200px;height: 30px"
+			autofocus="autofocus" tabindex="1"/>
+			
+			
+			</td>
+			<td rowspan="2">
+			<input type="button" value="로그인"
+				 class="btn" style="height: 66px; width: 65px;" tabindex="3"/>
+			</td>
+			
+			</tr>
+			<tr>
+			<td>
+			<input type="password" name="passwd" class="inputBox" id="passwd"
+				placeholder="비밀번호" style="width: 200px;height: 30px" tabindex="2"/>
+			</td>
+			</tr>
+			</table>
+			</form>
+			<div>
+			<a href="#">회원가입</a>
+			<a href="#">아이디/비빌번호 찾기</a>
+			</div>
+			</div>
+		</div>
+		</div>
+		<div id="footer">
+		Copyright&copy;class4 All Right Reserved.
+		
+		</div>
+	</div>
+
+
+</body>
+</html>
