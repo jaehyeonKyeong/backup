@@ -154,7 +154,7 @@ tr:hover{ background-color:  #EAE9F7 ; }
 			</c:forEach>
 			<c:if test="${empty list }">
 			<tr>
-				<td colspan="6" style="text-align:center;">	"${param.keyword }" 에 해당하는 글 없다.
+				<td colspan="6" style="text-align:center;">	"${param.keyword }" 에 해당하는 글 없습니다.
 				</td>
 			</tr>
 			</c:if>

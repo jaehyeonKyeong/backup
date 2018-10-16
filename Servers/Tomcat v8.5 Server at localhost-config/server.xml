@@ -149,7 +149,7 @@
              Note: The pattern used is equivalent to using pattern="common" -->
         <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs" pattern="%h %l %u %t &quot;%r&quot; %s %b" prefix="localhost_access_log" suffix=".txt"/>
 
-      <Context docBase="spring_orm" path="/spring_orm" reloadable="true" source="org.eclipse.jst.jee.server:spring_orm"/><Context docBase="jsp_prj" path="/jsp_prj" reloadable="true" source="org.eclipse.jst.jee.server:jsp_prj"/><Context docBase="group2_sws_prj" path="/group2_sws_prj" reloadable="true" source="org.eclipse.jst.jee.server:group2_sws_prj"/><Context docBase="spring_mvc_template" path="/spring_mvc_template" reloadable="true" source="org.eclipse.jst.jee.server:spring_mvc_template"/></Host>
+      <Context docBase="group2_sws_prj" path="/group2_sws_prj" reloadable="true" source="org.eclipse.jst.jee.server:group2_sws_prj"/><Context docBase="swsSpring_prj" path="/swsSpring_prj" reloadable="true" source="org.eclipse.jst.jee.server:swsSpring_prj"/><Context docBase="mvc_login" path="/mvc_login" reloadable="true" source="org.eclipse.jst.jee.server:mvc_login"/><Context docBase="spring_orm" path="/spring_orm" reloadable="true" source="org.eclipse.jst.jee.server:spring_orm"/></Host>
     </Engine>
   </Service>
 </Server>
